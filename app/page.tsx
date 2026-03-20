@@ -93,6 +93,108 @@ function IconLocation() {
   );
 }
 
+// --- Navbar ---
+const navLinks = [
+  { label: "Ana Sayfa", href: "#" },
+  { label: "Hizmetler", href: "#hizmetler" },
+  { label: "Ürünlerimiz", href: "#urunlerimiz" },
+  { label: "Hakkımızda", href: "#hakkimizda" },
+  { label: "İletişim", href: "#iletisim" },
+];
+
+function Navbar() {
+  const [scrolled, setScrolled] = useState(false);
+  const [active, setActive] = useState("#");
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        scrolled ? "bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800 py-3" : "bg-transparent py-5"
+      }`}
+    >
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        {/* Logo */}
+        <a href="#" className="flex items-center gap-3 group">
+          <div className="w-9 h-9 bg-orange-500 flex items-center justify-center">
+            <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+          </div>
+          <div>
+            <div className="text-white font-black text-sm tracking-widest leading-none">OZHAN</div>
+            <div className="text-orange-500 font-black text-sm tracking-widest leading-none">METAL</div>
+          </div>
+        </a>
+
+        {/* Desktop Nav */}
+        <nav className="hidden md:flex items-center gap-1">
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={() => setActive(link.href)}
+              className={`relative px-4 py-2 text-xs font-semibold uppercase tracking-widest transition-colors group ${
+                active === link.href ? "text-orange-500" : "text-gray-300 hover:text-white"
+              }`}
+            >
+              {link.label}
+              <span
+                className={`absolute bottom-0 left-4 right-4 h-px bg-orange-500 transition-transform origin-left duration-300 ${
+                  active === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+                }`}
+              />
+            </a>
+          ))}
+          <div className="flex items-center gap-1 ml-4 pl-4 border-l border-zinc-700">
+            <a href="#" aria-label="Facebook" className="text-gray-400 hover:text-orange-500 transition-colors p-1.5"><IconFacebook /></a>
+            <a href="#" aria-label="LinkedIn" className="text-gray-400 hover:text-orange-500 transition-colors p-1.5"><IconLinkedIn /></a>
+            <a href="#" aria-label="WhatsApp" className="text-gray-400 hover:text-orange-500 transition-colors p-1.5"><IconWhatsApp /></a>
+          </div>
+        </nav>
+
+        {/* Mobile hamburger */}
+        <button
+          className="md:hidden flex flex-col gap-1.5 p-1"
+          onClick={() => setMenuOpen(!menuOpen)}
+          aria-label="Menü"
+        >
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+        </button>
+      </div>
+
+      {/* Mobile Menu */}
+      <div
+        className={`md:hidden overflow-hidden transition-all duration-300 ${
+          menuOpen ? "max-h-96 border-t border-zinc-800" : "max-h-0"
+        } bg-zinc-950/98`}
+      >
+        {navLinks.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            onClick={() => { setActive(link.href); setMenuOpen(false); }}
+            className={`block px-6 py-4 text-xs font-semibold uppercase tracking-widest border-b border-zinc-800/50 transition-colors ${
+              active === link.href ? "text-orange-500 bg-zinc-900" : "text-gray-300 hover:text-orange-400 hover:bg-zinc-900"
+            }`}
+          >
+            {link.label}
+          </a>
+        ))}
+      </div>
+    </header>
+  );
+}
+
 // --- Counter Hook ---
 function useCounter(target: number, duration = 2000, startCounting: boolean) {
   const [count, setCount] = useState(0);
@@ -163,19 +265,13 @@ const products = [
 
 // --- Main Page ---
 export default function Home() {
-  const [formData, setFormData] = useState({ name: "", email: "", message: "" });
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    alert("Mesajınız alındı. En kısa sürede dönüş yapacağız.");
-    setFormData({ name: "", email: "", message: "" });
-  };
-
   return (
     <div className="bg-zinc-950 text-white font-sans">
 
+      <Navbar />
+
       {/* ── HERO ── */}
-      <section className="relative min-h-screen flex flex-col items-center justify-center text-center px-6 overflow-hidden">
+      <section className="relative flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-32 pb-24">
         {/* Background grid pattern */}
         <div
           className="absolute inset-0 opacity-5"
@@ -314,130 +410,93 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ── İLETİŞİM ── */}
-      <section id="iletisim" className="py-24 px-6 bg-zinc-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-14 text-center">
-            <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-semibold">Bize Ulaşın</span>
-            <h2 className="mt-3 text-4xl font-black tracking-tight">İLETİŞİM</h2>
-            <div className="mt-4 w-12 h-1 bg-orange-500 mx-auto" />
+      {/* ── FOOTER ── */}
+      <footer className="bg-zinc-900 border-t border-zinc-800">
+        <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+
+          {/* Col 1 — Logo + Açıklama */}
+          <div className="md:col-span-1">
+            <a href="#" className="flex items-center gap-3 mb-5">
+              <div className="w-9 h-9 bg-orange-500 flex items-center justify-center shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-black" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+                </svg>
+              </div>
+              <div>
+                <div className="text-white font-black text-sm tracking-widest leading-none">OZHAN</div>
+                <div className="text-orange-500 font-black text-sm tracking-widest leading-none">METAL</div>
+              </div>
+            </a>
+            <p className="text-gray-400 text-sm leading-relaxed">
+              Metal işleme ve makina imalatında yılların deneyimiyle endüstriyel projelere güvenilir, kaliteli ve rekabetçi çözümler sunuyoruz.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-16">
-            {/* Contact Info */}
-            <div className="space-y-8">
-              <div>
-                <h3 className="text-lg font-bold mb-6 text-orange-400 uppercase tracking-wider">İletişim Bilgileri</h3>
-                <div className="space-y-4">
-                  <div className="flex items-start gap-4">
-                    <span className="text-orange-500 mt-0.5"><IconPhone /></span>
-                    <div>
-                      <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Telefon</div>
-                      <a href="tel:+905001234567" className="text-gray-300 hover:text-orange-400 transition-colors">+90 500 123 45 67</a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <span className="text-orange-500 mt-0.5"><IconMail /></span>
-                    <div>
-                      <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">E-posta</div>
-                      <a href="mailto:info@ozhanmetal.com" className="text-gray-300 hover:text-orange-400 transition-colors">info@ozhanmetal.com</a>
-                    </div>
-                  </div>
-                  <div className="flex items-start gap-4">
-                    <span className="text-orange-500 mt-0.5"><IconLocation /></span>
-                    <div>
-                      <div className="text-xs text-gray-500 uppercase tracking-wider mb-1">Adres</div>
-                      <span className="text-gray-300">Organize Sanayi Bölgesi, İstanbul</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          {/* Col 2 — Kurumsal */}
+          <div>
+            <h4 className="text-white font-bold text-sm mb-4">Kurumsal</h4>
+            <div className="w-8 h-0.5 bg-orange-500 mb-5" />
+            <ul className="space-y-3">
+              {[
+                { label: "Ana Sayfa", href: "#" },
+                { label: "Hizmetlerimiz", href: "#hizmetler" },
+                { label: "Ürünlerimiz", href: "#urunlerimiz" },
+                { label: "Hakkımızda", href: "#hakkimizda" },
+                { label: "İletişim", href: "#iletisim" },
+              ].map((l) => (
+                <li key={l.href}>
+                  <a href={l.href} className="text-gray-400 hover:text-orange-400 text-sm transition-colors">{l.label}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-              {/* Social */}
-              <div>
-                <h3 className="text-sm font-bold mb-4 text-orange-400 uppercase tracking-wider">Sosyal Medya</h3>
-                <div className="flex gap-3">
-                  <a
-                    href="#"
-                    aria-label="Facebook"
-                    className="flex items-center justify-center w-10 h-10 border border-zinc-700 hover:border-orange-500 hover:text-orange-500 text-gray-400 transition-colors"
-                  >
-                    <IconFacebook />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="LinkedIn"
-                    className="flex items-center justify-center w-10 h-10 border border-zinc-700 hover:border-orange-500 hover:text-orange-500 text-gray-400 transition-colors"
-                  >
-                    <IconLinkedIn />
-                  </a>
-                  <a
-                    href="#"
-                    aria-label="WhatsApp"
-                    className="flex items-center justify-center w-10 h-10 border border-zinc-700 hover:border-orange-500 hover:text-orange-500 text-gray-400 transition-colors"
-                  >
-                    <IconWhatsApp />
-                  </a>
-                </div>
-              </div>
-            </div>
+          {/* Col 3 — Hizmetlerimiz */}
+          <div>
+            <h4 className="text-white font-bold text-sm mb-4">Hizmetlerimiz</h4>
+            <div className="w-8 h-0.5 bg-orange-500 mb-5" />
+            <ul className="space-y-3">
+              {["Lazer Kesim", "Kaynak & Birleştirme", "CNC İşleme", "Delme & Punta", "Montaj & İmalat", "Kalite Kontrol"].map((s) => (
+                <li key={s}>
+                  <a href="#hizmetler" className="text-gray-400 hover:text-orange-400 text-sm transition-colors">{s}</a>
+                </li>
+              ))}
+            </ul>
+          </div>
 
-            {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-5">
-              <div>
-                <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Ad Soyad</label>
-                <input
-                  type="text"
-                  required
-                  value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                  className="w-full bg-zinc-950 border border-zinc-700 focus:border-orange-500 outline-none px-4 py-3 text-white placeholder-zinc-600 transition-colors"
-                  placeholder="Adınız Soyadınız"
-                />
-              </div>
-              <div>
-                <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">E-posta</label>
-                <input
-                  type="email"
-                  required
-                  value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                  className="w-full bg-zinc-950 border border-zinc-700 focus:border-orange-500 outline-none px-4 py-3 text-white placeholder-zinc-600 transition-colors"
-                  placeholder="ornek@mail.com"
-                />
-              </div>
-              <div>
-                <label className="block text-xs text-gray-500 uppercase tracking-wider mb-2">Mesajınız</label>
-                <textarea
-                  required
-                  rows={5}
-                  value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                  className="w-full bg-zinc-950 border border-zinc-700 focus:border-orange-500 outline-none px-4 py-3 text-white placeholder-zinc-600 transition-colors resize-none"
-                  placeholder="Projeniz hakkında bilgi verin..."
-                />
-              </div>
-              <button
-                type="submit"
-                className="w-full bg-orange-500 hover:bg-orange-400 text-black font-bold py-3 uppercase tracking-wider text-sm transition-colors"
-              >
-                Gönder
-              </button>
-            </form>
+          {/* Col 4 — İletişim */}
+          <div>
+            <h4 className="text-white font-bold text-sm mb-4">İletişim</h4>
+            <div className="w-8 h-0.5 bg-orange-500 mb-5" />
+            <ul className="space-y-4">
+              <li className="flex items-start gap-3">
+                <span className="text-orange-500 mt-0.5 shrink-0"><IconPhone /></span>
+                <a href="tel:+905001234567" className="text-gray-400 hover:text-orange-400 text-sm transition-colors">+90 500 123 45 67</a>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-orange-500 mt-0.5 shrink-0"><IconMail /></span>
+                <a href="mailto:info@ozhanmetal.com" className="text-gray-400 hover:text-orange-400 text-sm transition-colors">info@ozhanmetal.com</a>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-orange-500 mt-0.5 shrink-0"><IconLocation /></span>
+                <span className="text-gray-400 text-sm">Organize Sanayi Bölgesi, İstanbul</span>
+              </li>
+            </ul>
           </div>
         </div>
-      </section>
 
-      {/* ── FOOTER ── */}
-      <footer className="bg-black py-8 px-6 border-t border-zinc-800">
-        <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-4">
-          <div className="text-sm text-gray-500">
-            © {new Date().getFullYear()} <span className="text-orange-500 font-semibold">Ozhan Metal</span>. Tüm hakları saklıdır.
-          </div>
-          <div className="flex gap-3">
-            <a href="#" aria-label="Facebook" className="text-gray-600 hover:text-orange-500 transition-colors"><IconFacebook /></a>
-            <a href="#" aria-label="LinkedIn" className="text-gray-600 hover:text-orange-500 transition-colors"><IconLinkedIn /></a>
-            <a href="#" aria-label="WhatsApp" className="text-gray-600 hover:text-orange-500 transition-colors"><IconWhatsApp /></a>
+        {/* Alt çizgi */}
+        <div className="border-t border-zinc-800">
+          <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+            <p className="text-gray-600 text-xs">
+              © {new Date().getFullYear()} <span className="text-orange-500">Ozhan Metal</span>. Tüm hakları saklıdır.
+            </p>
+            <div className="flex gap-3">
+              <a href="#" aria-label="Facebook" className="text-gray-600 hover:text-orange-500 transition-colors"><IconFacebook /></a>
+              <a href="#" aria-label="LinkedIn" className="text-gray-600 hover:text-orange-500 transition-colors"><IconLinkedIn /></a>
+              <a href="#" aria-label="WhatsApp" className="text-gray-600 hover:text-orange-500 transition-colors"><IconWhatsApp /></a>
+            </div>
           </div>
         </div>
       </footer>
