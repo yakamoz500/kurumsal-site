@@ -149,6 +149,18 @@ const services = [
   { icon: <IconQuality />, title: "Kalite Kontrol", desc: "Her üretim aşamasında ölçüm ve kalite kontrol yaparak sıfır hata hedefliyoruz." },
 ];
 
+const products = [
+  { title: "Makina Gövdeleri", desc: "Endüstriyel makinalar için özel tasarım ve imalat edilmiş çelik gövde konstrüksiyonları." },
+  { title: "Sac Metal Parçalar", desc: "Lazer kesim ve bükme ile üretilen hassas sac metal parçalar ve paneller." },
+  { title: "Şaft & Mil", desc: "Tornalama ve taşlama işlemleriyle üretilen yüksek toleranslı şaft ve mil ürünleri." },
+  { title: "Flanş & Bağlantı Elemanları", desc: "Boru ve ekipman bağlantıları için özel ölçülerde üretilen flanş ve fitting parçaları." },
+  { title: "Kaynaklı Konstrüksiyon", desc: "Çelik profil ve borulardan oluşan taşıyıcı çerçeve ve konstrüksiyon imalatı." },
+  { title: "Özel İmalat Parçalar", desc: "Müşteri teknik çizimine göre tek veya seri üretim yapılan özel makina parçaları." },
+  { title: "Dişli & Kasnak", desc: "Güç aktarım sistemleri için hassas işlenmiş dişli çarklar ve kasnak grupları." },
+  { title: "Hidrolik & Pnömatik Parçalar", desc: "Hidrolik silindir, blok ve pnömatik sistem bileşenlerinin CNC işlemesi." },
+  { title: "Endüstriyel Aparatlar", desc: "Üretim hattı ve montaj süreçleri için özel jig, fikstür ve aparat imalatı." },
+];
+
 // --- Main Page ---
 export default function Home() {
   const [formData, setFormData] = useState({ name: "", email: "", message: "" });
@@ -229,6 +241,41 @@ export default function Home() {
                 </div>
                 <h3 className="text-lg font-bold mb-3 group-hover:text-orange-400 transition-colors">{s.title}</h3>
                 <p className="text-gray-400 text-sm leading-relaxed">{s.desc}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── ÜRÜNLERİMİZ ── */}
+      <section id="urunlerimiz" className="py-24 px-6 bg-zinc-950">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-14 text-center">
+            <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-semibold">Neler Üretiyoruz</span>
+            <h2 className="mt-3 text-4xl font-black tracking-tight">ÜRÜNLERİMİZ</h2>
+            <div className="mt-4 w-12 h-1 bg-orange-500 mx-auto" />
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            {products.map((p, i) => (
+              <div
+                key={i}
+                className="group relative border border-zinc-800 hover:border-orange-500/50 bg-zinc-900 hover:bg-zinc-800 transition-all duration-300 overflow-hidden"
+              >
+                {/* Accent line */}
+                <div className="absolute top-0 left-0 w-0 group-hover:w-full h-0.5 bg-orange-500 transition-all duration-500" />
+                <div className="p-8">
+                  <div className="text-4xl font-black text-zinc-700 group-hover:text-orange-500/20 transition-colors select-none mb-4">
+                    {String(i + 1).padStart(2, "0")}
+                  </div>
+                  <h3 className="text-lg font-bold mb-3 group-hover:text-orange-400 transition-colors">{p.title}</h3>
+                  <p className="text-gray-500 text-sm leading-relaxed">{p.desc}</p>
+                  <div className="mt-6 flex items-center gap-2 text-orange-500 text-xs font-semibold uppercase tracking-wider opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <span>İncele</span>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2.5} d="M9 5l7 7-7 7" />
+                    </svg>
+                  </div>
+                </div>
               </div>
             ))}
           </div>
