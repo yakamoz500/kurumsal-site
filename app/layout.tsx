@@ -15,6 +15,20 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Özhan Metal | Metal Kesme Kalıpları",
   description: "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
+  openGraph: {
+    title: "Özhan Metal | Metal Kesme Kalıpları",
+    description: "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
+    url: "https://ozhanmetal.com",
+    siteName: "Özhan Metal",
+    locale: "tr_TR",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Özhan Metal | Metal Kesme Kalıpları",
+    description: "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
+  },
+  metadataBase: new URL("https://ozhanmetal.com"),
 };
 
 export default function RootLayout({
