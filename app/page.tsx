@@ -176,6 +176,31 @@ function IconDrill() {
     </svg>
   );
 }
+// Pres Baskı — aşağı basan ok + taban çizgisi
+function IconPress() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
+    </svg>
+  );
+}
+// CNC İşleme — hassas kesici uç / kalem rotasyonu
+function IconCNC() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+    </svg>
+  );
+}
+// Montaj & İmalat — İngiliz anahtarı
+function IconWrench() {
+  return (
+    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
+    </svg>
+  );
+}
+// Delme & Punta — mevcut (orijinal hali)
 function IconAssembly() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -236,12 +261,12 @@ function IconLocation() {
 }
 
 const serviceIcons = [
-  <IconGear key={0} />,
-  <IconAssembly key={1} />,
-  <IconGear key={2} />,
-  <IconDrill key={3} />,
-  <IconAssembly key={4} />,
-  <IconQuality key={5} />,
+  <IconGear key={0} />,    // Kalıp Üretimi
+  <IconPress key={1} />,   // Pres Baskı Hizmeti
+  <IconCNC key={2} />,     // CNC İşleme
+  <IconDrill key={3} />,   // Delme & Punta
+  <IconWrench key={4} />,  // Montaj & İmalat
+  <IconQuality key={5} />, // Kalite Kontrol
 ];
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
