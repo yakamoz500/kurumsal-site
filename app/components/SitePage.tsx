@@ -468,7 +468,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       <Navbar lang={defaultLang} />
 
       {/* ── HERO ── */}
-      <section className="relative flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-32 pb-24 bg-white">
+      <section className="relative flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-24 pb-6 bg-white">
         <div
           className="absolute inset-0 opacity-[0.04]"
           style={{
@@ -505,7 +505,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── ÜRÜNLERİMİZ ── */}
-      <section id="urunlerimiz" className="py-24 px-6 bg-gray-50">
+      <section id="urunlerimiz" className="pt-12 pb-24 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="mb-14 text-center">
             <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-bold">
@@ -539,7 +539,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── HİZMETLER ── */}
-      <section id="hizmetler" className="py-24 px-6 bg-white">
+      <section id="hizmetler" className="pt-12 pb-24 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="mb-14 text-center">
             <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-bold">
@@ -563,7 +563,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── HAKKIMIZDA + SAYAÇLAR ── */}
-      <section id="hakkimizda" className="py-24 px-6 bg-gray-50">
+      <section id="hakkimizda" className="pt-12 pb-24 px-6 bg-gray-50">
         <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
           <div>
             <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-bold">{t.about.subtitle}</span>

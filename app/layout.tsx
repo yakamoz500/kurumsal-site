@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -12,12 +12,19 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+};
+
 export const metadata: Metadata = {
   title: "Özhan Metal | Metal Kesme Kalıpları",
-  description: "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
+  description:
+    "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
   openGraph: {
     title: "Özhan Metal | Metal Kesme Kalıpları",
-    description: "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
+    description:
+      "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
     url: "https://ozhanmetal.com",
     siteName: "Özhan Metal",
     locale: "tr_TR",
@@ -26,9 +33,16 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Özhan Metal | Metal Kesme Kalıpları",
-    description: "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
+    description:
+      "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
   },
   metadataBase: new URL("https://ozhanmetal.com"),
+  alternates: {
+    languages: {
+      tr: "https://ozhanmetal.com",
+      en: "https://ozhanmetal.com/en",
+    },
+  },
 };
 
 export default function RootLayout({
