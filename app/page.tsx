@@ -309,7 +309,7 @@ function Navbar() {
             <a href="#" aria-label="LinkedIn" className="text-zinc-500 hover:text-orange-500 transition-colors p-1.5">
               <IconLinkedIn />
             </a>
-            <a href="#" aria-label="WhatsApp" className="text-zinc-500 hover:text-orange-500 transition-colors p-1.5">
+            <a href="https://wa.me/905456462356" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-zinc-500 hover:text-orange-500 transition-colors p-1.5">
               <IconWhatsApp />
             </a>
 
@@ -614,9 +614,14 @@ export default function Home() {
                 </li>
                 <li className="flex items-start gap-3">
                   <span className="text-orange-500 mt-0.5 shrink-0"><IconLocation /></span>
-                  <span className="text-zinc-400 text-sm">
+                  <a
+                    href="https://www.google.com/maps/place/%C3%96zhan+Metal+Kal%C4%B1p+Sanayi+Ltd/@41.050258,28.9071769,17z/data=!3m1!4b1!4m6!3m5!1s0x14cab081d1abf565:0x12ef9edb4764cd34!8m2!3d41.050254!4d28.9097572!16s%2Fg%2F11c7v_r6pr?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-zinc-400 hover:text-orange-400 text-sm transition-colors"
+                  >
                     Muratpaşa Mahallesi, Uluyol İşkent Sanayi Sitesi, D Blok No:64, İstanbul, Turkey
-                  </span>
+                  </a>
                 </li>
               </ul>
             </div>
@@ -631,7 +636,7 @@ export default function Home() {
               <div className="flex gap-3">
                 <a href="https://www.facebook.com/ozhanmetal" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-zinc-500 hover:text-orange-500 transition-colors"><IconFacebook /></a>
                 <a href="#" aria-label="LinkedIn" className="text-zinc-500 hover:text-orange-500 transition-colors"><IconLinkedIn /></a>
-                <a href="#" aria-label="WhatsApp" className="text-zinc-500 hover:text-orange-500 transition-colors"><IconWhatsApp /></a>
+                <a href="https://wa.me/905456462356" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-zinc-500 hover:text-orange-500 transition-colors"><IconWhatsApp /></a>
               </div>
             </div>
           </div>
