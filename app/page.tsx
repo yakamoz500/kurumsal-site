@@ -1,8 +1,255 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 
-// --- Icons ---
+// ─── Language Context ───────────────────────────────────────────────────────
+type Lang = "TR" | "EN";
+const LanguageContext = createContext<{
+  lang: Lang;
+  setLang: (l: Lang) => void;
+}>({
+  lang: "TR",
+  setLang: () => {},
+});
+function useLanguage() {
+  return useContext(LanguageContext);
+}
+
+// ─── Translations ───────────────────────────────────────────────────────────
+const T = {
+  TR: {
+    nav: {
+      home: "Ana Sayfa",
+      products: "Ürünlerimiz",
+      services: "Hizmetler",
+      about: "Hakkımızda",
+      contact: "İletişim",
+    },
+    hero: {
+      badge: "Metal Kesme Kalıpları",
+      desc: "Düşük Tolerans Yüksek Hassasiyet",
+      btn1: "Hizmetlerimiz",
+      btn2: "İletişime Geç",
+      scroll: "Kaydır",
+    },
+    products: {
+      subtitle: "Kalıp Çeşitlerimiz",
+      title: "ÜRÜNLERİMİZ",
+      items: [
+        {
+          title: "Sıvama Kalıpları",
+          desc: "Sac malzemenin kalıp içinde akıtılarak derinlemesine şekillendirilmesini sağlar. Genellikle içi boş ve derin parçaların üretiminde tercih edilir.",
+        },
+        {
+          title: "Progresif Kalıpları",
+          desc: "Birden fazla işlemi (kesme, delme, bükme vb.) aynı kalıp içerisinde adım adım gerçekleştiren kalıplardır. Seri üretim için idealdir, zamandan ve maliyetten tasarruf sağlar.",
+        },
+        {
+          title: "Kesme Kalıpları",
+          desc: "Sacın istenilen şekil ve ölçülerde kesilmesini sağlar. Ürün geometrisine göre özel olarak tasarlanır.",
+        },
+        {
+          title: "Delme Kalıpları",
+          desc: "Sac yüzeyine delik açmak amacıyla kullanılır. Hassasiyetin kritik olduğu parçalarda yüksek doğrulukla çalışır.",
+        },
+        {
+          title: "Bükme Kalıpları",
+          desc: "Metal levhaların belirli bir şekle bükülmesi veya kıvrılması için tasarlanmıştır. Özel kalıp setleri istenilen bükme açıları ve kıvrım yarıçapları vererek levhaların istenilen formda bükülmesini sağlar.",
+        },
+        {
+          title: "Enjeksiyon Kalıpları",
+          desc: "Yüksek adetli üreteceğiniz metal ve plastik parçalar için yüksek hassasiyetli enjeksiyon kalıplarımız sayesinde çok hızlı bir şekilde üretim yapabilirsiniz.",
+        },
+      ],
+      photoLabel: "Fotoğraf eklenecek",
+    },
+    services: {
+      subtitle: "Ne Yapıyoruz",
+      title: "HİZMETLERİMİZ",
+      items: [
+        {
+          title: "Kalıp Üretimi",
+          desc: "Progresif metal ve plastik enjeksiyon kalıpları firmamızda üretilip denenmektedir.",
+        },
+        {
+          title: "Pres Baskı Hizmeti",
+          desc: "Üretimi tamamlanan kalıplar ile müşterilerimizin talepleri doğrultusunda kendi bünyemizde istenilen adetlerde baskı hizmetini sağlıyoruz.",
+        },
+        {
+          title: "CNC İşleme",
+          desc: "3 ve 4 eksen CNC tezgahlarımızla karmaşık parçaları toleranslı biçimde üretiyoruz.",
+        },
+        {
+          title: "Delme & Punta",
+          desc: "Seri ve tekli üretimde hassas delme, punta ve işaretleme hizmetleri sunuyoruz.",
+        },
+        {
+          title: "Montaj & İmalat",
+          desc: "Parçadan ürüne; tasarım, imalat ve montaj süreçlerini uçtan uca yönetiyoruz.",
+        },
+        {
+          title: "Kalite Kontrol",
+          desc: "Her üretim aşamasında ölçüm ve kalite kontrol yaparak sıfır hata hedefliyoruz.",
+        },
+      ],
+    },
+    about: {
+      subtitle: "Biz Kimiz",
+      title: "HAKKIMIZDA",
+      p1: "1991 yılından bu yana metal işleme sektöründe edindiğimiz tecrübe ve güvenle, metal kesme ve enjeksiyon kalıp üretiminde teknolojiyi, mühendisliği ve kaliteyi bir araya getiren öncü bir marka olmak.",
+      p2: "Hedefimiz; yüksek hassasiyetli üretim, otomasyon destekli süreçler ve yenilikçi kalıp tasarımlarıyla hem yerel hem global pazarda rekabet gücünü artırmak, sektöre yön veren bir çözüm ortağı haline gelmektir.",
+      p3: "Sürekli gelişim, sürdürülebilir üretim ve müşteri memnuniyeti ilkelerimiz doğrultusunda, endüstride kalite standartlarını sürekli yükseltmeyi vizyon ediniyoruz.",
+      experience: "Yıl Tecrübe",
+      projects: "Tamamlanan Proje",
+      clients: "Mutlu Müşteri",
+      staff: "Uzman Personel",
+    },
+    footer: {
+      desc: "1991 yılından bu yana metal işleme sektöründe edindiğimiz tecrübe ve güvenle, metal kesme ve enjeksiyon kalıp üretiminde teknolojiyi, mühendisliği ve kaliteyi bir araya getiren öncü bir marka olmak.",
+      corporate: "Kurumsal",
+      servicesTitle: "Hizmetlerimiz",
+      contactTitle: "İletişim",
+      rights: "Tüm hakları saklıdır.",
+      navItems: [
+        { label: "Ana Sayfa", href: "#" },
+        { label: "Ürünlerimiz", href: "#urunlerimiz" },
+        { label: "Hizmetlerimiz", href: "#hizmetler" },
+        { label: "Hakkımızda", href: "#hakkimizda" },
+        { label: "İletişim", href: "#iletisim" },
+      ],
+      serviceItems: [
+        "Kalıp Üretimi",
+        "Pres Baskı Hizmeti",
+        "CNC İşleme",
+        "Delme & Punta",
+        "Montaj & İmalat",
+        "Kalite Kontrol",
+      ],
+    },
+  },
+  EN: {
+    nav: {
+      home: "Home",
+      products: "Products",
+      services: "Services",
+      about: "About Us",
+      contact: "Contact",
+    },
+    hero: {
+      badge: "Metal Processing & Machine Manufacturing",
+      desc: "Your trusted solution partner in industrial metal processing and machine manufacturing. High precision, fast delivery, lasting quality.",
+      btn1: "Our Services",
+      btn2: "Contact Us",
+      scroll: "Scroll",
+    },
+    products: {
+      subtitle: "Mold Types",
+      title: "OUR PRODUCTS",
+      items: [
+        {
+          title: "Drawing Dies",
+          desc: "Enables sheet metal to be deeply formed by flowing it inside the mold. Generally preferred for the production of hollow and deep parts.",
+        },
+        {
+          title: "Progressive Dies",
+          desc: "Dies that perform multiple operations (cutting, punching, bending, etc.) step by step within the same mold. Ideal for mass production, saving time and cost.",
+        },
+        {
+          title: "Cutting Dies",
+          desc: "Enables sheet metal to be cut in desired shapes and dimensions. Custom designed according to product geometry.",
+        },
+        {
+          title: "Punching Dies",
+          desc: "Used to punch holes in the sheet metal surface. Works with high accuracy in parts where precision is critical.",
+        },
+        {
+          title: "Bending Dies",
+          desc: "Designed for bending or folding metal sheets into a specific shape. Special mold sets provide desired bending angles and curve radii to form sheets as required.",
+        },
+        {
+          title: "Injection Molds",
+          desc: "With our high-precision injection molds for metal and plastic parts that need to be produced in high quantities, you can manufacture very quickly.",
+        },
+      ],
+      photoLabel: "Photo coming soon",
+    },
+    services: {
+      subtitle: "What We Do",
+      title: "OUR SERVICES",
+      items: [
+        {
+          title: "Mold Production",
+          desc: "Progressive metal and plastic injection molds are produced and tested in our own facility.",
+        },
+        {
+          title: "Press Service",
+          desc: "With completed molds, we provide pressing services in desired quantities within our own facility according to customer requests.",
+        },
+        {
+          title: "CNC Machining",
+          desc: "We produce complex parts with tight tolerances using our 3 and 4-axis CNC machines.",
+        },
+        {
+          title: "Drilling & Centering",
+          desc: "We offer precise drilling, centering and marking services for both serial and single-piece production.",
+        },
+        {
+          title: "Assembly & Manufacturing",
+          desc: "From parts to product; we manage design, manufacturing and assembly processes end-to-end.",
+        },
+        {
+          title: "Quality Control",
+          desc: "We target zero defects by performing measurement and quality control at every stage of production.",
+        },
+      ],
+    },
+    about: {
+      subtitle: "Who We Are",
+      title: "ABOUT US",
+      p1: "With the experience and trust we have gained in the metal processing industry since 1991, we aim to be a pioneering brand that brings together technology, engineering and quality in metal cutting and injection mold production.",
+      p2: "Our goal is to increase competitiveness in both local and global markets through high-precision production, automation-supported processes and innovative mold designs, and to become a solution partner that shapes the industry.",
+      p3: "In line with our principles of continuous improvement, sustainable production and customer satisfaction, we envision continuously raising quality standards in the industry.",
+      experience: "Years of Experience",
+      projects: "Completed Projects",
+      clients: "Happy Clients",
+      staff: "Expert Staff",
+    },
+    footer: {
+      desc: "With the experience and trust we have gained in the metal processing industry since 1991, we aim to be a pioneering brand that brings together technology, engineering and quality in metal cutting and injection mold production.",
+      corporate: "Corporate",
+      servicesTitle: "Our Services",
+      contactTitle: "Contact",
+      rights: "All rights reserved.",
+      navItems: [
+        { label: "Home", href: "#" },
+        { label: "Products", href: "#urunlerimiz" },
+        { label: "Services", href: "#hizmetler" },
+        { label: "About Us", href: "#hakkimizda" },
+        { label: "Contact", href: "#iletisim" },
+      ],
+      serviceItems: [
+        "Mold Production",
+        "Press Service",
+        "CNC Machining",
+        "Drilling & Centering",
+        "Assembly & Manufacturing",
+        "Quality Control",
+      ],
+    },
+  },
+} as const;
+
+// ─── Product image paths (dil bağımsız) ────────────────────────────────────
+const productImages = [
+  "/products/sivama-kalibi.jpg",
+  "/products/prograsif-kalibi.jpg",
+  "/products/kesme-kalibi.jpg",
+  "/products/delme-kalibi.jpg",
+  "/products/bukme-kalibi.jpg",
+  "/products/enjeksiyon-kalibi.jpg",
+];
+
+// ─── Icons ──────────────────────────────────────────────────────────────────
 function IconGear() {
   return (
     <svg
@@ -23,42 +270,6 @@ function IconGear() {
         strokeLinejoin="round"
         strokeWidth={1.5}
         d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-      />
-    </svg>
-  );
-}
-function IconCut() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-8 h-8"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121m0 5.758a3 3 0 10-4.243 4.243 3 3 0 004.243-4.243zm0-5.758a3 3 0 10-4.243-4.243 3 3 0 004.243 4.243z"
-      />
-    </svg>
-  );
-}
-function IconWeld() {
-  return (
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      className="w-8 h-8"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke="currentColor"
-    >
-      <path
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth={1.5}
-        d="M13 10V3L4 14h7v7l9-11h-7z"
       />
     </svg>
   );
@@ -217,19 +428,31 @@ function IconLocation() {
   );
 }
 
-// --- Navbar ---
-const navLinks = [
-  { label: "Ana Sayfa", href: "#" },
-  { label: "Ürünlerimiz", href: "#urunlerimiz" },
-  { label: "Hizmetler", href: "#hizmetler" },
-  { label: "Hakkımızda", href: "#hakkimizda" },
-  { label: "İletişim", href: "#iletisim" },
+// Servis ikonları (sırayla hizmetler listesiyle eşleşir)
+const serviceIcons = [
+  <IconGear key={0} />,
+  <IconAssembly key={1} />,
+  <IconGear key={2} />,
+  <IconDrill key={3} />,
+  <IconAssembly key={4} />,
+  <IconQuality key={5} />,
 ];
 
+// ─── Navbar ─────────────────────────────────────────────────────────────────
 function Navbar() {
+  const { lang, setLang } = useLanguage();
+  const t = T[lang].nav;
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("#");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { label: t.home, href: "#" },
+    { label: t.products, href: "#urunlerimiz" },
+    { label: t.services, href: "#hizmetler" },
+    { label: t.about, href: "#hakkimizda" },
+    { label: t.contact, href: "#iletisim" },
+  ];
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
@@ -279,9 +502,13 @@ function Navbar() {
               />
             </a>
           ))}
+
+          {/* Sosyal medya + dil değiştirici */}
           <div className="flex items-center gap-1 ml-4 pl-4 border-l border-zinc-700">
             <a
-              href="#"
+              href="https://www.facebook.com/ozhanmetal"
+              target="_blank"
+              rel="noopener noreferrer"
               aria-label="Facebook"
               className="text-gray-400 hover:text-orange-500 transition-colors p-1.5"
             >
@@ -301,6 +528,22 @@ function Navbar() {
             >
               <IconWhatsApp />
             </a>
+
+            {/* Dil Toggle */}
+            <div className="ml-2 flex items-center border border-zinc-700 rounded overflow-hidden text-xs font-bold">
+              <button
+                onClick={() => setLang("TR")}
+                className={`px-2.5 py-1.5 transition-colors ${lang === "TR" ? "bg-orange-500 text-black" : "text-gray-400 hover:text-white"}`}
+              >
+                TR
+              </button>
+              <button
+                onClick={() => setLang("EN")}
+                className={`px-2.5 py-1.5 transition-colors ${lang === "EN" ? "bg-orange-500 text-black" : "text-gray-400 hover:text-white"}`}
+              >
+                EN
+              </button>
+            </div>
           </div>
         </nav>
 
@@ -345,12 +588,27 @@ function Navbar() {
             {link.label}
           </a>
         ))}
+        {/* Mobile dil toggle */}
+        <div className="flex px-6 py-4 gap-2">
+          <button
+            onClick={() => setLang("TR")}
+            className={`px-4 py-1.5 text-xs font-bold border transition-colors ${lang === "TR" ? "bg-orange-500 border-orange-500 text-black" : "border-zinc-700 text-gray-400"}`}
+          >
+            TR
+          </button>
+          <button
+            onClick={() => setLang("EN")}
+            className={`px-4 py-1.5 text-xs font-bold border transition-colors ${lang === "EN" ? "bg-orange-500 border-orange-500 text-black" : "border-zinc-700 text-gray-400"}`}
+          >
+            EN
+          </button>
+        </div>
       </div>
     </header>
   );
 }
 
-// --- Counter Hook ---
+// ─── Counter Hook ────────────────────────────────────────────────────────────
 function useCounter(target: number, duration = 2000, startCounting: boolean) {
   const [count, setCount] = useState(0);
   useEffect(() => {
@@ -371,7 +629,6 @@ function useCounter(target: number, duration = 2000, startCounting: boolean) {
   return count;
 }
 
-// --- Counter Item ---
 function CounterItem({
   label,
   target,
@@ -409,412 +666,320 @@ function CounterItem({
   );
 }
 
-// --- Data ---
-const services = [
-  {
-    icon: <IconGear />,
-    title: "Kalıp Üretimi",
-    desc: "Progresif metal ve plastik enjeksiyon kalıpları firmamızda üretilip denenmektedir.",
-  },
-  {
-    icon: <IconAssembly />,
-    title: "Pres Baskı Hizmeti",
-    desc: "Üretimi tamamlanan kalıplar ile müşterilerimizin talepleri doğrultusunda kendi bünyemizde istenilen adetlerde baskı hizmetini sağlıyoruz.",
-  },
-  {
-    icon: <IconGear />,
-    title: "CNC İşleme",
-    desc: "3 ve 4 eksen CNC tezgahlarımızla karmaşık parçaları toleranslı biçimde üretiyoruz.",
-  },
-  {
-    icon: <IconDrill />,
-    title: "Delme & Punta",
-    desc: "Seri ve tekli üretimde hassas delme, punta ve işaretleme hizmetleri sunuyoruz.",
-  },
-  {
-    icon: <IconAssembly />,
-    title: "Montaj & İmalat",
-    desc: "Parçadan ürüne; tasarım, imalat ve montaj süreçlerini uçtan uca yönetiyoruz.",
-  },
-  {
-    icon: <IconQuality />,
-    title: "Kalite Kontrol",
-    desc: "Her üretim aşamasında ölçüm ve kalite kontrol yaparak sıfır hata hedefliyoruz.",
-  },
-];
-
-const products = [
-  {
-    image: "/products/sivama-kalibi.jpg",
-    title: "Sıvama Kalıpları",
-    desc: "Sac malzemenin kalıp içinde akıtılarak derinlemesine şekillendirilmesini sağlar. Genellikle içi boş ve derin parçaların üretiminde tercih edilir.",
-  },
-  {
-    image: "/products/prograsif-kalibi.jpg",
-    title: "Prograsif Kalıpları",
-    desc: "Birden fazla işlemi (kesme, delme, bükme vb.) aynı kalıp içerisinde adım adım gerçekleştiren kalıplardır. Seri üretim için idealdir, zamandan ve maliyetten tasarruf sağlar.",
-  },
-  {
-    image: "/products/kesme-kalibi.jpg",
-    title: "Kesme Kalıpları",
-    desc: "Sacın istenilen şekil ve ölçülerde kesilmesini sağlar. Ürün geometrisine göre özel olarak tasarlanır.",
-  },
-  {
-    image: "/products/delme-kalibi.jpg",
-    title: "Delme Kalıpları",
-    desc: "Sac yüzeyine delik açmak amacıyla kullanılır. Hassasiyetin kritik olduğu parçalarda yüksek doğrulukla çalışır.",
-  },
-  {
-    image: "/products/bukme-kalibi.jpg",
-    title: "Bükme Kalıpları",
-    desc: "Metal levhaların belirli bir şekle bükülmesi veya kıvrılması için tasarlanmıştır. Özel kalıp setleri, metal levhalara istenilen bükme açıları ve kıvrım yarıçapları vererek levhaların istenilen formda bükülmesini sağlar.",
-  },
-  {
-    image: "/products/enjeksiyon-kalibi.jpg",
-    title: "Enjeksiyon Kalıpları",
-    desc: "Yüksek adetli üreteceğiniz metal ve plastik parçalar için yüksek hassasiyetli enjeksiyon kalıplarımız sayesinde çok hızlı bir şekilde üretim yapabilirsiniz.",
-  },
-];
-
-// --- Main Page ---
+// ─── Main Page ───────────────────────────────────────────────────────────────
 export default function Home() {
+  const [lang, setLang] = useState<Lang>("TR");
+  const t = T[lang];
+
   return (
-    <div className="bg-zinc-950 text-white font-sans">
-      <Navbar />
+    <LanguageContext.Provider value={{ lang, setLang }}>
+      <div className="bg-zinc-950 text-white font-sans">
+        <Navbar />
 
-      {/* ── HERO ── */}
-      <section className="relative flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-32 pb-24">
-        {/* Background grid pattern */}
-        <div
-          className="absolute inset-0 opacity-5"
-          style={{
-            backgroundImage:
-              "linear-gradient(#f97316 1px, transparent 1px), linear-gradient(90deg, #f97316 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
-        />
-        {/* Orange glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
+        {/* ── HERO ── */}
+        <section className="relative flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-32 pb-24">
+          <div
+            className="absolute inset-0 opacity-5"
+            style={{
+              backgroundImage:
+                "linear-gradient(#f97316 1px, transparent 1px), linear-gradient(90deg, #f97316 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }}
+          />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-600/10 rounded-full blur-3xl pointer-events-none" />
 
-        <div className="relative z-10 max-w-4xl">
-          <div className="inline-block border border-orange-500/40 text-orange-400 text-xs tracking-[0.3em] uppercase px-4 py-1.5 rounded-full mb-6">
-            Metal İşleme &amp; Makina İmalatı
-          </div>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-6">
-            OZHAN
-            <span className="text-orange-500"> METAL</span>
-          </h1>
-          <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
-            Endüstriyel metal işleme ve makina imalatında güvenilir çözüm
-            ortağınız. Yüksek hassasiyet, kısa teslimat, kalıcı kalite.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#hizmetler"
-              className="bg-orange-500 hover:bg-orange-400 text-black font-bold px-8 py-3 rounded-none transition-colors uppercase tracking-wider text-sm"
-            >
-              Hizmetlerimiz
-            </a>
-            <a
-              href="#iletisim"
-              className="border border-orange-500/50 hover:border-orange-400 text-orange-400 hover:text-orange-300 font-bold px-8 py-3 rounded-none transition-colors uppercase tracking-wider text-sm"
-            >
-              İletişime Geç
-            </a>
-          </div>
-        </div>
-
-        {/* Scroll indicator */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-          <div className="w-px h-12 bg-gradient-to-b from-transparent to-orange-500" />
-          <span className="text-[10px] tracking-widest uppercase text-gray-500">
-            Kaydır
-          </span>
-        </div>
-      </section>
-
-      {/* ── ÜRÜNLERİMİZ ── */}
-      <section id="urunlerimiz" className="py-24 px-6 bg-zinc-950">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-14 text-center">
-            <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-semibold">
-              Kalıp Çeşitlerimiz
-            </span>
-            <h2 className="mt-3 text-4xl font-black tracking-tight">
-              ÜRÜNLERİMİZ
-            </h2>
-            <div className="mt-4 w-12 h-1 bg-orange-500 mx-auto" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {products.map((p, i) => (
-              <div
-                key={i}
-                className="group bg-zinc-900 border border-zinc-800 hover:border-orange-500/40 overflow-hidden transition-all duration-300"
-              >
-                {/* Fotoğraf alanı */}
-                <div className="relative w-full h-52 bg-zinc-800 overflow-hidden">
-                  {p.image ? (
-                    <img
-                      src={p.image}
-                      alt={p.title}
-                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                    />
-                  ) : (
-                    /* Fotoğraf eklenene kadar placeholder */
-                    <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-zinc-800">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        className="w-10 h-10 text-zinc-600"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        stroke="currentColor"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={1.5}
-                          d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-                        />
-                      </svg>
-                      <span className="text-zinc-600 text-xs">
-                        Fotoğraf eklenecek
-                      </span>
-                    </div>
-                  )}
-                  {/* Üst turuncu şerit hover'da */}
-                  <div className="absolute top-0 left-0 w-0 group-hover:w-full h-0.5 bg-orange-500 transition-all duration-500" />
-                </div>
-
-                {/* İçerik */}
-                <div className="p-6">
-                  <h3 className="text-base font-bold mb-2 group-hover:text-orange-400 transition-colors">
-                    {p.title}
-                  </h3>
-                  <p className="text-gray-500 text-sm leading-relaxed">
-                    {p.desc}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── HİZMETLER ── */}
-      <section id="hizmetler" className="py-24 px-6 bg-zinc-900">
-        <div className="max-w-6xl mx-auto">
-          <div className="mb-14 text-center">
-            <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-semibold">
-              Ne Yapıyoruz
-            </span>
-            <h2 className="mt-3 text-4xl font-black tracking-tight">
-              HİZMETLERİMİZ
-            </h2>
-            <div className="mt-4 w-12 h-1 bg-orange-500 mx-auto" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-700">
-            {services.map((s, i) => (
-              <div
-                key={i}
-                className="bg-zinc-900 p-8 group hover:bg-zinc-800 transition-colors duration-300"
-              >
-                <div className="text-orange-500 mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
-                  {s.icon}
-                </div>
-                <h3 className="text-lg font-bold mb-3 group-hover:text-orange-400 transition-colors">
-                  {s.title}
-                </h3>
-                <p className="text-gray-400 text-sm leading-relaxed">
-                  {s.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── HAKKIMIZDA + SAYAÇLAR ── */}
-      <section id="hakkimizda" className="py-24 px-6 bg-zinc-950">
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
-          {/* Text */}
-          <div>
-            <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-semibold">
-              Biz Kimiz
-            </span>
-            <h2 className="mt-3 text-4xl font-black tracking-tight mb-6">
-              HAKKIMIZDA
-            </h2>
-            <div className="w-12 h-1 bg-orange-500 mb-8" />
-            <p className="text-gray-400 leading-relaxed mb-4">
-              1991 yılından bu yana metal işleme sektöründe edindiğimiz tecrübe
-              ve güvenle, metal kesme ve enjeksiyon kalıp üretiminde
-              teknolojiyi, mühendisliği ve kaliteyi bir araya getiren öncü bir
-              marka olmak.
+          <div className="relative z-10 max-w-4xl">
+            <div className="inline-block border border-orange-500/40 text-orange-400 text-xs tracking-[0.3em] uppercase px-4 py-1.5 rounded-full mb-6">
+              {t.hero.badge}
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-6">
+              OZHAN<span className="text-orange-500"> METAL</span>
+            </h1>
+            <p className="text-gray-400 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+              {t.hero.desc}
             </p>
-            <p className="text-gray-400 leading-relaxed mb-4">
-              Hedefimiz; yüksek hassasiyetli üretim, otomasyon destekli süreçler
-              ve yenilikçi kalıp tasarımlarıyla hem yerel hem global pazarda
-              rekabet gücünü artırmak, sektöre yön veren bir çözüm ortağı haline
-              gelmektir.
-            </p>
-            <p className="text-gray-400 leading-relaxed">
-              Sürekli gelişim, sürdürülebilir üretim ve müşteri memnuniyeti
-              ilkelerimiz doğrultusunda, endüstride kalite standartlarını
-              sürekli yükseltmeyi vizyon ediniyoruz.
-            </p>
-          </div>
-
-          {/* Counters */}
-          <div className="grid grid-cols-2 gap-12">
-            <CounterItem target={34} label="Yıl Tecrübe" />
-            <CounterItem target={500} label="Tamamlanan Proje" />
-            <CounterItem target={120} label="Mutlu Müşteri" />
-            <CounterItem target={8} label="Uzman Personel" />
-          </div>
-        </div>
-      </section>
-
-      {/* ── FOOTER ── */}
-      <footer className="bg-zinc-900 border-t border-zinc-800">
-        <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
-          {/* Col 1 — Logo + Açıklama */}
-          <div className="md:col-span-1">
-            <a href="#" className="flex items-center gap-1 mb-5">
-              <span className="text-white font-black text-lg tracking-widest">
-                ÖZHAN
-              </span>
-              <span className="text-orange-500 font-black text-lg tracking-widest">
-                METAL
-              </span>
-            </a>
-            <p className="text-gray-400 text-sm leading-relaxed">
-              Metal işleme ve makina imalatında yılların deneyimiyle endüstriyel
-              projelere güvenilir, kaliteli ve rekabetçi çözümler sunuyoruz.
-            </p>
-          </div>
-
-          {/* Col 2 — Kurumsal */}
-          <div>
-            <h4 className="text-white font-bold text-sm mb-4">Kurumsal</h4>
-            <div className="w-8 h-0.5 bg-orange-500 mb-5" />
-            <ul className="space-y-3">
-              {[
-                { label: "Ana Sayfa", href: "#" },
-                { label: "Ürünlerimiz", href: "#urunlerimiz" },
-                { label: "Hizmetlerimiz", href: "#hizmetler" },
-                { label: "Hakkımızda", href: "#hakkimizda" },
-                { label: "İletişim", href: "#iletisim" },
-              ].map((l) => (
-                <li key={l.href}>
-                  <a
-                    href={l.href}
-                    className="text-gray-400 hover:text-orange-400 text-sm transition-colors"
-                  >
-                    {l.label}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 3 — Hizmetlerimiz */}
-          <div>
-            <h4 className="text-white font-bold text-sm mb-4">Hizmetlerimiz</h4>
-            <div className="w-8 h-0.5 bg-orange-500 mb-5" />
-            <ul className="space-y-3">
-              {[
-                "Kalıp Üretimi",
-                "Pres Baskı Hizmeti",
-                "CNC İşleme",
-                "Delme & Punta",
-                "Montaj & İmalat",
-                "Kalite Kontrol",
-              ].map((s) => (
-                <li key={s}>
-                  <a
-                    href="#hizmetler"
-                    className="text-gray-400 hover:text-orange-400 text-sm transition-colors"
-                  >
-                    {s}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Col 4 — İletişim */}
-          <div>
-            <h4 className="text-white font-bold text-sm mb-4">İletişim</h4>
-            <div className="w-8 h-0.5 bg-orange-500 mb-5" />
-            <ul className="space-y-4">
-              <li className="flex items-start gap-3">
-                <span className="text-orange-500 mt-0.5 shrink-0">
-                  <IconPhone />
-                </span>
-                <a
-                  href="tel:+905001234567"
-                  className="text-gray-400 hover:text-orange-400 text-sm transition-colors"
-                >
-                  +90 500 123 45 67
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-orange-500 mt-0.5 shrink-0">
-                  <IconMail />
-                </span>
-                <a
-                  href="mailto:info@ozhanmetal.com"
-                  className="text-gray-400 hover:text-orange-400 text-sm transition-colors"
-                >
-                  info@ozhanmetal.com
-                </a>
-              </li>
-              <li className="flex items-start gap-3">
-                <span className="text-orange-500 mt-0.5 shrink-0">
-                  <IconLocation />
-                </span>
-                <span className="text-gray-400 text-sm">
-                  Organize Sanayi Bölgesi, İstanbul
-                </span>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        {/* Alt çizgi */}
-        <div className="border-t border-zinc-800">
-          <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
-            <p className="text-gray-600 text-xs">
-              © {new Date().getFullYear()}{" "}
-              <span className="text-orange-500">Ozhan Metal</span>. Tüm hakları
-              saklıdır.
-            </p>
-            <div className="flex gap-3">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
-                href="#"
-                aria-label="Facebook"
-                className="text-gray-600 hover:text-orange-500 transition-colors"
+                href="#hizmetler"
+                className="bg-orange-500 hover:bg-orange-400 text-black font-bold px-8 py-3 rounded-none transition-colors uppercase tracking-wider text-sm"
               >
-                <IconFacebook />
+                {t.hero.btn1}
               </a>
               <a
-                href="#"
-                aria-label="LinkedIn"
-                className="text-gray-600 hover:text-orange-500 transition-colors"
+                href="#iletisim"
+                className="border border-orange-500/50 hover:border-orange-400 text-orange-400 hover:text-orange-300 font-bold px-8 py-3 rounded-none transition-colors uppercase tracking-wider text-sm"
               >
-                <IconLinkedIn />
-              </a>
-              <a
-                href="#"
-                aria-label="WhatsApp"
-                className="text-gray-600 hover:text-orange-500 transition-colors"
-              >
-                <IconWhatsApp />
+                {t.hero.btn2}
               </a>
             </div>
           </div>
-        </div>
-      </footer>
-    </div>
+
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
+            <div className="w-px h-12 bg-gradient-to-b from-transparent to-orange-500" />
+            <span className="text-[10px] tracking-widest uppercase text-gray-500">
+              {t.hero.scroll}
+            </span>
+          </div>
+        </section>
+
+        {/* ── ÜRÜNLERİMİZ ── */}
+        <section id="urunlerimiz" className="py-24 px-6 bg-zinc-950">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-14 text-center">
+              <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-semibold">
+                {t.products.subtitle}
+              </span>
+              <h2 className="mt-3 text-4xl font-black tracking-tight">
+                {t.products.title}
+              </h2>
+              <div className="mt-4 w-12 h-1 bg-orange-500 mx-auto" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {t.products.items.map((p, i) => (
+                <div
+                  key={i}
+                  className="group bg-zinc-900 border border-zinc-800 hover:border-orange-500/40 overflow-hidden transition-all duration-300"
+                >
+                  {/* Fotoğraf alanı */}
+                  <div className="relative w-full h-52 bg-zinc-800 overflow-hidden">
+                    {productImages[i] ? (
+                      <img
+                        src={productImages[i]}
+                        alt={p.title}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                    ) : (
+                      <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-zinc-800">
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          className="w-10 h-10 text-zinc-600"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                          />
+                        </svg>
+                        <span className="text-zinc-600 text-xs">
+                          {t.products.photoLabel}
+                        </span>
+                      </div>
+                    )}
+                    <div className="absolute top-0 left-0 w-0 group-hover:w-full h-0.5 bg-orange-500 transition-all duration-500" />
+                  </div>
+                  {/* İçerik */}
+                  <div className="p-6">
+                    <h3 className="text-base font-bold mb-2 group-hover:text-orange-400 transition-colors">
+                      {p.title}
+                    </h3>
+                    <p className="text-gray-500 text-sm leading-relaxed">
+                      {p.desc}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── HİZMETLER ── */}
+        <section id="hizmetler" className="py-24 px-6 bg-zinc-900">
+          <div className="max-w-6xl mx-auto">
+            <div className="mb-14 text-center">
+              <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-semibold">
+                {t.services.subtitle}
+              </span>
+              <h2 className="mt-3 text-4xl font-black tracking-tight">
+                {t.services.title}
+              </h2>
+              <div className="mt-4 w-12 h-1 bg-orange-500 mx-auto" />
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-700">
+              {t.services.items.map((s, i) => (
+                <div
+                  key={i}
+                  className="bg-zinc-900 p-8 group hover:bg-zinc-800 transition-colors duration-300"
+                >
+                  <div className="text-orange-500 mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
+                    {serviceIcons[i]}
+                  </div>
+                  <h3 className="text-lg font-bold mb-3 group-hover:text-orange-400 transition-colors">
+                    {s.title}
+                  </h3>
+                  <p className="text-gray-400 text-sm leading-relaxed">
+                    {s.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* ── HAKKIMIZDA + SAYAÇLAR ── */}
+        <section id="hakkimizda" className="py-24 px-6 bg-zinc-950">
+          <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <span className="text-orange-500 text-xs tracking-[0.3em] uppercase font-semibold">
+                {t.about.subtitle}
+              </span>
+              <h2 className="mt-3 text-4xl font-black tracking-tight mb-6">
+                {t.about.title}
+              </h2>
+              <div className="w-12 h-1 bg-orange-500 mb-8" />
+              <p className="text-gray-400 leading-relaxed mb-4">{t.about.p1}</p>
+              <p className="text-gray-400 leading-relaxed mb-4">{t.about.p2}</p>
+              <p className="text-gray-400 leading-relaxed">{t.about.p3}</p>
+            </div>
+            <div className="grid grid-cols-2 gap-12">
+              <CounterItem target={34} label={t.about.experience} />
+              <CounterItem target={500} label={t.about.projects} />
+              <CounterItem target={120} label={t.about.clients} />
+              <CounterItem target={8} label={t.about.staff} />
+            </div>
+          </div>
+        </section>
+
+        {/* ── FOOTER ── */}
+        <footer id="iletisim" className="bg-zinc-900 border-t border-zinc-800">
+          <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 md:grid-cols-4 gap-12">
+            {/* Col 1 — Logo + Açıklama */}
+            <div className="md:col-span-1">
+              <a href="#" className="flex items-center gap-1 mb-5">
+                <span className="text-white font-black text-lg tracking-widest">
+                  ÖZHAN
+                </span>
+                <span className="text-orange-500 font-black text-lg tracking-widest">
+                  METAL
+                </span>
+              </a>
+              <p className="text-gray-400 text-sm leading-relaxed">
+                {t.footer.desc}
+              </p>
+            </div>
+
+            {/* Col 2 — Kurumsal */}
+            <div>
+              <h4 className="text-white font-bold text-sm mb-4">
+                {t.footer.corporate}
+              </h4>
+              <div className="w-8 h-0.5 bg-orange-500 mb-5" />
+              <ul className="space-y-3">
+                {t.footer.navItems.map((l) => (
+                  <li key={l.href}>
+                    <a
+                      href={l.href}
+                      className="text-gray-400 hover:text-orange-400 text-sm transition-colors"
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 3 — Hizmetlerimiz */}
+            <div>
+              <h4 className="text-white font-bold text-sm mb-4">
+                {t.footer.servicesTitle}
+              </h4>
+              <div className="w-8 h-0.5 bg-orange-500 mb-5" />
+              <ul className="space-y-3">
+                {t.footer.serviceItems.map((s) => (
+                  <li key={s}>
+                    <a
+                      href="#hizmetler"
+                      className="text-gray-400 hover:text-orange-400 text-sm transition-colors"
+                    >
+                      {s}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            {/* Col 4 — İletişim */}
+            <div>
+              <h4 className="text-white font-bold text-sm mb-4">
+                {t.footer.contactTitle}
+              </h4>
+              <div className="w-8 h-0.5 bg-orange-500 mb-5" />
+              <ul className="space-y-4">
+                <li className="flex items-start gap-3">
+                  <span className="text-orange-500 mt-0.5 shrink-0">
+                    <IconPhone />
+                  </span>
+                  <a
+                    href="tel:+905456462356"
+                    className="text-gray-400 hover:text-orange-400 text-sm transition-colors"
+                  >
+                    0545 646 23 56
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-orange-500 mt-0.5 shrink-0">
+                    <IconMail />
+                  </span>
+                  <a
+                    href="mailto:info@ozhanmetal.com"
+                    className="text-gray-400 hover:text-orange-400 text-sm transition-colors"
+                  >
+                    info@ozhanmetal.com
+                  </a>
+                </li>
+                <li className="flex items-start gap-3">
+                  <span className="text-orange-500 mt-0.5 shrink-0">
+                    <IconLocation />
+                  </span>
+                  <span className="text-gray-400 text-sm">
+                    Muratpaşa Mahallesi, Uluyol İşkent Sanayi Sitesi, D Blok
+                    No:64, İstanbul, Turkey
+                  </span>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          {/* Alt çizgi */}
+          <div className="border-t border-zinc-800">
+            <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <p className="text-gray-600 text-xs">
+                © {new Date().getFullYear()}{" "}
+                <span className="text-orange-500">Özhan Metal</span>.{" "}
+                {t.footer.rights}
+              </p>
+              <div className="flex gap-3">
+                <a
+                  href="https://www.facebook.com/ozhanmetal"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                  className="text-gray-600 hover:text-orange-500 transition-colors"
+                >
+                  <IconFacebook />
+                </a>
+                <a
+                  href="#"
+                  aria-label="LinkedIn"
+                  className="text-gray-600 hover:text-orange-500 transition-colors"
+                >
+                  <IconLinkedIn />
+                </a>
+                <a
+                  href="#"
+                  aria-label="WhatsApp"
+                  className="text-gray-600 hover:text-orange-500 transition-colors"
+                >
+                  <IconWhatsApp />
+                </a>
+              </div>
+            </div>
+          </div>
+        </footer>
+      </div>
+    </LanguageContext.Provider>
   );
 }
