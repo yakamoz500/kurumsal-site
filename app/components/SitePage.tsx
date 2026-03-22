@@ -27,25 +27,25 @@ const T = {
       subtitle: "Kalıp Çeşitlerimiz",
       title: "ÜRÜNLERİMİZ",
       items: [
-        { title: "Sıvama Kalıpları", desc: "Sac malzemenin kalıp içinde akıtılarak derinlemesine şekillendirilmesini sağlar. Genellikle içi boş ve derin parçaların üretiminde tercih edilir." },
         { title: "Progresif Kalıpları", desc: "Birden fazla işlemi (kesme, delme, bükme vb.) aynı kalıp içerisinde adım adım gerçekleştiren kalıplardır. Seri üretim için idealdir, zamandan ve maliyetten tasarruf sağlar." },
         { title: "Kesme Kalıpları", desc: "Sacın istenilen şekil ve ölçülerde kesilmesini sağlar. Ürün geometrisine göre özel olarak tasarlanır." },
-        { title: "Delme Kalıpları", desc: "Sac yüzeyine delik açmak amacıyla kullanılır. Hassasiyetin kritik olduğu parçalarda yüksek doğrulukla çalışır." },
-        { title: "Bükme Kalıpları", desc: "Metal levhaların belirli bir şekle bükülmesi veya kıvrılması için tasarlanmıştır. Özel kalıp setleri istenilen bükme açıları ve kıvrım yarıçapları vererek levhaların istenilen formda bükülmesini sağlar." },
         { title: "Enjeksiyon Kalıpları", desc: "Yüksek adetli üreteceğiniz metal ve plastik parçalar için yüksek hassasiyetli enjeksiyon kalıplarımız sayesinde çok hızlı bir şekilde üretim yapabilirsiniz." },
+        { title: "CNC İşleme", desc: "3 ve 4 eksen CNC tezgahlarımızla karmaşık parçaları yüksek toleransla üretiyoruz." },
+        { title: "Pres Baskı", desc: "Üretimi tamamlanan kalıplar ile müşterilerimizin talepleri doğrultusunda kendi bünyemizde istenilen adetlerde baskı hizmetini sağlıyoruz." },
+        { title: "Montaj & İmalat", desc: "Parçadan ürüne; tasarım, imalat ve montaj süreçlerini uçtan uca yönetiyoruz." },
       ],
       photoLabel: "Fotoğraf eklenecek",
     },
     services: {
-      subtitle: "Ne Yapıyoruz",
-      title: "HİZMETLERİMİZ",
+      subtitle: "Hizmet Verdiğimiz Alanlar",
+      title: "SEKTÖRLERİMİZ",
       items: [
-        { title: "Kalıp Üretimi", desc: "Progresif metal ve plastik enjeksiyon kalıpları firmamızda üretilip denenmektedir." },
-        { title: "Pres Baskı Hizmeti", desc: "Üretimi tamamlanan kalıplar ile müşterilerimizin talepleri doğrultusunda kendi bünyemizde istenilen adetlerde baskı hizmetini sağlıyoruz." },
-        { title: "CNC İşleme", desc: "3 ve 4 eksen CNC tezgahlarımızla karmaşık parçaları toleranslı biçimde üretiyoruz." },
-        { title: "Delme & Punta", desc: "Seri ve tekli üretimde hassas delme, punta ve işaretleme hizmetleri sunuyoruz." },
-        { title: "Montaj & İmalat", desc: "Parçadan ürüne; tasarım, imalat ve montaj süreçlerini uçtan uca yönetiyoruz." },
-        { title: "Kalite Kontrol", desc: "Her üretim aşamasında ölçüm ve kalite kontrol yaparak sıfır hata hedefliyoruz." },
+        { title: "Makina Yedek Parça", desc: "Endüstriyel makinaların yedek parça ihtiyaçlarını yüksek hassasiyetli kalıplarımız ve CNC işleme kapasitemizle karşılıyoruz." },
+        { title: "Otomotiv Sanayi", desc: "Otomotiv sektörünün sıkı tolerans ve seri üretim gereksinimlerine uygun progresif kalıp ve pres çözümleri sunuyoruz." },
+        { title: "Hırdavat", desc: "Civata, somun, klips ve benzeri hırdavat ürünlerin kalıpla üretimine yönelik çözümler geliştiriyoruz." },
+        { title: "İnşaat", desc: "İnşaat sektörüne yönelik metal profil, bağlantı elemanı ve özel parça üretimi gerçekleştiriyoruz." },
+        { title: "Elektrik-Elektronik Parça", desc: "Elektrik panelleri, bağlantı elemanları ve elektronik muhafazalar için hassas sac metal kalıpları üretiyoruz." },
+        { title: "Savunma Sanayi", desc: "Yüksek dayanım ve hassasiyet gerektiren savunma sanayi bileşenlerinin üretiminde güvenilir çözüm ortağınızız." },
       ],
     },
     about: {
@@ -72,7 +72,7 @@ const T = {
         { label: "Hakkımızda", href: "#hakkimizda" },
         { label: "İletişim", href: "#iletisim" },
       ],
-      serviceItems: ["Kalıp Üretimi", "Pres Baskı Hizmeti", "CNC İşleme", "Delme & Punta", "Montaj & İmalat", "Kalite Kontrol"],
+      serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Savunma Sanayi"],
     },
   },
   EN: {
@@ -94,25 +94,25 @@ const T = {
       subtitle: "Mold Types",
       title: "OUR PRODUCTS",
       items: [
-        { title: "Drawing Dies", desc: "Enables sheet metal to be deeply formed by flowing it inside the mold. Generally preferred for the production of hollow and deep parts." },
         { title: "Progressive Dies", desc: "Dies that perform multiple operations (cutting, punching, bending, etc.) step by step within the same mold. Ideal for mass production, saving time and cost." },
         { title: "Cutting Dies", desc: "Enables sheet metal to be cut in desired shapes and dimensions. Custom designed according to product geometry." },
-        { title: "Punching Dies", desc: "Used to punch holes in the sheet metal surface. Works with high accuracy in parts where precision is critical." },
-        { title: "Bending Dies", desc: "Designed for bending or folding metal sheets into a specific shape. Special mold sets provide desired bending angles and curve radii to form sheets as required." },
         { title: "Injection Molds", desc: "With our high-precision injection molds for metal and plastic parts that need to be produced in high quantities, you can manufacture very quickly." },
+        { title: "CNC Machining", desc: "We produce complex parts with tight tolerances using our 3 and 4-axis CNC machines." },
+        { title: "Press Service", desc: "With completed molds, we provide pressing services in desired quantities within our own facility according to customer requests." },
+        { title: "Assembly & Manufacturing", desc: "From parts to product; we manage design, manufacturing and assembly processes end-to-end." },
       ],
       photoLabel: "Photo coming soon",
     },
     services: {
-      subtitle: "What We Do",
-      title: "OUR SERVICES",
+      subtitle: "Industries We Serve",
+      title: "OUR SECTORS",
       items: [
-        { title: "Mold Production", desc: "Progressive metal and plastic injection molds are produced and tested in our own facility." },
-        { title: "Press Service", desc: "With completed molds, we provide pressing services in desired quantities within our own facility according to customer requests." },
-        { title: "CNC Machining", desc: "We produce complex parts with tight tolerances using our 3 and 4-axis CNC machines." },
-        { title: "Drilling & Centering", desc: "We offer precise drilling, centering and marking services for both serial and single-piece production." },
-        { title: "Assembly & Manufacturing", desc: "From parts to product; we manage design, manufacturing and assembly processes end-to-end." },
-        { title: "Quality Control", desc: "We target zero defects by performing measurement and quality control at every stage of production." },
+        { title: "Machine Spare Parts", desc: "We meet the spare parts needs of industrial machines with our high-precision molds and CNC machining capacity." },
+        { title: "Automotive Industry", desc: "We provide progressive die and press solutions suited to the strict tolerance and mass production requirements of the automotive sector." },
+        { title: "Hardware", desc: "We develop solutions for the mold-based production of hardware products such as bolts, nuts, clips and similar items." },
+        { title: "Construction", desc: "We produce metal profiles, fasteners and custom parts for the construction sector." },
+        { title: "Electrical-Electronic Parts", desc: "We produce precision sheet metal molds for electrical panels, connectors and electronic enclosures." },
+        { title: "Defense Industry", desc: "We are your reliable solution partner in the production of defense industry components requiring high strength and precision." },
       ],
     },
     about: {
@@ -139,19 +139,28 @@ const T = {
         { label: "About Us", href: "#hakkimizda" },
         { label: "Contact", href: "#iletisim" },
       ],
-      serviceItems: ["Mold Production", "Press Service", "CNC Machining", "Drilling & Centering", "Assembly & Manufacturing", "Quality Control"],
+      serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Defense Industry"],
     },
   },
 } as const;
 
-// ─── Product image paths ──────────────────────────────────────────────────────
+// ─── Image paths ──────────────────────────────────────────────────────────────
 const productImages = [
-  "/products/sivama-kalibi.jpg",
   "/products/prograsif-kalibi.jpg",
   "/products/kesme-kalibi.jpg",
-  "/products/delme-kalibi.jpg",
-  "/products/bukme-kalibi.jpg",
   "/products/enjeksiyon-kalibi.jpg",
+  "/products/cnc-isleme.jpg",
+  "/products/pres-baski.jpg",
+  "/products/montaj-imalat.jpg",
+];
+
+const sectorImages = [
+  "/sectors/makina-yedek-parca.jpg",
+  "/sectors/otomotiv-sanayi.jpg",
+  "/sectors/hirdavat.jpg",
+  "/sectors/insaat.jpg",
+  "/sectors/elektrik-elektronik.jpg",
+  "/sectors/savunma-sanayi.jpg",
 ];
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
@@ -468,38 +477,40 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       <Navbar lang={defaultLang} />
 
       {/* ── HERO ── */}
-      <section className="relative flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-24 pb-6 bg-white">
-        <div
-          className="absolute inset-0 opacity-[0.04]"
-          style={{
-            backgroundImage: "linear-gradient(#f97316 1px, transparent 1px), linear-gradient(90deg, #f97316 1px, transparent 1px)",
-            backgroundSize: "60px 60px",
-          }}
+      <section className="relative flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-24 pb-6 min-h-[80vh]">
+        {/* Arka plan fotoğrafı */}
+        <Image
+          src="/header_1.jpeg"
+          alt="Ozhan Metal"
+          fill
+          priority
+          className="object-cover"
         />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-orange-100 rounded-full blur-3xl pointer-events-none" />
+        {/* Koyu overlay — metinlerin okunabilmesi için */}
+        <div className="absolute inset-0 bg-black/60" />
 
         <div className="relative z-10 max-w-4xl">
-          <div className="inline-block border border-orange-400/60 text-orange-500 text-xs font-extrabold tracking-[0.3em] uppercase px-4 py-1.5 rounded-full mb-6">
+          <div className="inline-block border border-orange-400/60 text-orange-400 text-xs font-extrabold tracking-[0.3em] uppercase px-4 py-1.5 rounded-full mb-6">
             {t.hero.badge}
           </div>
-          <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-6 text-zinc-900">
+          <h1 className="text-5xl md:text-7xl font-black tracking-tight leading-none mb-6 text-white">
             OZHAN<span className="text-orange-500"> METAL</span>
           </h1>
-          <p className="text-zinc-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
+          <p className="text-zinc-300 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed mb-10">
             {t.hero.desc}
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <a href="#hizmetler" className="bg-orange-500 hover:bg-orange-400 text-white font-bold px-8 py-3 transition-colors uppercase tracking-wider text-sm">
               {t.hero.btn1}
             </a>
-            <a href="#iletisim" className="border border-orange-400 hover:bg-orange-50 text-orange-500 font-bold px-8 py-3 transition-colors uppercase tracking-wider text-sm">
+            <a href="#iletisim" className="border border-orange-400 hover:bg-orange-500 hover:border-orange-500 text-orange-400 hover:text-white font-bold px-8 py-3 transition-colors uppercase tracking-wider text-sm">
               {t.hero.btn2}
             </a>
           </div>
         </div>
 
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-30">
-          <div className="w-px h-12 bg-gradient-to-b from-transparent to-orange-500" />
+        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-50">
+          <div className="w-px h-12 bg-gradient-to-b from-transparent to-orange-400" />
           <span className="text-[10px] tracking-widest uppercase text-zinc-400">{t.hero.scroll}</span>
         </div>
       </section>
@@ -548,14 +559,21 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             <h2 className="mt-3 text-4xl font-black tracking-tight text-zinc-900">{t.services.title}</h2>
             <div className="mt-4 w-12 h-1 bg-orange-500 mx-auto" />
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-px bg-zinc-200">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {t.services.items.map((s, i) => (
-              <div key={i} className="bg-white p-8 group hover:bg-orange-50 transition-colors duration-300">
-                <div className="text-orange-500 mb-4 group-hover:scale-110 transition-transform duration-300 inline-block">
-                  {serviceIcons[i]}
+              <div key={i} className="group bg-white border border-zinc-200 hover:border-orange-400 overflow-hidden transition-all duration-300 shadow-sm hover:shadow-md">
+                <div className="relative w-full h-48 bg-zinc-100 overflow-hidden">
+                  <ProductImage
+                    src={sectorImages[i]}
+                    alt={s.title}
+                    label={t.products.photoLabel}
+                  />
+                  <div className="absolute top-0 left-0 w-0 group-hover:w-full h-0.5 bg-orange-500 transition-all duration-500" />
                 </div>
-                <h3 className="text-lg font-bold mb-3 text-zinc-900 group-hover:text-orange-500 transition-colors">{s.title}</h3>
-                <p className="text-zinc-500 text-sm leading-relaxed">{s.desc}</p>
+                <div className="p-6">
+                  <h3 className="text-base font-bold mb-2 text-zinc-900 group-hover:text-orange-500 transition-colors">{s.title}</h3>
+                  <p className="text-zinc-500 text-sm leading-relaxed">{s.desc}</p>
+                </div>
               </div>
             ))}
           </div>
@@ -575,7 +593,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
           </div>
           <div className="grid grid-cols-2 gap-12">
             <CounterItem target={34} label={t.about.experience} />
-            <CounterItem target={500} label={t.about.projects} />
+            <CounterItem target={3000} label={t.about.projects} />
             <CounterItem target={120} label={t.about.clients} />
             <CounterItem target={8} label={t.about.staff} />
           </div>
