@@ -146,12 +146,12 @@ const T = {
 
 // ─── Image paths ──────────────────────────────────────────────────────────────
 const productImages = [
-  "/products/prograsif-kalibi.jpg",
-  "/products/kesme-kalibi.jpg",
-  "/products/enjeksiyon-kalibi.jpg",
-  "/products/cnc-isleme.jpg",
-  "/products/pres-baski.jpg",
-  "/products/montaj-imalat.jpg",
+  "/products/prograsif_kalip.jpeg",     // Progresif Kalıpları
+  "/products/Kesme_kaliplari.jpeg",     // Kesme Kalıpları
+  "/products/enjeksiyon_kaliplari.jpeg",// Enjeksiyon Kalıpları
+  "",                                   // CNC İşleme — fotoğraf yakında
+  "",                                   // Pres Baskı — fotoğraf yakında
+  "",                                   // Montaj & İmalat — fotoğraf yakında
 ];
 
 const sectorImages = [
