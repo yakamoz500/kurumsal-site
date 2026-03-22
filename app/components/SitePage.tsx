@@ -12,7 +12,7 @@ const T = {
     nav: {
       home: "Ana Sayfa",
       products: "Ürünlerimiz",
-      services: "Hizmetler",
+      services: "Sektörler",
       about: "Hakkımızda",
       contact: "İletişim",
     },
@@ -79,7 +79,7 @@ const T = {
     nav: {
       home: "Home",
       products: "Products",
-      services: "Services",
+      services: "Sectors",
       about: "About Us",
       contact: "Contact",
     },
