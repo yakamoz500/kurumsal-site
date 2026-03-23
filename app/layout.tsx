@@ -38,9 +38,11 @@ export const metadata: Metadata = {
   },
   metadataBase: new URL("https://ozhanmetal.com"),
   alternates: {
+    canonical: "https://ozhanmetal.com",
     languages: {
-      tr: "https://ozhanmetal.com",
-      en: "https://ozhanmetal.com/en",
+      "tr": "https://ozhanmetal.com",
+      "en": "https://ozhanmetal.com/en",
+      "x-default": "https://ozhanmetal.com",
     },
   },
 };

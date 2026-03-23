@@ -20,9 +20,11 @@ export const metadata: Metadata = {
       "Your trusted solution partner in metal cutting and injection mold production with high precision and low tolerance since 1991.",
   },
   alternates: {
+    canonical: "https://ozhanmetal.com/en",
     languages: {
-      tr: "https://ozhanmetal.com",
-      en: "https://ozhanmetal.com/en",
+      "tr": "https://ozhanmetal.com",
+      "en": "https://ozhanmetal.com/en",
+      "x-default": "https://ozhanmetal.com",
     },
   },
 };
