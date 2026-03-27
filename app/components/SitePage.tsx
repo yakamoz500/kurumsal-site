@@ -355,7 +355,7 @@ function Navbar({ lang }: { lang: Lang }) {
             <a href="https://www.facebook.com/ozhanmetal" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-zinc-400 hover:text-orange-500 transition-colors p-1.5">
               <IconFacebook />
             </a>
-            <a href="#" aria-label="LinkedIn" className="text-zinc-400 hover:text-orange-500 transition-colors p-1.5">
+            <a href="https://www.linkedin.com/company/ozhan-metal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-zinc-400 hover:text-orange-500 transition-colors p-1.5">
               <IconLinkedIn />
             </a>
             <a href="https://wa.me/905456462356" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-zinc-400 hover:text-orange-500 transition-colors p-1.5">
@@ -673,7 +673,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             </p>
             <div className="flex gap-3">
               <a href="https://www.facebook.com/ozhanmetal" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-zinc-500 hover:text-orange-500 transition-colors"><IconFacebook /></a>
-              <a href="#" aria-label="LinkedIn" className="text-zinc-500 hover:text-orange-500 transition-colors"><IconLinkedIn /></a>
+              <a href="https://www.linkedin.com/company/ozhan-metal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-zinc-500 hover:text-orange-500 transition-colors"><IconLinkedIn /></a>
               <a href="https://wa.me/905456462356" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="text-zinc-500 hover:text-orange-500 transition-colors"><IconWhatsApp /></a>
             </div>
           </div>
