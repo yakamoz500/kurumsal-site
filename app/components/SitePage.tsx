@@ -667,6 +667,16 @@ function QuoteForm({ lang }: { lang: Lang }) {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
+  const validationMsg = lang === "TR" ? "Lütfen bu alanı doldurun." : "Please fill out this field.";
+  const validationProps = {
+    onInvalid: (e: React.InvalidEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+      (e.target as HTMLInputElement).setCustomValidity(validationMsg);
+    },
+    onInput: (e: React.FormEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
+      (e.target as HTMLInputElement).setCustomValidity("");
+    },
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
@@ -710,7 +720,7 @@ function QuoteForm({ lang }: { lang: Lang }) {
       <div className="grid grid-cols-2 gap-3">
         <div className="flex flex-col gap-1">
           <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.name} <span className="text-lime-400">*</span></label>
-          <input name="name" required value={form.name} onChange={handleChange} placeholder={t.name} className={inputClass} />
+          <input name="name" required value={form.name} onChange={handleChange} placeholder={t.name} className={inputClass} {...validationProps} />
         </div>
         <div className="flex flex-col gap-1">
           <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.company}</label>
@@ -718,18 +728,18 @@ function QuoteForm({ lang }: { lang: Lang }) {
         </div>
         <div className="flex flex-col gap-1">
           <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.email} <span className="text-lime-400">*</span></label>
-          <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder={t.email} className={inputClass} />
+          <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder={t.email} className={inputClass} {...validationProps} />
         </div>
         <div className="flex flex-col gap-1">
           <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.phone} <span className="text-lime-400">*</span></label>
-          <input name="phone" type="tel" required value={form.phone} onChange={handleChange} placeholder={t.phone} className={inputClass} />
+          <input name="phone" type="tel" required value={form.phone} onChange={handleChange} placeholder={t.phone} className={inputClass} {...validationProps} />
         </div>
       </div>
 
       {/* Hizmet seçimi */}
       <div className="flex flex-col gap-1">
         <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.service} <span className="text-lime-400">*</span></label>
-        <select name="service" required value={form.service} onChange={handleChange} className={`${inputClass} cursor-pointer`}>
+        <select name="service" required value={form.service} onChange={handleChange} className={`${inputClass} cursor-pointer`} {...validationProps}>
           <option value="" disabled>{t.serviceDefault}</option>
           {t.services.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
