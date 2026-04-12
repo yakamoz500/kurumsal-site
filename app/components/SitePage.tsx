@@ -406,6 +406,13 @@ function Navbar({ lang }: { lang: Lang }) {
       <div className="max-w-6xl mx-auto px-6 flex items-center gap-8">
         {/* Logo — sol */}
         <a href={lang === "EN" ? "/en" : "/"} className="flex items-center gap-1 shrink-0">
+          <Image
+            src="/logo2.png"
+            alt="Özhan Metal Logo"
+            width={42}
+            height={42}
+            className="object-contain invert"
+          />
           <span className="text-white font-black text-lg tracking-widest">ÖZHAN</span>
           <span className="text-lime-400 font-black text-lg tracking-widest">METAL</span>
         </a>
@@ -911,6 +918,13 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
           {/* Kolon 1 — Logo + Sosyal Medya */}
           <div className="flex flex-col gap-6">
             <a href={defaultLang === "EN" ? "/en" : "/"} className="flex items-center gap-1">
+              <Image
+                src="/logo2.png"
+                alt="Özhan Metal Logo"
+                width={42}
+                height={42}
+                className="object-contain invert"
+              />
               <span className="text-white font-black text-xl tracking-widest">ÖZHAN</span>
               <span className="text-lime-400 font-black text-xl tracking-widest">METAL</span>
             </a>
