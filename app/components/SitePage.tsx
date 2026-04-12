@@ -392,6 +392,8 @@ function Navbar({ lang }: { lang: Lang }) {
 
   const switchLang = (target: Lang) => {
     if (target === lang) return;
+    // Manuel seçimi cookie'ye kaydet — middleware bir daha yönlendirmesin
+    document.cookie = "lang=" + target + "; path=/; max-age=31536000";
     router.push(target === "EN" ? "/en" : "/");
   };
 
