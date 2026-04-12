@@ -194,11 +194,21 @@ const T = {
 // ─── Image paths ──────────────────────────────────────────────────────────────
 const productImages = [
   "/products/prograsif_kalip.jpeg",     // Progresif Kalıpları
-  "/products/Kesme_kaliplari.jpeg",     // Kesme Kalıpları
+  "/products/Kesme_kaliplari.png",      // Kesme Kalıpları
   "/products/enjeksiyon_kaliplari.jpeg",// Enjeksiyon Kalıpları
-  "",                                   // CNC İşleme — fotoğraf yakında
-  "",                                   // Pres Baskı — fotoğraf yakında
-  "",                                   // Montaj & İmalat — fotoğraf yakında
+  "/products/cnc_isleme.jpg",           // CNC İşleme
+  "/products/Pres_Baski.png",           // Pres Baskı
+  "/products/montajimalat.png",         // Montaj & İmalat
+];
+
+// Her ürün kartı için fotoğraf pozisyonu (object-position)
+const productPositions = [
+  "center", // Progresif Kalıpları
+  "center", // Kesme Kalıpları
+  "center", // Enjeksiyon Kalıpları
+  "center", // CNC İşleme
+  "center", // Pres Baskı
+  "center", // Montaj & İmalat
 ];
 
 const sectorImages = [
@@ -318,7 +328,7 @@ const sectorIcons = [
 ];
 
 // ─── Product Image (next/image + hata yönetimi) ───────────────────────────────
-function ProductImage({ src, alt, label }: { src: string; alt: string; label: string }) {
+function ProductImage({ src, alt, label, position = "center" }: { src: string; alt: string; label: string; position?: string }) {
   const [error, setError] = useState(false);
 
   if (!src || error) {
@@ -338,6 +348,7 @@ function ProductImage({ src, alt, label }: { src: string; alt: string; label: st
       alt={alt}
       fill
       className="object-cover group-hover:scale-105 transition-transform duration-500"
+      style={{ objectPosition: position }}
       sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
       onError={() => setError(true)}
     />
@@ -810,6 +821,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
                     src={productImages[i]}
                     alt={p.title}
                     label={t.products.photoLabel}
+                    position={productPositions[i]}
                   />
                   <div className="absolute top-0 left-0 w-0 group-hover:w-full h-0.5 bg-lime-400 transition-all duration-500" />
                 </div>
