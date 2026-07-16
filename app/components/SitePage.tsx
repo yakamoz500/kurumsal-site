@@ -270,6 +270,12 @@ const productPositions = [
 ];
 
 const WHATSAPP_NUMBER = "905456462356";
+const PHONE_HREF = "tel:+905456462356";
+// Yurt dışındaki alıcı "0545" ile arayamaz — EN tarafında uluslararası format.
+const PHONE_DISPLAY: Record<Lang, string> = {
+  TR: "0545 646 23 56",
+  EN: "+90 545 646 23 56",
+};
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
 function IconFacebook() {
@@ -294,9 +300,9 @@ function IconWhatsApp() {
     </svg>
   );
 }
-function IconPhone() {
+function IconPhone({ className = "w-5 h-5" }: { className?: string }) {
   return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+    <svg xmlns="http://www.w3.org/2000/svg" className={className} fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.948V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 7V5z" />
     </svg>
   );
@@ -316,6 +322,145 @@ function IconLocation() {
     </svg>
   );
 }
+
+// ─── Yetenek çizimleri ────────────────────────────────────────────────────────
+// Foto değil çizim: bu bölümün işi tezgahı değil prosesi göstermek. Kapalı bir
+// tel erozyon tezgahının fotoğrafı gri bir kutudur, ne yaptığını anlatmaz.
+// Teknik resim dili — kesit taraması, eksen çizgisi, ölçü okları. Ölçülerde
+// rakam YOK: doğrulanmış değerimiz yok, uydurmuyoruz.
+
+// 01 — Delik Delme EDM (kesit görünüm)
+function DrawHoleEDM() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-edm" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+
+      {/* eksen çizgisi */}
+      <line x1="100" y1="8" x2="100" y2="144" className="stroke-stone-300" strokeWidth="1" strokeDasharray="10 3 2 3" />
+
+      {/* plaka kesiti + açılmakta olan kör delik */}
+      <path
+        d="M25,88 H96 V116 Q96,120 100,120 Q104,120 104,116 V88 H175 V132 H25 Z"
+        fill="url(#hatch-edm)"
+        className="stroke-stone-400"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+
+      {/* elektrot — ucu ile delik dibi arasında kıvılcım boşluğu var */}
+      <rect x="97" y="30" width="6" height="82" className="stroke-amber-600 fill-white" strokeWidth="1.5" />
+
+      {/* ilerleme oku */}
+      <path d="M100,10 V24 M96,20 L100,24 L104,20" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* kıvılcım */}
+      <g className="stroke-amber-500" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M92,114 l-5,3 M108,114 l5,3 M94,119 l-4,4 M106,119 l4,4 M100,122 v5" />
+      </g>
+
+      {/* kalınlık ölçüsü — rakamsız */}
+      <g className="stroke-stone-400" strokeWidth="1">
+        <line x1="177" y1="88" x2="194" y2="88" />
+        <line x1="177" y1="132" x2="194" y2="132" />
+        <line x1="189" y1="88" x2="189" y2="132" />
+        <path d="M186,92 L189,88 L192,92" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M186,128 L189,132 L192,128" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </svg>
+  );
+}
+
+// 02 — CNC Tel Erozyon (üstten görünüm)
+function DrawWireEDM() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      {/* plaka — üstten */}
+      <rect x="25" y="20" width="150" height="110" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+
+      {/* kesilen parça */}
+      <rect x="78" y="48" width="54" height="64" rx="7" className="fill-stone-100" />
+
+      {/* kalan yol */}
+      <path
+        d="M132,88 V105 Q132,112 125,112 H85 Q78,112 78,105 V95"
+        className="stroke-stone-300"
+        strokeWidth="1.5"
+        strokeDasharray="4 3"
+        strokeLinecap="round"
+      />
+
+      {/* giriş + kesilmiş yol */}
+      <path
+        d="M58,95 H78 V55 Q78,48 85,48 H125 Q132,48 132,55 V88"
+        className="stroke-amber-600"
+        strokeWidth="2"
+        strokeLinecap="round"
+      />
+
+      {/* 01'de açılan başlangıç deliği — zincirin görünür halkası */}
+      <circle cx="58" cy="95" r="4.5" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+      <line x1="53" y1="91" x2="43" y2="79" className="stroke-stone-300" strokeWidth="1" />
+      <text x="33" y="75" fontSize="9" className="fill-stone-400 font-mono">01</text>
+
+      {/* tel */}
+      <circle cx="132" cy="88" r="3.5" className="fill-amber-600" />
+    </svg>
+  );
+}
+
+// 03 — Taşlama (kesit görünüm)
+function DrawGrinding() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-grind" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+
+      {/* taş */}
+      <circle cx="110" cy="44" r="32" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+      <circle cx="110" cy="44" r="5" className="stroke-stone-400" strokeWidth="1.5" />
+
+      {/* dönüş yönü */}
+      <path d="M110,24 A20,20 0 0 1 130,44" className="stroke-amber-600" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M126,40 L130,44 L126,48" className="stroke-amber-600" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* iş parçası — 01'deki plakayla aynı kalınlıkta */}
+      <rect x="25" y="76" width="150" height="38" fill="url(#hatch-grind)" className="stroke-stone-400" strokeWidth="1.5" />
+
+      {/* manyetik tabla */}
+      <rect x="15" y="114" width="170" height="14" className="stroke-stone-400 fill-stone-100" strokeWidth="1.5" />
+
+      {/* kıvılcım */}
+      <g className="stroke-amber-500" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M100,78 l-10,4 M96,74 l-11,0 M120,78 l10,4 M124,74 l11,0" />
+      </g>
+
+      {/* tabla ilerleme yönü */}
+      <path d="M34,58 H64 M60,54 L64,58 L60,62" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* kalınlık / paralellik ölçüsü — rakamsız */}
+      <g className="stroke-stone-400" strokeWidth="1">
+        <line x1="177" y1="76" x2="194" y2="76" />
+        <line x1="177" y1="114" x2="194" y2="114" />
+        <line x1="189" y1="76" x2="189" y2="114" />
+        <path d="M186,80 L189,76 L192,80" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M186,110 L189,114 L192,110" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </svg>
+  );
+}
+
+const capabilityDrawings = [
+  <DrawHoleEDM key={0} />,
+  <DrawWireEDM key={1} />,
+  <DrawGrinding key={2} />,
+];
 
 const sectorIcons = [
   <Settings2  key={0} className="w-6 h-6" strokeWidth={1.5} />, // Makina Yedek Parça
@@ -416,8 +561,6 @@ function Navbar({ lang }: { lang: Lang }) {
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("#");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [socialOpen, setSocialOpen] = useState(false);
-  const socialRef = useRef<HTMLDivElement>(null);
 
   const navLinks = [
     { label: t.home, href: "#" },
@@ -464,16 +607,6 @@ function Navbar({ lang }: { lang: Lang }) {
     return () => observer.disconnect();
   }, []);
 
-  useEffect(() => {
-    const onClickOutside = (e: MouseEvent) => {
-      if (socialRef.current && !socialRef.current.contains(e.target as Node)) {
-        setSocialOpen(false);
-      }
-    };
-    document.addEventListener("mousedown", onClickOutside);
-    return () => document.removeEventListener("mousedown", onClickOutside);
-  }, []);
-
   const switchLang = (target: Lang) => {
     if (target === lang) return;
     // Manuel seçimi cookie'ye kaydet — middleware bir daha yönlendirmesin
@@ -481,9 +614,10 @@ function Navbar({ lang }: { lang: Lang }) {
     router.push(target === "EN" ? "/en" : "/");
   };
 
+  // Dolgu yok — header'daki tek dolu öğe "Teklif Al" kalsın, hiyerarşi orada.
   const langBtn = (target: Lang) =>
-    `px-3 py-1 text-xs font-mono font-medium transition-colors ${
-      lang === target ? "bg-stone-900 text-white" : "text-stone-500 hover:text-stone-900"
+    `font-mono text-xs transition-colors ${
+      lang === target ? "text-stone-900 font-semibold" : "text-stone-400 hover:text-stone-600"
     }`;
 
   return (
@@ -523,42 +657,18 @@ function Navbar({ lang }: { lang: Lang }) {
           ))}
         </nav>
 
-        {/* Sağ — Sosyal ikon + Teklif Al + TR/EN */}
-        <div className="hidden md:flex items-center gap-3 shrink-0">
-          {/* Sosyal medya — küçük ikon butonu */}
-          <div className="relative" ref={socialRef}>
-            <button
-              onClick={() => setSocialOpen(!socialOpen)}
-              aria-label="Sosyal medya"
-              aria-expanded={socialOpen}
-              className={`w-8 h-8 flex items-center justify-center transition-colors ${
-                socialOpen ? "text-stone-900 bg-stone-100" : "text-stone-400 hover:text-stone-900 hover:bg-stone-100"
-              }`}
-            >
-              <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-              </svg>
-            </button>
-
-            {socialOpen && (
-              <div className="absolute right-0 top-full mt-2 bg-white border border-stone-200 shadow-lg z-50 min-w-[150px]">
-                <a href="https://www.facebook.com/ozhanmetal" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-2.5 text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-colors text-xs font-medium">
-                  <IconFacebook /> Facebook
-                </a>
-                <a href="https://www.linkedin.com/company/ozhan-metal" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-2.5 text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-colors text-xs font-medium border-t border-stone-200">
-                  <IconLinkedIn /> LinkedIn
-                </a>
-                <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-2.5 text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-colors text-xs font-medium border-t border-stone-200">
-                  <IconWhatsApp /> WhatsApp
-                </a>
-              </div>
-            )}
-          </div>
-
-          <div aria-hidden className="w-px h-4 bg-stone-200" />
+        {/* Sağ — Telefon + Teklif Al + TR/EN.
+            Sosyal medya buradan kaldırıldı: footer'da zaten açıkta duruyordu ve
+            header'ın en değerli alanını bir tekrar için harcıyordu. Yerine, B2B'de
+            asıl dönüşüm olan telefon geldi. */}
+        <div className="hidden md:flex items-center gap-5 shrink-0">
+          <a
+            href={PHONE_HREF}
+            className="group flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors"
+          >
+            <IconPhone className="w-4 h-4 text-stone-400 group-hover:text-amber-600 transition-colors" />
+            <span className="font-mono text-[13px] tabular-nums">{PHONE_DISPLAY[lang]}</span>
+          </a>
 
           <a
             href="#teklif"
@@ -567,23 +677,33 @@ function Navbar({ lang }: { lang: Lang }) {
             {t.quote}
           </a>
 
-          <div className="flex items-center border border-stone-200 divide-x divide-stone-200">
+          <div className="flex items-center gap-1.5">
             <button onClick={() => switchLang("TR")} className={langBtn("TR")}>TR</button>
+            <span aria-hidden className="text-stone-300 text-xs">/</span>
             <button onClick={() => switchLang("EN")} className={langBtn("EN")}>EN</button>
           </div>
         </div>
 
-        {/* Mobile hamburger */}
-        <button
-          className="md:hidden ml-auto flex flex-col gap-1.5 p-1"
-          onClick={() => setMenuOpen(!menuOpen)}
-          aria-label="Menü"
-          aria-expanded={menuOpen}
-        >
-          <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
-        </button>
+        {/* Mobile — tıkla-ara + hamburger */}
+        <div className="md:hidden ml-auto flex items-center gap-1">
+          <a
+            href={PHONE_HREF}
+            aria-label={PHONE_DISPLAY[lang]}
+            className="p-2 text-stone-600 hover:text-amber-600 transition-colors"
+          >
+            <IconPhone className="w-5 h-5" />
+          </a>
+          <button
+            className="flex flex-col gap-1.5 p-2"
+            onClick={() => setMenuOpen(!menuOpen)}
+            aria-label="Menü"
+            aria-expanded={menuOpen}
+          >
+            <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -612,9 +732,10 @@ function Navbar({ lang }: { lang: Lang }) {
           >
             {t.quote}
           </a>
-          <div className="flex items-center border border-stone-200 divide-x divide-stone-200">
-            <button onClick={() => switchLang("TR")} className={langBtn("TR")}>TR</button>
-            <button onClick={() => switchLang("EN")} className={langBtn("EN")}>EN</button>
+          <div className="flex items-center gap-2">
+            <button onClick={() => switchLang("TR")} className={`${langBtn("TR")} px-1`}>TR</button>
+            <span aria-hidden className="text-stone-300 text-xs">/</span>
+            <button onClick={() => switchLang("EN")} className={`${langBtn("EN")} px-1`}>EN</button>
           </div>
         </div>
       </div>
@@ -1000,18 +1121,37 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             title={t.capabilities.title}
             lead={t.capabilities.lead}
           />
-          {/* Üç adımlı zincir — ikon yok, numara taşıyor (Sektörler'den ayrışsın diye) */}
+          {/* Üç adımlı zincir. Her kartta o operasyonun teknik kesiti; kartlar
+              arasındaki ok sırayı görünür kılıyor (Sektörler'den de ayrışır). */}
           <ol className="mt-12 grid md:grid-cols-3 gap-px bg-stone-200 border border-stone-200">
             {t.capabilities.items.map((c, i) => (
-              <li key={i} className="group relative bg-stone-50 p-6 md:p-8 flex flex-col">
-                <div className="flex items-baseline gap-3">
-                  <span className="font-mono text-2xl font-medium text-amber-600 tabular-nums">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <span aria-hidden className="h-px flex-1 bg-stone-300" />
+              <li key={i} className="relative bg-stone-50 flex flex-col">
+                {/* çizim — blueprint zemin, hero ile aynı dil */}
+                <div className="relative bg-white border-b border-stone-200 aspect-4/3 flex items-center justify-center px-5">
+                  <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
+                  <div className="relative w-full">{capabilityDrawings[i]}</div>
+
+                  {/* zincir oku — son kartta yok */}
+                  {i < t.capabilities.items.length - 1 && (
+                    <span
+                      aria-hidden
+                      className="hidden md:flex absolute top-1/2 -right-3 -translate-y-1/2 z-10 w-6 h-6 items-center justify-center bg-white text-amber-600 text-sm"
+                    >
+                      →
+                    </span>
+                  )}
                 </div>
-                <h3 className="mt-4 text-lg font-semibold tracking-tight text-stone-900">{c.title}</h3>
-                <p className="mt-3 text-sm leading-relaxed text-stone-600">{c.desc}</p>
+
+                <div className="p-6 md:p-7 flex flex-col flex-1">
+                  <div className="flex items-baseline gap-3">
+                    <span className="font-mono text-2xl font-medium text-amber-600 tabular-nums">
+                      {String(i + 1).padStart(2, "0")}
+                    </span>
+                    <span aria-hidden className="h-px flex-1 bg-stone-300" />
+                  </div>
+                  <h3 className="mt-4 text-lg font-semibold tracking-tight text-stone-900">{c.title}</h3>
+                  <p className="mt-3 text-sm leading-relaxed text-stone-600">{c.desc}</p>
+                </div>
               </li>
             ))}
           </ol>
@@ -1103,8 +1243,8 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             />
             <div className="mt-10 pt-8 border-t border-stone-800">
               <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-500">{t.quote.directTitle}</p>
-              <a href="tel:+905456462356" className="mt-3 block font-mono text-2xl md:text-3xl text-white hover:text-amber-400 transition-colors">
-                0545 646 23 56
+              <a href={PHONE_HREF} className="mt-3 block font-mono text-2xl md:text-3xl text-white hover:text-amber-400 transition-colors">
+                {PHONE_DISPLAY[defaultLang]}
               </a>
               <p className="mt-3 text-sm text-stone-500 leading-relaxed max-w-sm">{t.quote.directDesc}</p>
               <a
@@ -1175,8 +1315,8 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
                 </div>
                 <div>
                   <p className="text-stone-500 text-xs mb-0.5">{t.footer.phoneLabel}</p>
-                  <a href="tel:+905456462356" className="text-white text-sm font-medium hover:text-amber-400 transition-colors">
-                    0545 646 23 56
+                  <a href={PHONE_HREF} className="text-white text-sm font-medium hover:text-amber-400 transition-colors">
+                    {PHONE_DISPLAY[defaultLang]}
                   </a>
                 </div>
               </li>
