@@ -20,11 +20,11 @@ export const viewport: Viewport = {
 export const metadata: Metadata = {
   title: "Özhan Metal | Metal Kesme Kalıpları",
   description:
-    "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
+    "1991 yılından bu yana metal kesme kalıbı üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
   openGraph: {
     title: "Özhan Metal | Metal Kesme Kalıpları",
     description:
-      "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
+      "1991 yılından bu yana metal kesme kalıbı üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
     url: "https://ozhanmetal.com",
     siteName: "Özhan Metal",
     locale: "tr_TR",
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Özhan Metal | Metal Kesme Kalıpları",
     description:
-      "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
+      "1991 yılından bu yana metal kesme kalıbı üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağınız.",
   },
   metadataBase: new URL("https://ozhanmetal.com"),
   alternates: {
@@ -58,14 +58,14 @@ const jsonLd = {
       "url": "https://ozhanmetal.com",
       "logo": "https://ozhanmetal.com/icon.svg",
       "image": "https://ozhanmetal.com/header_1.jpeg",
-      "description": "1991 yılından bu yana metal kesme ve enjeksiyon kalıp üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağı.",
+      "description": "1991 yılından bu yana metal kesme kalıbı üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağı.",
       "foundingDate": "1991",
       "telephone": "+90-545-646-23-56",
       "email": "info@ozhanmetal.com",
       "address": {
         "@type": "PostalAddress",
         "streetAddress": "Muratpaşa Mahallesi, Uluyol İşkent Sanayi Sitesi, D Blok No:64",
-        "addressLocality": "Başakşehir",
+        "addressLocality": "Bayrampaşa",
         "addressRegion": "İstanbul",
         "addressCountry": "TR"
       },
@@ -90,7 +90,6 @@ const jsonLd = {
         "itemListElement": [
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Progresif Kalıp İmalatı" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kesme Kalıbı İmalatı" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Enjeksiyon Kalıbı İmalatı" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CNC Tel Erozyon" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pres Baskı" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Montaj & İmalat" } }

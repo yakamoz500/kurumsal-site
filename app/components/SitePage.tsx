@@ -20,13 +20,12 @@ const T = {
       follow: "Takip Et",
     },
     hero: {
-      eyebrow: "1991'den bu yana · İstanbul",
-      h1a: "Düşük toleransta",
-      h1b: "metal kesme ve enjeksiyon kalıpları",
-      sub: "Progresif kalıp, kesme kalıbı ve enjeksiyon kalıbı üretiyoruz. Tasarımdan tel erozyona, pres baskıdan montaja kadar tüm süreci kendi bünyemizde yönetiyoruz.",
+      eyebrow: "Düşük Tolerans · Yüksek Hassasiyet",
+      h1: "Metal kesme kalıpları",
+      sub: "1991'den bu yana İstanbul'da progresif kalıp ve kesme kalıbı üretiyoruz. Tasarımdan tel erozyona, pres baskıdan montaja kadar tüm süreci kendi bünyemizde yönetiyoruz.",
       btn1: "Teklif Al",
       btn2: "Ürünlerimizi İnceleyin",
-      imgCaption: "Üretim tesisi — Başakşehir, İstanbul",
+      imgCaption: "Üretim tesisi — Bayrampaşa, İstanbul",
       specs: [
         { k: "Tecrübe", v: "34 yıl" },
         { k: "Kesim", v: "Tel erozyon" },
@@ -41,7 +40,6 @@ const T = {
       items: [
         { title: "Progresif Kalıpları", desc: "Birden fazla işlemi (kesme, delme, bükme vb.) aynı kalıp içerisinde adım adım gerçekleştiren kalıplardır. Seri üretim için idealdir, zamandan ve maliyetten tasarruf sağlar." },
         { title: "Kesme Kalıpları", desc: "Sacın istenilen şekil ve ölçülerde kesilmesini sağlar. Ürün geometrisine göre özel olarak tasarlanır." },
-        { title: "Enjeksiyon Kalıpları", desc: "Yüksek adetli üreteceğiniz metal ve plastik parçalar için yüksek hassasiyetli enjeksiyon kalıplarımız sayesinde çok hızlı bir şekilde üretim yapabilirsiniz." },
         { title: "CNC Tel Erozyon", desc: "Kalıp elemanlarını ince telle kıvılcım aşındırma yöntemiyle kesiyoruz. Sertleştirilmiş malzemede bile dar tolerans ve temiz yüzey elde edilir; talaşlı imalatın zorlandığı karmaşık profiller ve keskin iç köşeler bu yöntemle çıkar." },
         { title: "Pres Baskı", desc: "Üretimi tamamlanan kalıplar ile müşterilerimizin talepleri doğrultusunda kendi bünyemizde istenilen adetlerde baskı hizmetini sağlıyoruz." },
         { title: "Montaj & İmalat", desc: "Parçadan ürüne; tasarım, imalat ve montaj süreçlerini uçtan uca yönetiyoruz." },
@@ -67,7 +65,7 @@ const T = {
       index: "03",
       subtitle: "Biz Kimiz",
       title: "Hakkımızda",
-      p1: "1991 yılından bu yana metal işleme sektöründe edindiğimiz tecrübe ve güvenle, metal kesme ve enjeksiyon kalıp üretiminde teknolojiyi, mühendisliği ve kaliteyi bir araya getiren öncü bir marka olmak.",
+      p1: "1991 yılından bu yana metal işleme sektöründe edindiğimiz tecrübe ve güvenle, metal kesme kalıbı üretiminde teknolojiyi, mühendisliği ve kaliteyi bir araya getiren öncü bir marka olmak.",
       p2: "Hedefimiz; yüksek hassasiyetli üretim, otomasyon destekli süreçler ve yenilikçi kalıp tasarımlarıyla hem yerel hem global pazarda rekabet gücünü artırmak, sektöre yön veren bir çözüm ortağı haline gelmektir.",
       p3: "Sürekli gelişim, sürdürülebilir üretim ve müşteri memnuniyeti ilkelerimiz doğrultusunda, endüstride kalite standartlarını sürekli yükseltmeyi vizyon ediniyoruz.",
       statsTitle: "Rakamlarla Özhan Metal",
@@ -114,7 +112,7 @@ const T = {
       sending: "Yönlendiriliyor...",
       success: "WhatsApp açıldı! Mesajı gönderdikten sonra en kısa sürede sizinle iletişime geçeceğiz.",
       error: "Bir hata oluştu. Lütfen tekrar deneyin.",
-      services: ["CNC Tel Erozyon", "Pres Baskı", "Progresif Kalıp", "Kesme Kalıbı", "Enjeksiyon Kalıbı", "Montaj & İmalat", "Diğer"],
+      services: ["CNC Tel Erozyon", "Pres Baskı", "Progresif Kalıp", "Kesme Kalıbı", "Montaj & İmalat", "Diğer"],
       navLabel: "Teklif Al",
     },
   },
@@ -129,13 +127,12 @@ const T = {
       follow: "Follow Us",
     },
     hero: {
-      eyebrow: "Since 1991 · Istanbul",
-      h1a: "Tight tolerance",
-      h1b: "metal cutting and injection molds",
-      sub: "We produce progressive dies, cutting dies and injection molds. From design to wire EDM, from press production to assembly, we manage the entire process in-house.",
+      eyebrow: "Tight Tolerance · High Precision",
+      h1: "Metal cutting dies",
+      sub: "Since 1991 we have produced progressive dies and cutting dies in Istanbul. From design to wire EDM, from press production to assembly, we manage the entire process in-house.",
       btn1: "Get a Quote",
       btn2: "Explore Our Products",
-      imgCaption: "Production facility — Başakşehir, Istanbul",
+      imgCaption: "Production facility — Bayrampaşa, Istanbul",
       specs: [
         { k: "Experience", v: "34 years" },
         { k: "Cutting", v: "Wire EDM" },
@@ -150,7 +147,6 @@ const T = {
       items: [
         { title: "Progressive Dies", desc: "Dies that perform multiple operations (cutting, punching, bending, etc.) step by step within the same mold. Ideal for mass production, saving time and cost." },
         { title: "Cutting Dies", desc: "Enables sheet metal to be cut in desired shapes and dimensions. Custom designed according to product geometry." },
-        { title: "Injection Molds", desc: "With our high-precision injection molds for metal and plastic parts that need to be produced in high quantities, you can manufacture very quickly." },
         { title: "CNC Wire EDM", desc: "We cut mold components using wire electrical discharge machining. Even in hardened material it achieves tight tolerances and a clean surface; complex profiles and sharp internal corners that conventional machining struggles with are produced this way." },
         { title: "Press Service", desc: "With completed molds, we provide pressing services in desired quantities within our own facility according to customer requests." },
         { title: "Assembly & Manufacturing", desc: "From parts to product; we manage design, manufacturing and assembly processes end-to-end." },
@@ -176,7 +172,7 @@ const T = {
       index: "03",
       subtitle: "Who We Are",
       title: "About Us",
-      p1: "With the experience and trust we have gained in the metal processing industry since 1991, we aim to be a pioneering brand that brings together technology, engineering and quality in metal cutting and injection mold production.",
+      p1: "With the experience and trust we have gained in the metal processing industry since 1991, we aim to be a pioneering brand that brings together technology, engineering and quality in metal cutting die production.",
       p2: "Our goal is to increase competitiveness in both local and global markets through high-precision production, automation-supported processes and innovative mold designs, and to become a solution partner that shapes the industry.",
       p3: "In line with our principles of continuous improvement, sustainable production and customer satisfaction, we envision continuously raising quality standards in the industry.",
       statsTitle: "Özhan Metal in Numbers",
@@ -223,7 +219,7 @@ const T = {
       sending: "Redirecting...",
       success: "WhatsApp opened! We will contact you shortly after you send the message.",
       error: "An error occurred. Please try again.",
-      services: ["CNC Wire EDM", "Press Service", "Progressive Die", "Cutting Die", "Injection Mold", "Assembly & Manufacturing", "Other"],
+      services: ["CNC Wire EDM", "Press Service", "Progressive Die", "Cutting Die", "Assembly & Manufacturing", "Other"],
       navLabel: "Get Quote",
     },
   },
@@ -233,7 +229,6 @@ const T = {
 const productImages = [
   "/products/prograsif_kalip.jpeg",     // Progresif Kalıpları
   "/products/Kesme_kaliplari.png",      // Kesme Kalıpları
-  "/products/enjeksiyon_kaliplari.jpeg",// Enjeksiyon Kalıpları
   // TODO: bu görsel CNC frezeyi gösteriyor, tel erozyonu değil — tezgahın
   // gerçek fotoğrafı geldiğinde değiştirilecek.
   "/products/cnc_isleme.jpg",           // CNC Tel Erozyon
@@ -245,7 +240,6 @@ const productImages = [
 const productPositions = [
   "center", // Progresif Kalıpları
   "center", // Kesme Kalıpları
-  "center", // Enjeksiyon Kalıpları
   "center", // CNC Tel Erozyon
   "center", // Pres Baskı
   "center", // Montaj & İmalat
@@ -855,8 +849,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             </div>
 
             <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05] text-stone-900">
-              <span className="text-amber-700">{t.hero.h1a}</span>{" "}
-              {t.hero.h1b}
+              {t.hero.h1}
             </h1>
 
             <p className="mt-6 text-base md:text-lg leading-relaxed text-stone-600 max-w-xl">{t.hero.sub}</p>
