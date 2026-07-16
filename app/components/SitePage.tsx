@@ -13,6 +13,7 @@ const T = {
     nav: {
       home: "Ana Sayfa",
       products: "Ürünlerimiz",
+      capabilities: "Yeteneklerimiz",
       services: "Sektörler",
       about: "Hakkımızda",
       contact: "İletişim",
@@ -40,15 +41,25 @@ const T = {
       items: [
         { title: "Progresif Kalıpları", desc: "Birden fazla işlemi (kesme, delme, bükme vb.) aynı kalıp içerisinde adım adım gerçekleştiren kalıplardır. Seri üretim için idealdir, zamandan ve maliyetten tasarruf sağlar." },
         { title: "Kesme Kalıpları", desc: "Sacın istenilen şekil ve ölçülerde kesilmesini sağlar. Ürün geometrisine göre özel olarak tasarlanır." },
-        { title: "CNC Tel Erozyon", desc: "Kalıp elemanlarını ince telle kıvılcım aşındırma yöntemiyle kesiyoruz. Sertleştirilmiş malzemede bile dar tolerans ve temiz yüzey elde edilir; talaşlı imalatın zorlandığı karmaşık profiller ve keskin iç köşeler bu yöntemle çıkar." },
         { title: "Pres Baskı", desc: "Üretimi tamamlanan kalıplar ile müşterilerimizin talepleri doğrultusunda kendi bünyemizde istenilen adetlerde baskı hizmetini sağlıyoruz." },
         { title: "Montaj & İmalat", desc: "Parçadan ürüne; tasarım, imalat ve montaj süreçlerini uçtan uca yönetiyoruz." },
       ],
       photoLabel: "Fotoğraf eklenecek",
       cta: "Bu ürün için teklif al",
     },
-    services: {
+    capabilities: {
       index: "02",
+      subtitle: "İmalat Yeteneklerimiz",
+      title: "Yeteneklerimiz",
+      lead: "Sertleştirilmiş malzemede kalıp elemanı işlemek üç adımlı bir zincir gerektirir. Üçü de kendi bünyemizde.",
+      items: [
+        { title: "Delik Delme EDM", desc: "Sertleştirilmiş plakada, matkabın kesemediği yerde kıvılcımla delik açar. Tel erozyonun telini geçirebilmesi için gereken başlangıç deliğini bu adımda oluşturuyoruz." },
+        { title: "CNC Tel Erozyon", desc: "İnce tel açılan delikten geçirilir ve profili kıvılcım aşındırmayla keser. Sertleştirilmiş malzemede bile dar tolerans ve temiz yüzey; talaşlı imalatın zorlandığı karmaşık profiller ve keskin iç köşeler bu adımda çıkar." },
+        { title: "Taşlama", desc: "Yüzey taşlama ile kalıp plakalarının düzlemini ve kalınlık ölçüsünü hassaslaştırıyoruz. Kalıbın düzgün kapanması ve elemanların birbirine oturması bu adıma bağlı." },
+      ],
+    },
+    services: {
+      index: "03",
       subtitle: "Hizmet Verdiğimiz Alanlar",
       title: "Sektörlerimiz",
       lead: "Farklı sektörlerin tolerans, adet ve dayanım gereksinimlerine göre çözüm geliştiriyoruz.",
@@ -62,7 +73,7 @@ const T = {
       ],
     },
     about: {
-      index: "03",
+      index: "04",
       subtitle: "Biz Kimiz",
       title: "Hakkımızda",
       p1: "1991 yılından bu yana metal işleme sektöründe edindiğimiz tecrübe ve güvenle, metal kesme kalıbı üretiminde teknolojiyi, mühendisliği ve kaliteyi bir araya getiren öncü bir marka olmak.",
@@ -94,7 +105,7 @@ const T = {
       serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Savunma Sanayi"],
     },
     quote: {
-      index: "04",
+      index: "05",
       subtitle: "Size Özel Çözümler",
       title: "Teklif Al",
       lead: "Teknik resminizi veya numunenizi paylaşın; kalıp tipi, adet ve tolerans ihtiyacınıza göre size dönelim.",
@@ -112,7 +123,7 @@ const T = {
       sending: "Yönlendiriliyor...",
       success: "WhatsApp açıldı! Mesajı gönderdikten sonra en kısa sürede sizinle iletişime geçeceğiz.",
       error: "Bir hata oluştu. Lütfen tekrar deneyin.",
-      services: ["CNC Tel Erozyon", "Pres Baskı", "Progresif Kalıp", "Kesme Kalıbı", "Montaj & İmalat", "Diğer"],
+      services: ["Progresif Kalıp", "Kesme Kalıbı", "CNC Tel Erozyon", "Delik Delme EDM", "Taşlama", "Pres Baskı", "Montaj & İmalat", "Diğer"],
       navLabel: "Teklif Al",
     },
   },
@@ -120,6 +131,7 @@ const T = {
     nav: {
       home: "Home",
       products: "Products",
+      capabilities: "Capabilities",
       services: "Sectors",
       about: "About Us",
       contact: "Contact",
@@ -147,15 +159,25 @@ const T = {
       items: [
         { title: "Progressive Dies", desc: "Dies that perform multiple operations (cutting, punching, bending, etc.) step by step within the same mold. Ideal for mass production, saving time and cost." },
         { title: "Cutting Dies", desc: "Enables sheet metal to be cut in desired shapes and dimensions. Custom designed according to product geometry." },
-        { title: "CNC Wire EDM", desc: "We cut mold components using wire electrical discharge machining. Even in hardened material it achieves tight tolerances and a clean surface; complex profiles and sharp internal corners that conventional machining struggles with are produced this way." },
         { title: "Press Service", desc: "With completed molds, we provide pressing services in desired quantities within our own facility according to customer requests." },
         { title: "Assembly & Manufacturing", desc: "From parts to product; we manage design, manufacturing and assembly processes end-to-end." },
       ],
       photoLabel: "Photo coming soon",
       cta: "Request a quote for this",
     },
-    services: {
+    capabilities: {
       index: "02",
+      subtitle: "Manufacturing Capabilities",
+      title: "Our Capabilities",
+      lead: "Machining a die component in hardened material takes a three-step chain. All three run in-house.",
+      items: [
+        { title: "Hole Drilling EDM", desc: "Burns a hole through hardened plate where a drill cannot cut. This is the step where we create the start hole the wire needs to pass through." },
+        { title: "CNC Wire EDM", desc: "A fine wire is threaded through that hole and cuts the profile by electrical discharge. Even in hardened material it achieves tight tolerances and a clean surface; complex profiles and sharp internal corners that conventional machining struggles with are produced at this step." },
+        { title: "Surface Grinding", desc: "Surface grinding refines the flatness and thickness of die plates. Whether the die closes properly and its components seat against each other depends on this step." },
+      ],
+    },
+    services: {
+      index: "03",
       subtitle: "Industries We Serve",
       title: "Our Sectors",
       lead: "We develop solutions according to the tolerance, volume and strength requirements of different industries.",
@@ -169,7 +191,7 @@ const T = {
       ],
     },
     about: {
-      index: "03",
+      index: "04",
       subtitle: "Who We Are",
       title: "About Us",
       p1: "With the experience and trust we have gained in the metal processing industry since 1991, we aim to be a pioneering brand that brings together technology, engineering and quality in metal cutting die production.",
@@ -201,7 +223,7 @@ const T = {
       serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Defense Industry"],
     },
     quote: {
-      index: "04",
+      index: "05",
       subtitle: "Custom Solutions",
       title: "Get a Quote",
       lead: "Share your technical drawing or sample; we will get back to you based on your mold type, volume and tolerance requirements.",
@@ -219,7 +241,7 @@ const T = {
       sending: "Redirecting...",
       success: "WhatsApp opened! We will contact you shortly after you send the message.",
       error: "An error occurred. Please try again.",
-      services: ["CNC Wire EDM", "Press Service", "Progressive Die", "Cutting Die", "Assembly & Manufacturing", "Other"],
+      services: ["Progressive Die", "Cutting Die", "CNC Wire EDM", "Hole Drilling EDM", "Surface Grinding", "Press Service", "Assembly & Manufacturing", "Other"],
       navLabel: "Get Quote",
     },
   },
@@ -229,9 +251,6 @@ const T = {
 const productImages = [
   "/products/prograsif_kalip.jpeg",     // Progresif Kalıpları
   "/products/Kesme_kaliplari.png",      // Kesme Kalıpları
-  // TODO: bu görsel CNC frezeyi gösteriyor, tel erozyonu değil — tezgahın
-  // gerçek fotoğrafı geldiğinde değiştirilecek.
-  "/products/cnc_isleme.jpg",           // CNC Tel Erozyon
   "/products/Pres_Baski.png",           // Pres Baskı
   "/products/montajimalat.png",         // Montaj & İmalat
 ];
@@ -240,7 +259,6 @@ const productImages = [
 const productPositions = [
   "center", // Progresif Kalıpları
   "center", // Kesme Kalıpları
-  "center", // CNC Tel Erozyon
   "center", // Pres Baskı
   "center", // Montaj & İmalat
 ];
@@ -384,7 +402,7 @@ function ProductImage({ src, alt, label, position = "center" }: { src: string; a
 }
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
-const SECTION_IDS = ["urunlerimiz", "hizmetler", "hakkimizda", "iletisim"];
+const SECTION_IDS = ["urunlerimiz", "yeteneklerimiz", "hizmetler", "hakkimizda", "iletisim"];
 
 function Navbar({ lang }: { lang: Lang }) {
   const router = useRouter();
@@ -398,6 +416,7 @@ function Navbar({ lang }: { lang: Lang }) {
   const navLinks = [
     { label: t.home, href: "#" },
     { label: t.products, href: "#urunlerimiz" },
+    { label: t.capabilities, href: "#yeteneklerimiz" },
     { label: t.services, href: "#hizmetler" },
     { label: t.about, href: "#hakkimizda" },
     { label: t.contact, href: "#iletisim" },
@@ -911,8 +930,35 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
         </div>
       </section>
 
+      {/* ── YETENEKLERİMİZ ── */}
+      <section id="yeteneklerimiz" className="scroll-mt-24 py-20 md:py-28 px-6 bg-stone-50 border-y border-stone-200">
+        <div className="max-w-6xl mx-auto">
+          <SectionHead
+            index={t.capabilities.index}
+            subtitle={t.capabilities.subtitle}
+            title={t.capabilities.title}
+            lead={t.capabilities.lead}
+          />
+          {/* Üç adımlı zincir — ikon yok, numara taşıyor (Sektörler'den ayrışsın diye) */}
+          <ol className="mt-12 grid md:grid-cols-3 gap-px bg-stone-200 border border-stone-200">
+            {t.capabilities.items.map((c, i) => (
+              <li key={i} className="group relative bg-stone-50 p-6 md:p-8 flex flex-col">
+                <div className="flex items-baseline gap-3">
+                  <span className="font-mono text-2xl font-medium text-amber-600 tabular-nums">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <span aria-hidden className="h-px flex-1 bg-stone-300" />
+                </div>
+                <h3 className="mt-4 text-lg font-semibold tracking-tight text-stone-900">{c.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-stone-600">{c.desc}</p>
+              </li>
+            ))}
+          </ol>
+        </div>
+      </section>
+
       {/* ── SEKTÖRLER ── */}
-      <section id="hizmetler" className="scroll-mt-24 py-20 md:py-28 px-6 bg-stone-50 border-y border-stone-200">
+      <section id="hizmetler" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <SectionHead
             index={t.services.index}
@@ -941,7 +987,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── HAKKIMIZDA ── */}
-      <section id="hakkimizda" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
+      <section id="hakkimizda" className="scroll-mt-24 py-20 md:py-28 px-6 bg-stone-50 border-y border-stone-200">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Sol — anlatı */}
           <div className="lg:col-span-7">
