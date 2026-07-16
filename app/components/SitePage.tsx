@@ -23,13 +23,13 @@ const T = {
       eyebrow: "1991'den bu yana · İstanbul",
       h1a: "Düşük toleransta",
       h1b: "metal kesme ve enjeksiyon kalıpları",
-      sub: "Progresif kalıp, kesme kalıbı ve enjeksiyon kalıbı üretiyoruz. Tasarımdan CNC işlemeye, pres baskıdan montaja kadar tüm süreci kendi bünyemizde yönetiyoruz.",
+      sub: "Progresif kalıp, kesme kalıbı ve enjeksiyon kalıbı üretiyoruz. Tasarımdan tel erozyona, pres baskıdan montaja kadar tüm süreci kendi bünyemizde yönetiyoruz.",
       btn1: "Teklif Al",
       btn2: "Ürünlerimizi İnceleyin",
       imgCaption: "Üretim tesisi — Başakşehir, İstanbul",
       specs: [
         { k: "Tecrübe", v: "34 yıl" },
-        { k: "CNC", v: "3 & 4 eksen" },
+        { k: "Kesim", v: "Tel erozyon" },
         { k: "Süreç", v: "Uçtan uca" },
       ],
     },
@@ -42,7 +42,7 @@ const T = {
         { title: "Progresif Kalıpları", desc: "Birden fazla işlemi (kesme, delme, bükme vb.) aynı kalıp içerisinde adım adım gerçekleştiren kalıplardır. Seri üretim için idealdir, zamandan ve maliyetten tasarruf sağlar." },
         { title: "Kesme Kalıpları", desc: "Sacın istenilen şekil ve ölçülerde kesilmesini sağlar. Ürün geometrisine göre özel olarak tasarlanır." },
         { title: "Enjeksiyon Kalıpları", desc: "Yüksek adetli üreteceğiniz metal ve plastik parçalar için yüksek hassasiyetli enjeksiyon kalıplarımız sayesinde çok hızlı bir şekilde üretim yapabilirsiniz." },
-        { title: "CNC İşleme", desc: "3 ve 4 eksen CNC tezgahlarımızla karmaşık parçaları yüksek toleransla üretiyoruz." },
+        { title: "CNC Tel Erozyon", desc: "Kalıp elemanlarını ince telle kıvılcım aşındırma yöntemiyle kesiyoruz. Sertleştirilmiş malzemede bile dar tolerans ve temiz yüzey elde edilir; talaşlı imalatın zorlandığı karmaşık profiller ve keskin iç köşeler bu yöntemle çıkar." },
         { title: "Pres Baskı", desc: "Üretimi tamamlanan kalıplar ile müşterilerimizin talepleri doğrultusunda kendi bünyemizde istenilen adetlerde baskı hizmetini sağlıyoruz." },
         { title: "Montaj & İmalat", desc: "Parçadan ürüne; tasarım, imalat ve montaj süreçlerini uçtan uca yönetiyoruz." },
       ],
@@ -55,7 +55,7 @@ const T = {
       title: "Sektörlerimiz",
       lead: "Farklı sektörlerin tolerans, adet ve dayanım gereksinimlerine göre çözüm geliştiriyoruz.",
       items: [
-        { title: "Makina Yedek Parça", desc: "Endüstriyel makinaların yedek parça ihtiyaçlarını yüksek hassasiyetli kalıplarımız ve CNC işleme kapasitemizle karşılıyoruz." },
+        { title: "Makina Yedek Parça", desc: "Endüstriyel makinaların yedek parça ihtiyaçlarını yüksek hassasiyetli kalıplarımız ve tel erozyon kapasitemizle karşılıyoruz." },
         { title: "Otomotiv Sanayi", desc: "Otomotiv sektörünün sıkı tolerans ve seri üretim gereksinimlerine uygun progresif kalıp ve pres çözümleri sunuyoruz." },
         { title: "Hırdavat", desc: "Civata, somun, klips ve benzeri hırdavat ürünlerin kalıpla üretimine yönelik çözümler geliştiriyoruz." },
         { title: "İnşaat", desc: "İnşaat sektörüne yönelik metal profil, bağlantı elemanı ve özel parça üretimi gerçekleştiriyoruz." },
@@ -114,7 +114,7 @@ const T = {
       sending: "Yönlendiriliyor...",
       success: "WhatsApp açıldı! Mesajı gönderdikten sonra en kısa sürede sizinle iletişime geçeceğiz.",
       error: "Bir hata oluştu. Lütfen tekrar deneyin.",
-      services: ["CNC İşleme", "Pres Baskı", "Progresif Kalıp", "Kesme Kalıbı", "Enjeksiyon Kalıbı", "Montaj & İmalat", "Diğer"],
+      services: ["CNC Tel Erozyon", "Pres Baskı", "Progresif Kalıp", "Kesme Kalıbı", "Enjeksiyon Kalıbı", "Montaj & İmalat", "Diğer"],
       navLabel: "Teklif Al",
     },
   },
@@ -132,13 +132,13 @@ const T = {
       eyebrow: "Since 1991 · Istanbul",
       h1a: "Tight tolerance",
       h1b: "metal cutting and injection molds",
-      sub: "We produce progressive dies, cutting dies and injection molds. From design to CNC machining, from press production to assembly, we manage the entire process in-house.",
+      sub: "We produce progressive dies, cutting dies and injection molds. From design to wire EDM, from press production to assembly, we manage the entire process in-house.",
       btn1: "Get a Quote",
       btn2: "Explore Our Products",
       imgCaption: "Production facility — Başakşehir, Istanbul",
       specs: [
         { k: "Experience", v: "34 years" },
-        { k: "CNC", v: "3 & 4 axis" },
+        { k: "Cutting", v: "Wire EDM" },
         { k: "Process", v: "End to end" },
       ],
     },
@@ -151,7 +151,7 @@ const T = {
         { title: "Progressive Dies", desc: "Dies that perform multiple operations (cutting, punching, bending, etc.) step by step within the same mold. Ideal for mass production, saving time and cost." },
         { title: "Cutting Dies", desc: "Enables sheet metal to be cut in desired shapes and dimensions. Custom designed according to product geometry." },
         { title: "Injection Molds", desc: "With our high-precision injection molds for metal and plastic parts that need to be produced in high quantities, you can manufacture very quickly." },
-        { title: "CNC Machining", desc: "We produce complex parts with tight tolerances using our 3 and 4-axis CNC machines." },
+        { title: "CNC Wire EDM", desc: "We cut mold components using wire electrical discharge machining. Even in hardened material it achieves tight tolerances and a clean surface; complex profiles and sharp internal corners that conventional machining struggles with are produced this way." },
         { title: "Press Service", desc: "With completed molds, we provide pressing services in desired quantities within our own facility according to customer requests." },
         { title: "Assembly & Manufacturing", desc: "From parts to product; we manage design, manufacturing and assembly processes end-to-end." },
       ],
@@ -164,7 +164,7 @@ const T = {
       title: "Our Sectors",
       lead: "We develop solutions according to the tolerance, volume and strength requirements of different industries.",
       items: [
-        { title: "Machine Spare Parts", desc: "We meet the spare parts needs of industrial machines with our high-precision molds and CNC machining capacity." },
+        { title: "Machine Spare Parts", desc: "We meet the spare parts needs of industrial machines with our high-precision molds and wire EDM capacity." },
         { title: "Automotive Industry", desc: "We provide progressive die and press solutions suited to the strict tolerance and mass production requirements of the automotive sector." },
         { title: "Hardware", desc: "We develop solutions for the mold-based production of hardware products such as bolts, nuts, clips and similar items." },
         { title: "Construction", desc: "We produce metal profiles, fasteners and custom parts for the construction sector." },
@@ -223,7 +223,7 @@ const T = {
       sending: "Redirecting...",
       success: "WhatsApp opened! We will contact you shortly after you send the message.",
       error: "An error occurred. Please try again.",
-      services: ["CNC Machining", "Press Service", "Progressive Die", "Cutting Die", "Injection Mold", "Assembly & Manufacturing", "Other"],
+      services: ["CNC Wire EDM", "Press Service", "Progressive Die", "Cutting Die", "Injection Mold", "Assembly & Manufacturing", "Other"],
       navLabel: "Get Quote",
     },
   },
@@ -234,7 +234,9 @@ const productImages = [
   "/products/prograsif_kalip.jpeg",     // Progresif Kalıpları
   "/products/Kesme_kaliplari.png",      // Kesme Kalıpları
   "/products/enjeksiyon_kaliplari.jpeg",// Enjeksiyon Kalıpları
-  "/products/cnc_isleme.jpg",           // CNC İşleme
+  // TODO: bu görsel CNC frezeyi gösteriyor, tel erozyonu değil — tezgahın
+  // gerçek fotoğrafı geldiğinde değiştirilecek.
+  "/products/cnc_isleme.jpg",           // CNC Tel Erozyon
   "/products/Pres_Baski.png",           // Pres Baskı
   "/products/montajimalat.png",         // Montaj & İmalat
 ];
@@ -244,7 +246,7 @@ const productPositions = [
   "center", // Progresif Kalıpları
   "center", // Kesme Kalıpları
   "center", // Enjeksiyon Kalıpları
-  "center", // CNC İşleme
+  "center", // CNC Tel Erozyon
   "center", // Pres Baskı
   "center", // Montaj & İmalat
 ];

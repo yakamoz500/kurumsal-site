@@ -91,7 +91,7 @@ const jsonLd = {
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Progresif Kalıp İmalatı" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Kesme Kalıbı İmalatı" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Enjeksiyon Kalıbı İmalatı" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CNC İşleme" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "CNC Tel Erozyon" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pres Baskı" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Montaj & İmalat" } }
         ]
