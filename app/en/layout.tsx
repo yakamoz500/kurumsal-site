@@ -30,5 +30,7 @@ export const metadata: Metadata = {
 };
 
 export default function EnLayout({ children }: { children: React.ReactNode }) {
-  return <>{children}</>;
+  // Kök <html> lang="tr" — İngilizce metinde `text-transform: uppercase`
+  // Türkçe harf haritasını uygulayıp "SİNCE"/"PRECİSION" üretiyor. Bu sınır dili İngilizceye çeviriyor.
+  return <div lang="en">{children}</div>;
 }

@@ -20,15 +20,24 @@ const T = {
       follow: "Takip Et",
     },
     hero: {
-      badge: "Metal Kesme Kalıpları",
-      desc: "Düşük Tolerans Yüksek Hassasiyet",
-      btn1: "Hizmetlerimiz",
-      btn2: "İletişime Geç",
-      scroll: "Kaydır",
+      eyebrow: "1991'den bu yana · İstanbul",
+      h1a: "Düşük toleransta",
+      h1b: "metal kesme ve enjeksiyon kalıpları",
+      sub: "Progresif kalıp, kesme kalıbı ve enjeksiyon kalıbı üretiyoruz. Tasarımdan CNC işlemeye, pres baskıdan montaja kadar tüm süreci kendi bünyemizde yönetiyoruz.",
+      btn1: "Teklif Al",
+      btn2: "Ürünlerimizi İnceleyin",
+      imgCaption: "Üretim tesisi — Başakşehir, İstanbul",
+      specs: [
+        { k: "Tecrübe", v: "34 yıl" },
+        { k: "CNC", v: "3 & 4 eksen" },
+        { k: "Süreç", v: "Uçtan uca" },
+      ],
     },
     products: {
+      index: "01",
       subtitle: "Kalıp Çeşitlerimiz",
-      title: "ÜRÜNLERİMİZ",
+      title: "Ürünlerimiz",
+      lead: "Parça geometrinize ve üretim adedinize göre kalıbı sıfırdan tasarlıyor, imal ediyor ve devreye alıyoruz.",
       items: [
         { title: "Progresif Kalıpları", desc: "Birden fazla işlemi (kesme, delme, bükme vb.) aynı kalıp içerisinde adım adım gerçekleştiren kalıplardır. Seri üretim için idealdir, zamandan ve maliyetten tasarruf sağlar." },
         { title: "Kesme Kalıpları", desc: "Sacın istenilen şekil ve ölçülerde kesilmesini sağlar. Ürün geometrisine göre özel olarak tasarlanır." },
@@ -38,10 +47,13 @@ const T = {
         { title: "Montaj & İmalat", desc: "Parçadan ürüne; tasarım, imalat ve montaj süreçlerini uçtan uca yönetiyoruz." },
       ],
       photoLabel: "Fotoğraf eklenecek",
+      cta: "Bu ürün için teklif al",
     },
     services: {
+      index: "02",
       subtitle: "Hizmet Verdiğimiz Alanlar",
-      title: "SEKTÖRLERİMİZ",
+      title: "Sektörlerimiz",
+      lead: "Farklı sektörlerin tolerans, adet ve dayanım gereksinimlerine göre çözüm geliştiriyoruz.",
       items: [
         { title: "Makina Yedek Parça", desc: "Endüstriyel makinaların yedek parça ihtiyaçlarını yüksek hassasiyetli kalıplarımız ve CNC işleme kapasitemizle karşılıyoruz." },
         { title: "Otomotiv Sanayi", desc: "Otomotiv sektörünün sıkı tolerans ve seri üretim gereksinimlerine uygun progresif kalıp ve pres çözümleri sunuyoruz." },
@@ -52,11 +64,13 @@ const T = {
       ],
     },
     about: {
+      index: "03",
       subtitle: "Biz Kimiz",
-      title: "HAKKIMIZDA",
+      title: "Hakkımızda",
       p1: "1991 yılından bu yana metal işleme sektöründe edindiğimiz tecrübe ve güvenle, metal kesme ve enjeksiyon kalıp üretiminde teknolojiyi, mühendisliği ve kaliteyi bir araya getiren öncü bir marka olmak.",
       p2: "Hedefimiz; yüksek hassasiyetli üretim, otomasyon destekli süreçler ve yenilikçi kalıp tasarımlarıyla hem yerel hem global pazarda rekabet gücünü artırmak, sektöre yön veren bir çözüm ortağı haline gelmektir.",
       p3: "Sürekli gelişim, sürdürülebilir üretim ve müşteri memnuniyeti ilkelerimiz doğrultusunda, endüstride kalite standartlarını sürekli yükseltmeyi vizyon ediniyoruz.",
+      statsTitle: "Rakamlarla Özhan Metal",
       experience: "Yıl Tecrübe",
       projects: "Tamamlanan Proje",
       clients: "Mutlu Müşteri",
@@ -82,8 +96,13 @@ const T = {
       serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Savunma Sanayi"],
     },
     quote: {
+      index: "04",
       subtitle: "Size Özel Çözümler",
-      title: "TEKLİF AL",
+      title: "Teklif Al",
+      lead: "Teknik resminizi veya numunenizi paylaşın; kalıp tipi, adet ve tolerans ihtiyacınıza göre size dönelim.",
+      directTitle: "Doğrudan hat",
+      directDesc: "Formu doldurmak istemiyorsanız bizi doğrudan arayabilir ya da WhatsApp'tan yazabilirsiniz.",
+      whatsapp: "WhatsApp'tan yazın",
       name: "Ad Soyad",
       company: "Firma Adı (opsiyonel)",
       email: "E-posta Adresi",
@@ -110,15 +129,24 @@ const T = {
       follow: "Follow Us",
     },
     hero: {
-      badge: "Metal Cutting Dies",
-      desc: "Low Tolerance High Precision",
-      btn1: "Our Services",
-      btn2: "Contact Us",
-      scroll: "Scroll",
+      eyebrow: "Since 1991 · Istanbul",
+      h1a: "Tight tolerance",
+      h1b: "metal cutting and injection molds",
+      sub: "We produce progressive dies, cutting dies and injection molds. From design to CNC machining, from press production to assembly, we manage the entire process in-house.",
+      btn1: "Get a Quote",
+      btn2: "Explore Our Products",
+      imgCaption: "Production facility — Başakşehir, Istanbul",
+      specs: [
+        { k: "Experience", v: "34 years" },
+        { k: "CNC", v: "3 & 4 axis" },
+        { k: "Process", v: "End to end" },
+      ],
     },
     products: {
+      index: "01",
       subtitle: "Mold Types",
-      title: "OUR PRODUCTS",
+      title: "Our Products",
+      lead: "We design, manufacture and commission the mold from scratch, based on your part geometry and production volume.",
       items: [
         { title: "Progressive Dies", desc: "Dies that perform multiple operations (cutting, punching, bending, etc.) step by step within the same mold. Ideal for mass production, saving time and cost." },
         { title: "Cutting Dies", desc: "Enables sheet metal to be cut in desired shapes and dimensions. Custom designed according to product geometry." },
@@ -128,10 +156,13 @@ const T = {
         { title: "Assembly & Manufacturing", desc: "From parts to product; we manage design, manufacturing and assembly processes end-to-end." },
       ],
       photoLabel: "Photo coming soon",
+      cta: "Request a quote for this",
     },
     services: {
+      index: "02",
       subtitle: "Industries We Serve",
-      title: "OUR SECTORS",
+      title: "Our Sectors",
+      lead: "We develop solutions according to the tolerance, volume and strength requirements of different industries.",
       items: [
         { title: "Machine Spare Parts", desc: "We meet the spare parts needs of industrial machines with our high-precision molds and CNC machining capacity." },
         { title: "Automotive Industry", desc: "We provide progressive die and press solutions suited to the strict tolerance and mass production requirements of the automotive sector." },
@@ -142,11 +173,13 @@ const T = {
       ],
     },
     about: {
+      index: "03",
       subtitle: "Who We Are",
-      title: "ABOUT US",
+      title: "About Us",
       p1: "With the experience and trust we have gained in the metal processing industry since 1991, we aim to be a pioneering brand that brings together technology, engineering and quality in metal cutting and injection mold production.",
       p2: "Our goal is to increase competitiveness in both local and global markets through high-precision production, automation-supported processes and innovative mold designs, and to become a solution partner that shapes the industry.",
       p3: "In line with our principles of continuous improvement, sustainable production and customer satisfaction, we envision continuously raising quality standards in the industry.",
+      statsTitle: "Özhan Metal in Numbers",
       experience: "Years of Experience",
       projects: "Completed Projects",
       clients: "Happy Clients",
@@ -172,8 +205,13 @@ const T = {
       serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Defense Industry"],
     },
     quote: {
+      index: "04",
       subtitle: "Custom Solutions",
-      title: "GET A QUOTE",
+      title: "Get a Quote",
+      lead: "Share your technical drawing or sample; we will get back to you based on your mold type, volume and tolerance requirements.",
+      directTitle: "Direct line",
+      directDesc: "If you would rather not fill out the form, you can call us directly or message us on WhatsApp.",
+      whatsapp: "Message us on WhatsApp",
       name: "Full Name",
       company: "Company Name (optional)",
       email: "Email Address",
@@ -211,59 +249,9 @@ const productPositions = [
   "center", // Montaj & İmalat
 ];
 
-const sectorImages = [
-  "/sectors/makina-yedek-parca.jpg",
-  "/sectors/otomotiv-sanayi.jpg",
-  "/sectors/hirdavat.jpg",
-  "/sectors/insaat.jpg",
-  "/sectors/elektrik-elektronik.jpg",
-  "/sectors/savunma-sanayi.jpg",
-];
+const WHATSAPP_NUMBER = "905456462356";
 
 // ─── Icons ────────────────────────────────────────────────────────────────────
-function IconGear() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-    </svg>
-  );
-}
-function IconDrill() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 3v11m0 0l-3 3m3-3l3 3M3 8h6m6 0h6M15 3h6v5h-6z" />
-    </svg>
-  );
-}
-function IconPress() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 4v12m0 0l-4-4m4 4l4-4M4 20h16" />
-    </svg>
-  );
-}
-function IconCNC() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
-    </svg>
-  );
-}
-function IconWrench() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M14.7 6.3a1 1 0 000 1.4l1.6 1.6a1 1 0 001.4 0l3.77-3.77a6 6 0 01-7.94 7.94l-6.91 6.91a2.12 2.12 0 01-3-3l6.91-6.91a6 6 0 017.94-7.94l-3.76 3.76z" />
-    </svg>
-  );
-}
-function IconQuality() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" className="w-8 h-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
-    </svg>
-  );
-}
 function IconFacebook() {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
@@ -309,23 +297,67 @@ function IconLocation() {
   );
 }
 
-const serviceIcons = [
-  <IconGear key={0} />,
-  <IconPress key={1} />,
-  <IconCNC key={2} />,
-  <IconDrill key={3} />,
-  <IconWrench key={4} />,
-  <IconQuality key={5} />,
+const sectorIcons = [
+  <Settings2  key={0} className="w-6 h-6" strokeWidth={1.5} />, // Makina Yedek Parça
+  <Car        key={1} className="w-6 h-6" strokeWidth={1.5} />, // Otomotiv Sanayi
+  <Nut        key={2} className="w-6 h-6" strokeWidth={1.5} />, // Hırdavat
+  <Building2  key={3} className="w-6 h-6" strokeWidth={1.5} />, // İnşaat
+  <Cpu        key={4} className="w-6 h-6" strokeWidth={1.5} />, // Elektrik-Elektronik
+  <ShieldCheck key={5} className="w-6 h-6" strokeWidth={1.5} />, // Savunma Sanayi
 ];
 
-const sectorIcons = [
-  <Settings2  key={0} className="w-8 h-8" strokeWidth={1.5} />, // Makina Yedek Parça
-  <Car        key={1} className="w-8 h-8" strokeWidth={1.5} />, // Otomotiv Sanayi
-  <Nut        key={2} className="w-8 h-8" strokeWidth={1.5} />, // Hırdavat
-  <Building2  key={3} className="w-8 h-8" strokeWidth={1.5} />, // İnşaat
-  <Cpu        key={4} className="w-8 h-8" strokeWidth={1.5} />, // Elektrik-Elektronik
-  <ShieldCheck key={5} className="w-8 h-8" strokeWidth={1.5} />, // Savunma Sanayi
-];
+// ─── Shared bits ──────────────────────────────────────────────────────────────
+
+// Teknik çizim hissi veren ince blueprint gridi
+const blueprintGrid: React.CSSProperties = {
+  backgroundImage:
+    "linear-gradient(to right, rgba(28,25,23,0.05) 1px, transparent 1px)," +
+    "linear-gradient(to bottom, rgba(28,25,23,0.05) 1px, transparent 1px)",
+  backgroundSize: "48px 48px",
+};
+
+// Çerçevenin dört köşesindeki gönye işaretleri
+function CornerTicks({ className = "border-stone-300" }: { className?: string }) {
+  return (
+    <>
+      <span aria-hidden className={`absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 ${className}`} />
+      <span aria-hidden className={`absolute -top-px -right-px w-3 h-3 border-t-2 border-r-2 ${className}`} />
+      <span aria-hidden className={`absolute -bottom-px -left-px w-3 h-3 border-b-2 border-l-2 ${className}`} />
+      <span aria-hidden className={`absolute -bottom-px -right-px w-3 h-3 border-b-2 border-r-2 ${className}`} />
+    </>
+  );
+}
+
+// Her bölümün başlığı: mono sıra no + başlık + açıklama
+function SectionHead({
+  index,
+  subtitle,
+  title,
+  lead,
+  dark = false,
+}: {
+  index: string;
+  subtitle: string;
+  title: string;
+  lead: string;
+  dark?: boolean;
+}) {
+  return (
+    <div className="max-w-2xl">
+      <div className="flex items-center gap-3">
+        <span className={`font-mono text-xs font-medium ${dark ? "text-amber-400" : "text-amber-700"}`}>{index}</span>
+        <span aria-hidden className={`h-px w-6 ${dark ? "bg-stone-700" : "bg-stone-300"}`} />
+        <span className={`font-mono text-[11px] uppercase tracking-[0.2em] ${dark ? "text-stone-400" : "text-stone-500"}`}>
+          {subtitle}
+        </span>
+      </div>
+      <h2 className={`mt-4 text-3xl md:text-4xl font-semibold tracking-tight ${dark ? "text-white" : "text-stone-900"}`}>
+        {title}
+      </h2>
+      <p className={`mt-4 text-base leading-relaxed ${dark ? "text-stone-400" : "text-stone-600"}`}>{lead}</p>
+    </div>
+  );
+}
 
 // ─── Product Image (next/image + hata yönetimi) ───────────────────────────────
 function ProductImage({ src, alt, label, position = "center" }: { src: string; alt: string; label: string; position?: string }) {
@@ -333,11 +365,11 @@ function ProductImage({ src, alt, label, position = "center" }: { src: string; a
 
   if (!src || error) {
     return (
-      <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-zinc-700">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-zinc-300" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-stone-100">
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
         </svg>
-        <span className="text-zinc-400 text-xs">{label}</span>
+        <span className="text-stone-500 text-xs font-mono">{label}</span>
       </div>
     );
   }
@@ -347,21 +379,25 @@ function ProductImage({ src, alt, label, position = "center" }: { src: string; a
       src={src}
       alt={alt}
       fill
-      className="object-cover group-hover:scale-105 transition-transform duration-500"
+      className="object-cover"
       style={{ objectPosition: position }}
-      sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+      sizes="(max-width: 768px) 100vw, 60vw"
       onError={() => setError(true)}
     />
   );
 }
 
 // ─── Navbar ───────────────────────────────────────────────────────────────────
+const SECTION_IDS = ["urunlerimiz", "hizmetler", "hakkimizda", "iletisim"];
+
 function Navbar({ lang }: { lang: Lang }) {
   const router = useRouter();
   const t = T[lang].nav;
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("#");
   const [menuOpen, setMenuOpen] = useState(false);
+  const [socialOpen, setSocialOpen] = useState(false);
+  const socialRef = useRef<HTMLDivElement>(null);
 
   const navLinks = [
     { label: t.home, href: "#" },
@@ -372,9 +408,39 @@ function Navbar({ lang }: { lang: Lang }) {
   ];
 
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener("scroll", onScroll);
+    const onScroll = () => setScrolled(window.scrollY > 24);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Scrollspy — aktif bölümü kaydırmaya göre işaretle
+  useEffect(() => {
+    const visible = new Map<string, number>();
+    const observer = new IntersectionObserver(
+      (entries) => {
+        for (const e of entries) {
+          if (e.isIntersecting) visible.set(e.target.id, e.intersectionRatio);
+          else visible.delete(e.target.id);
+        }
+        if (window.scrollY < 80) {
+          setActive("#");
+          return;
+        }
+        let best: string | null = null;
+        let bestRatio = 0;
+        for (const [id, ratio] of visible) {
+          if (ratio > bestRatio) { best = id; bestRatio = ratio; }
+        }
+        if (best) setActive("#" + best);
+      },
+      { threshold: [0.15, 0.4, 0.7], rootMargin: "-80px 0px 0px 0px" }
+    );
+    for (const id of SECTION_IDS) {
+      const el = document.getElementById(id);
+      if (el) observer.observe(el);
+    }
+    return () => observer.disconnect();
   }, []);
 
   useEffect(() => {
@@ -387,9 +453,6 @@ function Navbar({ lang }: { lang: Lang }) {
     return () => document.removeEventListener("mousedown", onClickOutside);
   }, []);
 
-  const [socialOpen, setSocialOpen] = useState(false);
-  const socialRef = useRef<HTMLDivElement>(null);
-
   const switchLang = (target: Lang) => {
     if (target === lang) return;
     // Manuel seçimi cookie'ye kaydet — middleware bir daha yönlendirmesin
@@ -397,26 +460,25 @@ function Navbar({ lang }: { lang: Lang }) {
     router.push(target === "EN" ? "/en" : "/");
   };
 
+  const langBtn = (target: Lang) =>
+    `px-3 py-1 text-xs font-mono font-medium transition-colors ${
+      lang === target ? "bg-stone-900 text-white" : "text-stone-500 hover:text-stone-900"
+    }`;
+
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
         scrolled
-          ? "bg-zinc-950/98 backdrop-blur-sm border-b border-zinc-800 py-3 shadow-lg"
-          : "bg-zinc-950/95 backdrop-blur-sm border-b border-zinc-800 py-5"
+          ? "bg-white/90 backdrop-blur-md border-stone-200 py-3"
+          : "bg-white border-transparent py-5"
       }`}
     >
       <div className="max-w-6xl mx-auto px-6 flex items-center gap-8">
         {/* Logo — sol */}
-        <a href={lang === "EN" ? "/en" : "/"} className="flex items-center gap-1 shrink-0">
-          <Image
-            src="/logo2.png"
-            alt="Özhan Metal Logo"
-            width={42}
-            height={42}
-            className="object-contain invert"
-          />
-          <span className="text-white font-black text-lg tracking-widest">ÖZHAN</span>
-          <span className="text-lime-400 font-black text-lg tracking-widest">METAL</span>
+        <a href={lang === "EN" ? "/en" : "/"} className="flex items-center gap-1.5 shrink-0">
+          <Image src="/logo2.png" alt="Özhan Metal Logo" width={36} height={36} className="object-contain" />
+          <span className="text-stone-900 font-bold text-base tracking-[0.15em]">ÖZHAN</span>
+          <span className="text-amber-600 font-bold text-base tracking-[0.15em]">METAL</span>
         </a>
 
         {/* Desktop Nav — orta */}
@@ -426,13 +488,13 @@ function Navbar({ lang }: { lang: Lang }) {
               key={link.href}
               href={link.href}
               onClick={() => setActive(link.href)}
-              className={`relative px-4 py-2 text-xs font-semibold uppercase tracking-widest transition-colors group ${
-                active === link.href ? "text-lime-400" : "text-zinc-300 hover:text-white"
+              className={`relative px-3 py-2 text-[13px] font-medium transition-colors group ${
+                active === link.href ? "text-stone-900" : "text-stone-500 hover:text-stone-900"
               }`}
             >
               {link.label}
               <span
-                className={`absolute bottom-0 left-4 right-4 h-px bg-lime-400 transition-transform origin-left duration-300 ${
+                className={`absolute bottom-0.5 left-3 right-3 h-0.5 bg-amber-500 transition-transform origin-left duration-300 ${
                   active === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                 }`}
               />
@@ -440,16 +502,16 @@ function Navbar({ lang }: { lang: Lang }) {
           ))}
         </nav>
 
-        {/* Sağ — Sosyal ikon + Teklif Al + Sliding TR/EN */}
+        {/* Sağ — Sosyal ikon + Teklif Al + TR/EN */}
         <div className="hidden md:flex items-center gap-3 shrink-0">
-
           {/* Sosyal medya — küçük ikon butonu */}
           <div className="relative" ref={socialRef}>
             <button
               onClick={() => setSocialOpen(!socialOpen)}
               aria-label="Sosyal medya"
-              className={`w-8 h-8 flex items-center justify-center rounded-full transition-colors ${
-                socialOpen ? "text-lime-400 bg-zinc-800" : "text-zinc-500 hover:text-lime-400 hover:bg-zinc-800"
+              aria-expanded={socialOpen}
+              className={`w-8 h-8 flex items-center justify-center transition-colors ${
+                socialOpen ? "text-stone-900 bg-stone-100" : "text-stone-400 hover:text-stone-900 hover:bg-stone-100"
               }`}
             >
               <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -457,108 +519,81 @@ function Navbar({ lang }: { lang: Lang }) {
               </svg>
             </button>
 
-            {/* Dropdown */}
             {socialOpen && (
-              <div className="absolute right-0 top-full mt-2 bg-zinc-900 border border-zinc-800 shadow-xl z-50 min-w-[150px] rounded-lg overflow-hidden">
+              <div className="absolute right-0 top-full mt-2 bg-white border border-stone-200 shadow-lg z-50 min-w-[150px]">
                 <a href="https://www.facebook.com/ozhanmetal" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-lime-400 hover:bg-zinc-800 transition-colors text-xs font-medium">
+                  className="flex items-center gap-3 px-4 py-2.5 text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-colors text-xs font-medium">
                   <IconFacebook /> Facebook
                 </a>
                 <a href="https://www.linkedin.com/company/ozhan-metal" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-lime-400 hover:bg-zinc-800 transition-colors text-xs font-medium border-t border-zinc-800">
+                  className="flex items-center gap-3 px-4 py-2.5 text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-colors text-xs font-medium border-t border-stone-200">
                   <IconLinkedIn /> LinkedIn
                 </a>
-                <a href="https://wa.me/905456462356" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-3 px-4 py-3 text-zinc-400 hover:text-lime-400 hover:bg-zinc-800 transition-colors text-xs font-medium border-t border-zinc-800">
+                <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-3 px-4 py-2.5 text-stone-600 hover:text-stone-900 hover:bg-stone-50 transition-colors text-xs font-medium border-t border-stone-200">
                   <IconWhatsApp /> WhatsApp
                 </a>
               </div>
             )}
           </div>
 
-          {/* Ayraç */}
-          <div className="w-px h-4 bg-zinc-700" />
+          <div aria-hidden className="w-px h-4 bg-stone-200" />
 
-          {/* Teklif Al — pill */}
           <a
             href="#teklif"
-            className="bg-lime-400 hover:bg-lime-300 text-black font-bold px-5 py-1.5 rounded-full text-xs uppercase tracking-wider transition-colors"
+            className="bg-stone-900 hover:bg-amber-600 text-white font-medium px-4 py-2 text-[13px] transition-colors"
           >
             {t.quote}
           </a>
 
-          {/* TR/EN — sliding pill toggle */}
-          <div className="flex items-center bg-zinc-800 rounded-full p-0.5 border border-zinc-700">
-            <button
-              onClick={() => switchLang("TR")}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${
-                lang === "TR" ? "bg-lime-400 text-black shadow-sm" : "text-zinc-400 hover:text-white"
-              }`}
-            >
-              TR
-            </button>
-            <button
-              onClick={() => switchLang("EN")}
-              className={`px-3.5 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${
-                lang === "EN" ? "bg-lime-400 text-black shadow-sm" : "text-zinc-400 hover:text-white"
-              }`}
-            >
-              EN
-            </button>
+          <div className="flex items-center border border-stone-200 divide-x divide-stone-200">
+            <button onClick={() => switchLang("TR")} className={langBtn("TR")}>TR</button>
+            <button onClick={() => switchLang("EN")} className={langBtn("EN")}>EN</button>
           </div>
         </div>
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden flex flex-col gap-1.5 p-1"
+          className="md:hidden ml-auto flex flex-col gap-1.5 p-1"
           onClick={() => setMenuOpen(!menuOpen)}
           aria-label="Menü"
+          aria-expanded={menuOpen}
         >
-          <span className={`block w-6 h-0.5 bg-zinc-300 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-zinc-300 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-          <span className={`block w-6 h-0.5 bg-zinc-300 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+          <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
         </button>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 ${
-          menuOpen ? "max-h-96 border-t border-zinc-800" : "max-h-0"
-        } bg-zinc-950`}
+        className={`md:hidden overflow-hidden transition-all duration-300 bg-white ${
+          menuOpen ? "max-h-96 border-t border-stone-200" : "max-h-0"
+        }`}
       >
         {navLinks.map((link) => (
           <a
             key={link.href}
             href={link.href}
             onClick={() => { setActive(link.href); setMenuOpen(false); }}
-            className={`block px-6 py-4 text-xs font-semibold uppercase tracking-widest border-b border-zinc-800 transition-colors ${
-              active === link.href ? "text-lime-400 bg-zinc-800" : "text-zinc-300 hover:text-lime-400 hover:bg-zinc-800"
+            className={`block px-6 py-3.5 text-sm font-medium border-b border-stone-100 transition-colors ${
+              active === link.href ? "text-amber-700 bg-stone-50" : "text-stone-600 hover:text-stone-900"
             }`}
           >
             {link.label}
           </a>
         ))}
-        <a
-          href="#teklif"
-          onClick={() => setMenuOpen(false)}
-          className="block mx-4 my-3 px-6 py-2.5 text-xs font-bold uppercase tracking-widest rounded-full bg-lime-400 text-black text-center"
-        >
-          {t.quote}
-        </a>
-        <div className="flex px-6 py-4 gap-2">
-          <div className="flex items-center bg-zinc-800 rounded-full p-0.5 border border-zinc-700">
-            <button
-              onClick={() => switchLang("TR")}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${lang === "TR" ? "bg-lime-400 text-black" : "text-zinc-400"}`}
-            >
-              TR
-            </button>
-            <button
-              onClick={() => switchLang("EN")}
-              className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${lang === "EN" ? "bg-lime-400 text-black" : "text-zinc-400"}`}
-            >
-              EN
-            </button>
+        <div className="flex items-center justify-between gap-3 px-6 py-4">
+          <a
+            href="#teklif"
+            onClick={() => setMenuOpen(false)}
+            className="bg-stone-900 text-white font-medium px-4 py-2 text-[13px]"
+          >
+            {t.quote}
+          </a>
+          <div className="flex items-center border border-stone-200 divide-x divide-stone-200">
+            <button onClick={() => switchLang("TR")} className={langBtn("TR")}>TR</button>
+            <button onClick={() => switchLang("EN")} className={langBtn("EN")}>EN</button>
           </div>
         </div>
       </div>
@@ -567,26 +602,39 @@ function Navbar({ lang }: { lang: Lang }) {
 }
 
 // ─── Counter ──────────────────────────────────────────────────────────────────
+// Zaman tabanlı sayaç: setInterval tarayıcı tarafından kısıldığında süre kayıyordu,
+// rAF + gerçek zaman damgası kare hızından bağımsız olarak `duration` içinde bitirir.
 function useCounter(target: number, duration = 2000, startCounting: boolean) {
   const [count, setCount] = useState(0);
+
   useEffect(() => {
     if (!startCounting) return;
-    let start = 0;
-    const step = Math.ceil(target / (duration / 16));
+
+    // Hareket hassasiyeti açıksa süreyi sıfırla — sayaç ilk tikte hedefe atlar.
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const ms = reduced ? 0 : duration;
+
+    const startTs = performance.now();
     const timer = setInterval(() => {
-      start += step;
-      if (start >= target) { setCount(target); clearInterval(timer); }
-      else { setCount(start); }
+      // İlerlemeyi tik sayısından değil geçen gerçek süreden hesapla:
+      // tarayıcı aralığı kıssa bile animasyon `duration` içinde biter.
+      const p = ms === 0 ? 1 : Math.min((performance.now() - startTs) / ms, 1);
+      // easeOutQuad — sonda yavaşlayarak dursun
+      setCount(Math.round(target * (1 - (1 - p) * (1 - p))));
+      if (p >= 1) clearInterval(timer);
     }, 16);
+
     return () => clearInterval(timer);
   }, [target, duration, startCounting]);
+
   return count;
 }
 
-function CounterItem({ label, target, suffix = "+" }: { label: string; target: number; suffix?: string }) {
+// Teknik föy satırı: solda etiket, sağda sayaç
+function StatRow({ label, target }: { label: string; target: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
-  const count = useCounter(target, 2000, started);
+  const count = useCounter(target, 1600, started);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -598,66 +646,75 @@ function CounterItem({ label, target, suffix = "+" }: { label: string; target: n
   }, []);
 
   return (
-    <div ref={ref} className="text-center">
-      <div className="text-5xl font-bold text-lime-400">{count}{suffix}</div>
-      <div className="mt-2 text-sm text-zinc-400 uppercase tracking-widest">{label}</div>
+    <div ref={ref} className="flex items-baseline justify-between gap-6 border-b border-stone-200 py-5">
+      <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-500">{label}</span>
+      <span className="font-mono text-3xl md:text-4xl font-medium tabular-nums text-stone-900">
+        {count.toLocaleString("tr-TR")}
+        <span className="text-amber-600">+</span>
+      </span>
     </div>
   );
 }
 
-// ─── Product Tabs ─────────────────────────────────────────────────────────────
-function ProductTabs({ lang }: { lang: Lang }) {
+// ─── Product Showcase ─────────────────────────────────────────────────────────
+function ProductShowcase({ lang }: { lang: Lang }) {
   const t = T[lang].products;
   const [selected, setSelected] = useState(0);
 
   return (
-    <div className="border border-zinc-700 overflow-hidden grid md:grid-cols-5">
-      {/* Sol — Tab listesi */}
-      <div className="md:col-span-2 divide-y divide-zinc-700 border-b md:border-b-0 md:border-r border-zinc-700">
+    <div className="grid md:grid-cols-12 border border-stone-200">
+      {/* Sol — numaralı liste */}
+      <div className="md:col-span-4 flex flex-col border-b md:border-b-0 md:border-r border-stone-200" role="tablist" aria-orientation="vertical">
         {t.items.map((p, i) => (
           <button
             key={i}
+            role="tab"
+            aria-selected={selected === i}
             onClick={() => setSelected(i)}
-            className={`w-full flex items-center gap-4 px-6 py-5 text-left transition-all duration-200 ${
-              selected === i
-                ? "bg-zinc-800 border-l-2 border-lime-400"
-                : "border-l-2 border-transparent hover:bg-zinc-800/40 hover:border-zinc-600"
+            className={`w-full md:flex-1 flex items-center gap-4 px-5 py-4 text-left border-b border-stone-100 last:border-b-0 transition-colors ${
+              selected === i ? "bg-stone-900" : "bg-white hover:bg-stone-50"
             }`}
           >
-            <span className={`font-black text-sm w-6 shrink-0 transition-colors ${selected === i ? "text-lime-400" : "text-zinc-600"}`}>
+            <span className={`font-mono text-xs shrink-0 ${selected === i ? "text-amber-400" : "text-stone-400"}`}>
               {String(i + 1).padStart(2, "0")}
             </span>
-            <span className={`font-semibold text-sm transition-colors ${selected === i ? "text-lime-400" : "text-zinc-400 group-hover:text-white"}`}>
+            <span className={`text-sm font-medium ${selected === i ? "text-white" : "text-stone-700"}`}>
               {p.title}
             </span>
           </button>
         ))}
       </div>
 
-      {/* Sağ — İçerik */}
-      <div className="md:col-span-3 bg-zinc-800 flex flex-col">
-        <div className="relative w-full h-64 bg-zinc-700 overflow-hidden shrink-0">
+      {/* Sağ — seçili ürün */}
+      <div className="md:col-span-8 flex flex-col bg-white">
+        <div className="relative w-full h-64 md:h-80 bg-stone-100 overflow-hidden shrink-0">
           <ProductImage
             src={productImages[selected]}
             alt={t.items[selected].title}
             label={t.photoLabel}
+            position={productPositions[selected]}
           />
-          <div className="absolute inset-0 bg-gradient-to-t from-zinc-800/80 to-transparent" />
+          <span className="absolute bottom-0 left-0 font-mono text-[10px] tracking-[0.18em] uppercase bg-white/90 text-stone-600 px-2.5 py-1">
+            {String(selected + 1).padStart(2, "0")} / {String(t.items.length).padStart(2, "0")}
+          </span>
         </div>
-        <div className="p-8 flex flex-col gap-3 flex-1">
-          <div className="flex items-center gap-3">
-            <span className="text-lime-400 font-black text-sm">{String(selected + 1).padStart(2, "0")}</span>
-            <div className="h-px flex-1 bg-zinc-700" />
-          </div>
-          <h3 className="text-white text-2xl font-bold">{t.items[selected].title}</h3>
-          <p className="text-zinc-400 leading-relaxed text-sm">{t.items[selected].desc}</p>
+        <div className="p-6 md:p-8 flex flex-col gap-3 flex-1">
+          <h3 className="text-stone-900 text-xl font-semibold tracking-tight">{t.items[selected].title}</h3>
+          <p className="text-stone-600 leading-relaxed text-sm">{t.items[selected].desc}</p>
+          <a
+            href="#teklif"
+            className="mt-auto pt-4 inline-flex items-center gap-2 text-[13px] font-medium text-amber-700 hover:text-amber-800 transition-colors w-fit"
+          >
+            {t.cta}
+            <span aria-hidden>→</span>
+          </a>
         </div>
       </div>
     </div>
   );
 }
 
-// ─── Quote Form (sadece form içeriği, section wrapper yok) ────────────────────
+// ─── Quote Form ───────────────────────────────────────────────────────────────
 function QuoteForm({ lang }: { lang: Lang }) {
   const t = T[lang].quote;
   const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", service: "", message: "" });
@@ -693,86 +750,80 @@ function QuoteForm({ lang }: { lang: Lang }) {
       form.message ? `${t.message.replace(" (opsiyonel)", "").replace(" (optional)", "")}: ${form.message}` : null,
     ].filter(Boolean).join("\n");
 
-    const url = `https://wa.me/905456462356?text=${encodeURIComponent(lines)}`;
+    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
     window.open(url, "_blank");
     setStatus("success");
     setForm({ name: "", company: "", email: "", phone: "", service: "", message: "" });
   };
 
+  const labelClass = "font-mono text-[10px] uppercase tracking-[0.18em] text-stone-400";
   const inputClass =
-    "w-full bg-zinc-950 border border-zinc-700 focus:border-lime-400 text-white placeholder-zinc-500 px-4 py-2.5 outline-none transition-colors text-sm";
+    "w-full bg-stone-900 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-white placeholder-stone-600 px-3.5 py-2.5 outline-none transition-colors text-sm";
 
   if (status === "success") {
     return (
-      <div className="border border-lime-400 bg-lime-400/10 text-lime-400 px-6 py-10 text-center h-full flex flex-col items-center justify-center gap-4">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-12 h-12" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+      <div className="relative border border-amber-500/40 bg-amber-500/5 text-amber-300 px-6 py-12 text-center h-full flex flex-col items-center justify-center gap-4">
+        <CornerTicks className="border-amber-500" />
+        <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
-        <p className="text-base font-semibold">{t.success}</p>
+        <p className="text-sm leading-relaxed max-w-xs">{t.success}</p>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col h-full gap-3">
-
-      {/* 2 kolonlu alanlar */}
-      <div className="grid grid-cols-2 gap-3">
-        <div className="flex flex-col gap-1">
-          <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.name} <span className="text-lime-400">*</span></label>
+      <div className="grid sm:grid-cols-2 gap-3">
+        <div className="flex flex-col gap-1.5">
+          <label className={labelClass}>{t.name} <span className="text-amber-500">*</span></label>
           <input name="name" required value={form.name} onChange={handleChange} placeholder={t.name} className={inputClass} {...validationProps} />
         </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.company}</label>
+        <div className="flex flex-col gap-1.5">
+          <label className={labelClass}>{t.company}</label>
           <input name="company" value={form.company} onChange={handleChange} placeholder={t.company} className={inputClass} />
         </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.email} <span className="text-lime-400">*</span></label>
+        <div className="flex flex-col gap-1.5">
+          <label className={labelClass}>{t.email} <span className="text-amber-500">*</span></label>
           <input name="email" type="email" required value={form.email} onChange={handleChange} placeholder={t.email} className={inputClass} {...validationProps} />
         </div>
-        <div className="flex flex-col gap-1">
-          <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.phone} <span className="text-lime-400">*</span></label>
+        <div className="flex flex-col gap-1.5">
+          <label className={labelClass}>{t.phone} <span className="text-amber-500">*</span></label>
           <input name="phone" type="tel" required value={form.phone} onChange={handleChange} placeholder={t.phone} className={inputClass} {...validationProps} />
         </div>
       </div>
 
-      {/* Hizmet seçimi */}
-      <div className="flex flex-col gap-1">
-        <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.service} <span className="text-lime-400">*</span></label>
+      <div className="flex flex-col gap-1.5">
+        <label className={labelClass}>{t.service} <span className="text-amber-500">*</span></label>
         <select name="service" required value={form.service} onChange={handleChange} className={`${inputClass} cursor-pointer`} {...validationProps}>
           <option value="" disabled>{t.serviceDefault}</option>
           {t.services.map((s) => <option key={s} value={s}>{s}</option>)}
         </select>
       </div>
 
-      {/* Mesaj — flex-1 ile kalan alanı doldurur */}
-      <div className="flex flex-col gap-1 flex-1">
-        <label className="text-zinc-500 text-[10px] uppercase tracking-widest">{t.message}</label>
+      <div className="flex flex-col gap-1.5 flex-1">
+        <label className={labelClass}>{t.message}</label>
         <textarea
           name="message"
           value={form.message}
           onChange={handleChange}
           placeholder={t.message}
-          className={`${inputClass} resize-none flex-1`}
+          className={`${inputClass} resize-none flex-1 min-h-24`}
         />
       </div>
 
-      {/* Hata */}
       {status === "error" && (
         <div className="border border-red-500/50 bg-red-500/10 text-red-400 px-4 py-2.5 text-xs">
           {t.error}
         </div>
       )}
 
-      {/* Submit — kolonun en altına yapışır */}
-      <div className="pt-2 flex justify-end">
+      <div className="pt-2">
         <button
           type="submit"
-          className="flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-white font-bold px-8 py-2.5 rounded-full uppercase tracking-wider text-sm transition-colors"
+          className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-black font-semibold px-6 py-2.5 text-sm transition-colors"
         >
-          <svg xmlns="http://www.w3.org/2000/svg" className="w-4 h-4 shrink-0" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z" />
-          </svg>
+          <IconWhatsApp />
           {t.submit}
         </button>
       </div>
@@ -785,99 +836,108 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
   const t = T[defaultLang];
 
   return (
-    <div className="bg-zinc-950 text-white font-sans">
+    <div className="bg-white text-stone-900 font-sans">
       <Navbar lang={defaultLang} />
 
       {/* ── HERO ── */}
-      <section className="relative flex flex-col items-center justify-center text-center px-6 overflow-hidden pt-24 pb-16 min-h-screen">
-        <Image src="/header_1.jpeg" alt="Ozhan Metal" fill priority className="object-cover object-center" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/95 via-black/55 to-black/20" />
-        <div className="relative z-10 max-w-5xl w-full">
-          <div className="flex items-center justify-center gap-4 mb-10">
-            <div className="h-px w-12 bg-lime-400/50" />
-            <span className="text-lime-400 text-xs font-bold tracking-[0.4em] uppercase">{t.hero.badge}</span>
-            <div className="h-px w-12 bg-lime-400/50" />
+      <section className="relative overflow-hidden bg-stone-50 pt-32 pb-16 md:pt-40 md:pb-24 px-6">
+        <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
+        <div aria-hidden className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-white" />
+
+        <div className="relative max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
+          {/* Sol — mesaj */}
+          <div className="lg:col-span-7">
+            <div className="flex items-center gap-3">
+              <span aria-hidden className="h-px w-6 bg-amber-500" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-amber-700">{t.hero.eyebrow}</span>
+            </div>
+
+            <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05] text-stone-900">
+              <span className="text-amber-700">{t.hero.h1a}</span>{" "}
+              {t.hero.h1b}
+            </h1>
+
+            <p className="mt-6 text-base md:text-lg leading-relaxed text-stone-600 max-w-xl">{t.hero.sub}</p>
+
+            <div className="mt-8 flex flex-col sm:flex-row gap-3">
+              <a href="#teklif" className="bg-stone-900 hover:bg-amber-600 text-white font-medium px-7 py-3 text-sm text-center transition-colors">
+                {t.hero.btn1}
+              </a>
+              <a href="#urunlerimiz" className="border border-stone-300 hover:border-stone-900 text-stone-800 font-medium px-7 py-3 text-sm text-center transition-colors">
+                {t.hero.btn2}
+              </a>
+            </div>
+
+            {/* Teknik künye şeridi */}
+            <dl className="mt-10 pt-6 border-t border-stone-200 grid grid-cols-3 gap-4 max-w-lg">
+              {t.hero.specs.map((s) => (
+                <div key={s.k}>
+                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-stone-400">{s.k}</dt>
+                  <dd className="mt-1 font-mono text-sm font-medium text-stone-900">{s.v}</dd>
+                </div>
+              ))}
+            </dl>
           </div>
-          <h1 className="font-black tracking-tight leading-none mb-6">
-            <span className="block text-7xl md:text-[9rem] text-white">ÖZHAN</span>
-            <span className="block text-7xl md:text-[9rem] text-lime-400">METAL</span>
-          </h1>
-          <div className="flex items-center justify-center gap-4 mb-12">
-            <div className="h-px w-10 bg-zinc-600" />
-            <p className="text-zinc-300 text-sm md:text-base tracking-[0.25em] uppercase font-light">{t.hero.desc}</p>
-            <div className="h-px w-10 bg-zinc-600" />
+
+          {/* Sağ — çerçeveli görsel */}
+          <div className="lg:col-span-5">
+            <div className="relative border border-stone-300 p-1.5 bg-white">
+              <CornerTicks className="border-amber-500" />
+              <div className="relative w-full aspect-4/5 overflow-hidden bg-stone-100">
+                <Image
+                  src="/header_1.jpeg"
+                  alt="Özhan Metal üretim tesisi"
+                  fill
+                  priority
+                  className="object-cover object-left"
+                  sizes="(max-width: 1024px) 100vw, 40vw"
+                />
+              </div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500 px-1 pt-2 pb-0.5">
+                {t.hero.imgCaption}
+              </p>
+            </div>
           </div>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="#hizmetler" className="bg-lime-400 hover:bg-lime-300 text-black font-bold px-10 py-3.5 rounded-full transition-colors uppercase tracking-wider text-sm">{t.hero.btn1}</a>
-            <a href="#teklif" className="border border-white/30 hover:border-lime-400 hover:text-lime-400 text-white font-bold px-10 py-3.5 rounded-full transition-all uppercase tracking-wider text-sm">{t.hero.btn2}</a>
-          </div>
-        </div>
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 opacity-40">
-          <div className="w-px h-12 bg-gradient-to-b from-transparent to-lime-400" />
-          <span className="text-[10px] tracking-widest uppercase text-zinc-400">{t.hero.scroll}</span>
         </div>
       </section>
 
       {/* ── ÜRÜNLERİMİZ ── */}
-      <section id="urunlerimiz" className="pt-12 pb-24 px-6 bg-zinc-900">
+      <section id="urunlerimiz" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-14 text-center">
-            <span className="text-lime-400 text-xs tracking-[0.3em] uppercase font-bold">
-              {t.products.subtitle}
-            </span>
-            <h2 className="mt-3 text-4xl font-black tracking-tight text-white">{t.products.title}</h2>
-            <div className="mt-4 w-12 h-1 bg-lime-400 mx-auto" />
-          </div>
-          {/* ── Orijinal Grid Tasarımı ── */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {t.products.items.map((p, i) => (
-              <div
-                key={i}
-                className="group bg-zinc-800 border border-zinc-700 hover:border-lime-400 overflow-hidden transition-all duration-300"
-              >
-                <div className="relative w-full h-52 bg-zinc-700 overflow-hidden">
-                  <ProductImage
-                    src={productImages[i]}
-                    alt={p.title}
-                    label={t.products.photoLabel}
-                    position={productPositions[i]}
-                  />
-                  <div className="absolute top-0 left-0 w-0 group-hover:w-full h-0.5 bg-lime-400 transition-all duration-500" />
-                </div>
-                <div className="p-6">
-                  <h3 className="text-base font-bold mb-2 text-white group-hover:text-lime-400 transition-colors">{p.title}</h3>
-                  <p className="text-zinc-400 text-sm leading-relaxed">{p.desc}</p>
-                </div>
-              </div>
-            ))}
+          <SectionHead
+            index={t.products.index}
+            subtitle={t.products.subtitle}
+            title={t.products.title}
+            lead={t.products.lead}
+          />
+          <div className="mt-12">
+            <ProductShowcase lang={defaultLang} />
           </div>
         </div>
       </section>
 
-      {/* ── HİZMETLER ── */}
-      <section id="hizmetler" className="pt-12 pb-24 px-6 bg-zinc-950">
+      {/* ── SEKTÖRLER ── */}
+      <section id="hizmetler" className="scroll-mt-24 py-20 md:py-28 px-6 bg-stone-50 border-y border-stone-200">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-14 text-center">
-            <span className="text-lime-400 text-xs tracking-[0.3em] uppercase font-bold">
-              {t.services.subtitle}
-            </span>
-            <h2 className="mt-3 text-4xl font-black tracking-tight text-white">{t.services.title}</h2>
-            <div className="mt-4 w-12 h-1 bg-lime-400 mx-auto" />
-          </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+          <SectionHead
+            index={t.services.index}
+            subtitle={t.services.subtitle}
+            title={t.services.title}
+            lead={t.services.lead}
+          />
+          {/* Kutusuz, hairline ayrımlı liste — Ürünler bölümünden kasıtlı olarak daha sakin */}
+          <div className="mt-12 grid md:grid-cols-2 md:gap-x-12 border-t border-stone-200">
             {t.services.items.map((s, i) => (
-              <div
-                key={i}
-                className="group flex items-start gap-5 p-8 border border-zinc-800 hover:border-lime-400 transition-all duration-300"
-              >
-                {/* İkon kutusu */}
-                <div className="shrink-0 w-14 h-14 flex items-center justify-center border border-zinc-700 group-hover:border-lime-400 text-lime-400 transition-colors duration-300">
+              <div key={i} className="group flex items-start gap-5 py-7 border-b border-stone-200">
+                <div className="shrink-0 mt-0.5 text-stone-400 group-hover:text-amber-600 transition-colors">
                   {sectorIcons[i]}
                 </div>
-                {/* Başlık + açıklama */}
                 <div>
-                  <h3 className="font-bold text-lg text-white group-hover:text-lime-400 transition-colors duration-300 mb-2">{s.title}</h3>
-                  <p className="text-zinc-400 text-base leading-relaxed">{s.desc}</p>
+                  <div className="flex items-baseline gap-2.5">
+                    <span className="font-mono text-[10px] text-stone-400">{String(i + 1).padStart(2, "0")}</span>
+                    <h3 className="font-semibold text-stone-900">{s.title}</h3>
+                  </div>
+                  <p className="mt-2 text-sm text-stone-600 leading-relaxed">{s.desc}</p>
                 </div>
               </div>
             ))}
@@ -885,46 +945,90 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
         </div>
       </section>
 
-      {/* ── HAKKIMIZDA + TEKLİF AL ── */}
-      <section id="hakkimizda" className="pt-12 pb-24 px-6 bg-zinc-900">
-        {/* Teklif Al anchor noktası */}
-        <div id="teklif" className="invisible absolute -mt-20" />
-        <div className="max-w-6xl mx-auto grid md:grid-cols-2 gap-16 items-stretch">
-
-          {/* Sol: Hakkımızda */}
-          <div className="flex flex-col justify-between">
-            <div>
-              <span className="text-lime-400 text-xs tracking-[0.3em] uppercase font-bold">{t.about.subtitle}</span>
-              <h2 className="mt-3 text-4xl font-black tracking-tight mb-6 text-white">{t.about.title}</h2>
-              <div className="w-12 h-1 bg-lime-400 mb-8" />
-              <p className="text-zinc-400 leading-relaxed mb-4">{t.about.p1}</p>
-              <p className="text-zinc-400 leading-relaxed mb-4">{t.about.p2}</p>
-              <p className="text-zinc-400 leading-relaxed">{t.about.p3}</p>
-            </div>
-            {/* Sayaçlar */}
-            <div className="grid grid-cols-2 gap-8 mt-10 pt-10 border-t border-zinc-800">
-              <CounterItem target={34} label={t.about.experience} />
-              <CounterItem target={3000} label={t.about.projects} />
-              <CounterItem target={120} label={t.about.clients} />
-              <CounterItem target={8} label={t.about.staff} />
+      {/* ── HAKKIMIZDA ── */}
+      <section id="hakkimizda" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16">
+          {/* Sol — anlatı */}
+          <div className="lg:col-span-7">
+            <SectionHead
+              index={t.about.index}
+              subtitle={t.about.subtitle}
+              title={t.about.title}
+              lead={t.about.p1}
+            />
+            <div className="mt-6 space-y-4 max-w-2xl">
+              <p className="text-stone-600 leading-relaxed">{t.about.p2}</p>
+              <p className="text-stone-600 leading-relaxed">{t.about.p3}</p>
             </div>
           </div>
 
-          {/* Sağ: Teklif Al */}
-          <div className="border border-zinc-800 p-8 bg-zinc-900/50 flex flex-col h-full">
-            <span className="text-lime-400 text-xs tracking-[0.3em] uppercase font-bold">{t.quote.subtitle}</span>
-            <h2 className="mt-3 text-4xl font-black tracking-tight mb-6 text-white">{t.quote.title}</h2>
-            <div className="w-12 h-1 bg-lime-400 mb-8" />
-            <div className="flex-1 flex flex-col justify-between">
+          {/* Sağ — teknik föy */}
+          <div className="lg:col-span-5">
+            <div className="lg:sticky lg:top-28">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400 pb-4 border-b border-stone-900">
+                {t.about.statsTitle}
+              </p>
+              <StatRow label={t.about.experience} target={34} />
+              <StatRow label={t.about.projects} target={3000} />
+              <StatRow label={t.about.clients} target={120} />
+              <StatRow label={t.about.staff} target={8} />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── TEKLİF AL — koyu kapanış bandı, footer'a geçiş ── */}
+      <section id="teklif" className="scroll-mt-24 relative overflow-hidden bg-stone-950 py-20 md:py-28 px-6">
+        <div
+          aria-hidden
+          className="absolute inset-0 opacity-60"
+          style={{
+            backgroundImage:
+              "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px)," +
+              "linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
+            backgroundSize: "48px 48px",
+          }}
+        />
+        <div className="relative max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16">
+          {/* Sol — davet + doğrudan hat */}
+          <div className="lg:col-span-5">
+            <SectionHead
+              index={t.quote.index}
+              subtitle={t.quote.subtitle}
+              title={t.quote.title}
+              lead={t.quote.lead}
+              dark
+            />
+            <div className="mt-10 pt-8 border-t border-stone-800">
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-500">{t.quote.directTitle}</p>
+              <a href="tel:+905456462356" className="mt-3 block font-mono text-2xl md:text-3xl text-white hover:text-amber-400 transition-colors">
+                0545 646 23 56
+              </a>
+              <p className="mt-3 text-sm text-stone-500 leading-relaxed max-w-sm">{t.quote.directDesc}</p>
+              <a
+                href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-5 inline-flex items-center gap-2 border border-stone-700 hover:border-amber-500 hover:text-amber-400 text-stone-300 px-4 py-2 text-[13px] font-medium transition-colors"
+              >
+                <IconWhatsApp />
+                {t.quote.whatsapp}
+              </a>
+            </div>
+          </div>
+
+          {/* Sağ — form */}
+          <div className="lg:col-span-7">
+            <div className="relative border border-stone-800 p-6 md:p-8 bg-stone-900/40">
+              <CornerTicks className="border-stone-700" />
               <QuoteForm lang={defaultLang} />
             </div>
           </div>
-
         </div>
       </section>
 
       {/* ── FOOTER ── */}
-      <footer id="iletisim" className="bg-zinc-950 border-t border-zinc-800">
+      <footer id="iletisim" className="scroll-mt-24 bg-stone-950 border-t border-stone-800">
         <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
 
           {/* Kolon 1 — Logo + Sosyal Medya */}
@@ -938,21 +1042,21 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
                 className="object-contain invert"
               />
               <span className="text-white font-black text-xl tracking-widest">ÖZHAN</span>
-              <span className="text-lime-400 font-black text-xl tracking-widest">METAL</span>
+              <span className="text-amber-400 font-black text-xl tracking-widest">METAL</span>
             </a>
             <div>
-              <p className="text-zinc-400 text-sm font-semibold mb-4">{t.footer.followUs}</p>
+              <p className="text-stone-400 text-sm font-semibold mb-4">{t.footer.followUs}</p>
               <div className="flex gap-3">
                 <a href="https://www.facebook.com/ozhanmetal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                  className="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-lime-400 hover:border-lime-400 transition-colors">
+                  className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
                   <IconFacebook />
                 </a>
                 <a href="https://www.linkedin.com/company/ozhan-metal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                  className="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-lime-400 hover:border-lime-400 transition-colors">
+                  className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
                   <IconLinkedIn />
                 </a>
-                <a href="https://wa.me/905456462356" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
-                  className="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center text-zinc-400 hover:text-lime-400 hover:border-lime-400 transition-colors">
+                <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+                  className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
                   <IconWhatsApp />
                 </a>
               </div>
@@ -961,40 +1065,40 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
 
           {/* Kolon 2 — Bize Ulaşın */}
           <div>
-            <h4 className="text-lime-400 font-bold text-base mb-6">{t.footer.reachUs}</h4>
+            <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.reachUs}</h4>
             <ul className="space-y-5">
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0 text-lime-400">
+                <div className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shrink-0 text-amber-400">
                   <IconPhone />
                 </div>
                 <div>
-                  <p className="text-zinc-500 text-xs mb-0.5">{t.footer.phoneLabel}</p>
-                  <a href="tel:+905456462356" className="text-white text-sm font-medium hover:text-lime-400 transition-colors">
+                  <p className="text-stone-500 text-xs mb-0.5">{t.footer.phoneLabel}</p>
+                  <a href="tel:+905456462356" className="text-white text-sm font-medium hover:text-amber-400 transition-colors">
                     0545 646 23 56
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0 text-lime-400">
+                <div className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shrink-0 text-amber-400">
                   <IconMail />
                 </div>
                 <div>
-                  <p className="text-zinc-500 text-xs mb-0.5">{t.footer.emailLabel}</p>
-                  <a href="mailto:info@ozhanmetal.com" className="text-white text-sm font-medium hover:text-lime-400 transition-colors">
+                  <p className="text-stone-500 text-xs mb-0.5">{t.footer.emailLabel}</p>
+                  <a href="mailto:info@ozhanmetal.com" className="text-white text-sm font-medium hover:text-amber-400 transition-colors">
                     info@ozhanmetal.com
                   </a>
                 </div>
               </li>
               <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-zinc-800 border border-zinc-700 flex items-center justify-center shrink-0 text-lime-400">
+                <div className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shrink-0 text-amber-400">
                   <IconLocation />
                 </div>
                 <div>
-                  <p className="text-zinc-500 text-xs mb-0.5">{t.footer.addressLabel}</p>
+                  <p className="text-stone-500 text-xs mb-0.5">{t.footer.addressLabel}</p>
                   <a
                     href="https://www.google.com/maps/place/%C3%96zhan+Metal+Kal%C4%B1p+Sanayi+Ltd/@41.050258,28.9071769,17z/data=!3m1!4b1!4m6!3m5!1s0x14cab081d1abf565:0x12ef9edb4764cd34!8m2!3d41.050254!4d28.9097572!16s%2Fg%2F11c7v_r6pr?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
                     target="_blank" rel="noopener noreferrer"
-                    className="text-white text-sm font-medium hover:text-lime-400 transition-colors leading-snug"
+                    className="text-white text-sm font-medium hover:text-amber-400 transition-colors leading-snug"
                   >
                     Muratpaşa Mah. Uluyol İşkent Sanayi Sitesi, D Blok No:64, İstanbul
                   </a>
@@ -1005,25 +1109,25 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
 
           {/* Kolon 3 — Kurumsal + Çalışma Saatleri */}
           <div>
-            <h4 className="text-lime-400 font-bold text-base mb-6">{t.footer.corporate}</h4>
+            <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.corporate}</h4>
             <ul className="space-y-3 mb-8">
               {t.footer.navItems.map((l) => (
                 <li key={l.href}>
-                  <a href={l.href} className="text-zinc-400 hover:text-white text-sm transition-colors">{l.label}</a>
+                  <a href={l.href} className="text-stone-400 hover:text-white text-sm transition-colors">{l.label}</a>
                 </li>
               ))}
             </ul>
-            <h4 className="text-lime-400 font-bold text-base mb-4">{t.footer.workingHours}</h4>
-            <p className="text-zinc-400 text-sm">{t.footer.weekdays}</p>
+            <h4 className="text-amber-400 font-bold text-base mb-4">{t.footer.workingHours}</h4>
+            <p className="text-stone-400 text-sm">{t.footer.weekdays}</p>
           </div>
 
           {/* Kolon 4 — Hizmetlerimiz */}
           <div>
-            <h4 className="text-lime-400 font-bold text-base mb-6">{t.footer.servicesTitle}</h4>
+            <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.servicesTitle}</h4>
             <ul className="space-y-3">
               {t.footer.serviceItems.map((s) => (
                 <li key={s}>
-                  <a href="#hizmetler" className="text-zinc-400 hover:text-white text-sm transition-colors">{s}</a>
+                  <a href="#hizmetler" className="text-stone-400 hover:text-white text-sm transition-colors">{s}</a>
                 </li>
               ))}
             </ul>
@@ -1032,10 +1136,10 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
         </div>
 
         {/* Alt bar */}
-        <div className="border-t border-zinc-800">
+        <div className="border-t border-stone-800">
           <div className="max-w-6xl mx-auto px-6 py-5 text-center">
-            <p className="text-zinc-500 text-xs" suppressHydrationWarning>
-              © {new Date().getFullYear()} <span className="text-lime-400">Özhan Metal</span>. {t.footer.rights}
+            <p className="text-stone-500 text-xs" suppressHydrationWarning>
+              © {new Date().getFullYear()} <span className="text-amber-400">Özhan Metal</span>. {t.footer.rights}
             </p>
           </div>
         </div>
