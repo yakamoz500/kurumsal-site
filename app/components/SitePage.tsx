@@ -119,10 +119,13 @@ const T = {
       service: "Hizmet Seçin",
       serviceDefault: "-- Hizmet seçin --",
       message: "Mesajınız (opsiyonel)",
-      submit: "WhatsApp'tan Gönder",
-      sending: "Yönlendiriliyor...",
-      success: "WhatsApp açıldı! Mesajı gönderdikten sonra en kısa sürede sizinle iletişime geçeceğiz.",
-      error: "Bir hata oluştu. Lütfen tekrar deneyin.",
+      submit: "Teklif Talebi Gönder",
+      sending: "Gönderiliyor...",
+      success: "Teklif talebiniz bize ulaştı. En kısa sürede size dönüş yapacağız.",
+      successNote: "Acele bir işse bu arada bizi arayabilir ya da WhatsApp'tan yazabilirsiniz.",
+      error: "Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da WhatsApp'tan yazın — mesajınız hazır olarak açılacak.",
+      errorCta: "WhatsApp'tan gönder",
+      rateLimit: "Çok fazla deneme yaptınız. Lütfen bir dakika bekleyip tekrar deneyin.",
       services: ["Progresif Kalıp", "Kesme Kalıbı", "CNC Tel Erozyon", "Delik Delme EDM", "Taşlama", "Pres Baskı", "Montaj & İmalat", "Diğer"],
       navLabel: "Teklif Al",
     },
@@ -237,10 +240,13 @@ const T = {
       service: "Select Service",
       serviceDefault: "-- Select a service --",
       message: "Your Message (optional)",
-      submit: "Send via WhatsApp",
-      sending: "Redirecting...",
-      success: "WhatsApp opened! We will contact you shortly after you send the message.",
-      error: "An error occurred. Please try again.",
+      submit: "Send Quote Request",
+      sending: "Sending...",
+      success: "Your quote request has reached us. We will get back to you shortly.",
+      successNote: "If it is urgent, you can also call us or message us on WhatsApp in the meantime.",
+      error: "Your request could not be sent. Please try again, or send it via WhatsApp — your message will open ready to go.",
+      errorCta: "Send via WhatsApp",
+      rateLimit: "Too many attempts. Please wait a minute and try again.",
       services: ["Progressive Die", "Cutting Die", "CNC Wire EDM", "Hole Drilling EDM", "Surface Grinding", "Press Service", "Assembly & Manufacturing", "Other"],
       navLabel: "Get Quote",
     },
@@ -734,9 +740,27 @@ function QuoteForm({ lang }: { lang: Lang }) {
   const t = T[lang].quote;
   const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", service: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
+  const [errorMsg, setErrorMsg] = useState<string>(t.error);
+  // Honeypot — gerçek kullanıcı görmez, bot doldurur.
+  const [website, setWebsite] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+  };
+
+  // Mail yolu çökerse kullanıcıyı kaybetmeyelim: aynı bilgiyle WhatsApp'a düşür.
+  const whatsappUrl = () => {
+    const lines = [
+      lang === "TR" ? "Merhaba, teklif almak istiyorum." : "Hello, I would like to get a quote.",
+      "",
+      `${t.name}: ${form.name}`,
+      form.company ? `${t.company.replace(" (opsiyonel)", "").replace(" (optional)", "")}: ${form.company}` : null,
+      `${t.email}: ${form.email}`,
+      `${t.phone}: ${form.phone}`,
+      `${t.service}: ${form.service}`,
+      form.message ? `${t.message.replace(" (opsiyonel)", "").replace(" (optional)", "")}: ${form.message}` : null,
+    ].filter(Boolean).join("\n");
+    return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
   };
 
   const validationMsg = lang === "TR" ? "Lütfen bu alanı doldurun." : "Please fill out this field.";
@@ -749,26 +773,31 @@ function QuoteForm({ lang }: { lang: Lang }) {
     },
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (status === "loading") return;
+    setStatus("loading");
 
-    const lines = [
-      lang === "TR"
-        ? "Merhaba, teklif almak istiyorum."
-        : "Hello, I would like to get a quote.",
-      "",
-      `${t.name}: ${form.name}`,
-      form.company ? `${t.company.replace(" (opsiyonel)", "").replace(" (optional)", "")}: ${form.company}` : null,
-      `${t.email}: ${form.email}`,
-      `${t.phone}: ${form.phone}`,
-      `${t.service}: ${form.service}`,
-      form.message ? `${t.message.replace(" (opsiyonel)", "").replace(" (optional)", "")}: ${form.message}` : null,
-    ].filter(Boolean).join("\n");
+    try {
+      const res = await fetch("/api/teklif", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...form, website, lang }),
+      });
 
-    const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines)}`;
-    window.open(url, "_blank");
-    setStatus("success");
-    setForm({ name: "", company: "", email: "", phone: "", service: "", message: "" });
+      if (!res.ok) {
+        setErrorMsg(res.status === 429 ? t.rateLimit : t.error);
+        setStatus("error");
+        return;
+      }
+
+      setStatus("success");
+      setForm({ name: "", company: "", email: "", phone: "", service: "", message: "" });
+    } catch {
+      // Ağ hatası / offline
+      setErrorMsg(t.error);
+      setStatus("error");
+    }
   };
 
   const labelClass = "font-mono text-[10px] uppercase tracking-[0.18em] text-stone-400";
@@ -783,12 +812,27 @@ function QuoteForm({ lang }: { lang: Lang }) {
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
         </svg>
         <p className="text-sm leading-relaxed max-w-xs">{t.success}</p>
+        <p className="text-xs leading-relaxed text-stone-500 max-w-xs">{t.successNote}</p>
       </div>
     );
   }
 
   return (
     <form onSubmit={handleSubmit} className="flex flex-col h-full gap-3">
+      {/* Honeypot — ekran dışında, klavye ve ekran okuyucudan gizli. */}
+      <div aria-hidden className="absolute -left-[9999px] top-0 h-0 w-0 overflow-hidden">
+        <label htmlFor="website">Website</label>
+        <input
+          id="website"
+          name="website"
+          type="text"
+          tabIndex={-1}
+          autoComplete="off"
+          value={website}
+          onChange={(e) => setWebsite(e.target.value)}
+        />
+      </div>
+
       <div className="grid sm:grid-cols-2 gap-3">
         <div className="flex flex-col gap-1.5">
           <label className={labelClass}>{t.name} <span className="text-amber-500">*</span></label>
@@ -827,19 +871,36 @@ function QuoteForm({ lang }: { lang: Lang }) {
         />
       </div>
 
+      {/* Hata: sesli patla ve kullanıcıyı WhatsApp'a düşür — lead kaybolmasın. */}
       {status === "error" && (
-        <div className="border border-red-500/50 bg-red-500/10 text-red-400 px-4 py-2.5 text-xs">
-          {t.error}
+        <div role="alert" className="border border-red-500/50 bg-red-500/10 px-4 py-3 flex flex-col gap-3">
+          <p className="text-red-400 text-xs leading-relaxed">{errorMsg}</p>
+          <a
+            href={whatsappUrl()}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="self-start inline-flex items-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-black font-semibold px-4 py-2 text-xs transition-colors"
+          >
+            <IconWhatsApp />
+            {t.errorCta}
+          </a>
         </div>
       )}
 
       <div className="pt-2">
         <button
           type="submit"
-          className="w-full sm:w-auto flex items-center justify-center gap-2 bg-[#25D366] hover:bg-[#1ebe5d] text-black font-semibold px-6 py-2.5 text-sm transition-colors"
+          disabled={status === "loading"}
+          aria-busy={status === "loading"}
+          className="w-full sm:w-auto flex items-center justify-center gap-2 bg-amber-500 hover:bg-amber-400 disabled:opacity-60 disabled:cursor-not-allowed text-black font-semibold px-6 py-2.5 text-sm transition-colors"
         >
-          <IconWhatsApp />
-          {t.submit}
+          {status === "loading" && (
+            <svg aria-hidden className="w-4 h-4 animate-spin" viewBox="0 0 24 24" fill="none">
+              <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="2.5" className="opacity-25" />
+              <path d="M21 12a9 9 0 0 0-9-9" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" />
+            </svg>
+          )}
+          {status === "loading" ? t.sending : t.submit}
         </button>
       </div>
     </form>
