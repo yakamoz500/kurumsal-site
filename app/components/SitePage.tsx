@@ -23,7 +23,7 @@ const T = {
     hero: {
       eyebrow: "Düşük Tolerans · Yüksek Hassasiyet",
       h1: "Metal kesme kalıpları",
-      sub: "1991'den bu yana İstanbul'da progresif kalıp ve kesme kalıbı üretiyoruz. Tasarımdan tel erozyona, pres baskıdan montaja kadar tüm süreci kendi bünyemizde yönetiyoruz.",
+      sub: "1991'den bu yana İstanbul'da progresif kalıp ve kesme kalıbı üretiyoruz. Kalıbınızı yapıyor, isterseniz parçanızı da kendi presimizde basıyoruz — tasarımdan montaja kadar tek çatı altında.",
       btn1: "Teklif Al",
       btn2: "Ürünlerimizi İnceleyin",
       imgCaption: "Üretim tesisi — Bayrampaşa, İstanbul",
@@ -35,13 +35,13 @@ const T = {
     },
     products: {
       index: "01",
-      subtitle: "Kalıp Çeşitlerimiz",
+      subtitle: "Ürün ve Hizmetlerimiz",
       title: "Ürünlerimiz",
-      lead: "Parça geometrinize ve üretim adedinize göre kalıbı sıfırdan tasarlıyor, imal ediyor ve devreye alıyoruz.",
+      lead: "Kalıbınızı sıfırdan tasarlayıp imal ediyoruz. Sadece parça istiyorsanız kalıbı biz yapar, seri baskısını da kendi presimizde alırız.",
       items: [
         { title: "Progresif Kalıpları", desc: "Birden fazla işlemi (kesme, delme, bükme vb.) aynı kalıp içerisinde adım adım gerçekleştiren kalıplardır. Seri üretim için idealdir, zamandan ve maliyetten tasarruf sağlar." },
         { title: "Kesme Kalıpları", desc: "Sacın istenilen şekil ve ölçülerde kesilmesini sağlar. Ürün geometrisine göre özel olarak tasarlanır." },
-        { title: "Pres Baskı", desc: "Üretimi tamamlanan kalıplar ile müşterilerimizin talepleri doğrultusunda kendi bünyemizde istenilen adetlerde baskı hizmetini sağlıyoruz." },
+        { title: "Parça Üretimi", desc: "Elinizde teknik resim var ve parça lazımsa: kalıbını biz yapar, seri baskısını kendi presimizde alırız. Kalıbı dışarıdan alan bir presçiyle çalışmak yerine tek muhatapla ilerlersiniz — arada ne ek marj olur, ne sorumluluk boşluğu." },
         { title: "Montaj & İmalat", desc: "Parçadan ürüne; tasarım, imalat ve montaj süreçlerini uçtan uca yönetiyoruz." },
       ],
       photoLabel: "Fotoğraf eklenecek",
@@ -141,7 +141,7 @@ const T = {
       error: "Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da WhatsApp'tan yazın — mesajınız hazır olarak açılacak.",
       errorCta: "WhatsApp'tan gönder",
       rateLimit: "Çok fazla deneme yaptınız. Lütfen bir dakika bekleyip tekrar deneyin.",
-      services: ["Progresif Kalıp", "Kesme Kalıbı", "CNC Tel Erozyon", "Delik Delme EDM", "Taşlama", "Pres Baskı", "Montaj & İmalat", "Diğer"],
+      services: ["Progresif Kalıp", "Kesme Kalıbı", "Parça Üretimi (Pres Baskı)", "CNC Tel Erozyon", "Delik Delme EDM", "Taşlama", "Montaj & İmalat", "Diğer"],
       navLabel: "Teklif Al",
     },
   },
@@ -158,8 +158,8 @@ const T = {
     },
     hero: {
       eyebrow: "Tight Tolerance · High Precision",
-      h1: "Metal cutting dies",
-      sub: "Since 1991 we have produced progressive dies and cutting dies in Istanbul. From design to wire EDM, from press production to assembly, we manage the entire process in-house.",
+      h1: "Sheet metal stamping and tooling",
+      sub: "Since 1991 we have produced stamped sheet metal parts — and the dies that make them — in Istanbul, Turkey. We build the tool and run the press under one roof: one supplier, one point of accountability, no die margin in between.",
       btn1: "Get a Quote",
       btn2: "Explore Our Products",
       imgCaption: "Production facility — Bayrampaşa, Istanbul",
@@ -171,13 +171,13 @@ const T = {
     },
     products: {
       index: "01",
-      subtitle: "Mold Types",
-      title: "Our Products",
-      lead: "We design, manufacture and commission the mold from scratch, based on your part geometry and production volume.",
+      subtitle: "Products & Services",
+      title: "What We Make",
+      lead: "Send us a drawing. We can build the tool, or build the tool and deliver the finished parts in series — contract manufacturing from a single supplier.",
       items: [
         { title: "Progressive Dies", desc: "Dies that perform multiple operations (cutting, punching, bending, etc.) step by step within the same mold. Ideal for mass production, saving time and cost." },
         { title: "Cutting Dies", desc: "Enables sheet metal to be cut in desired shapes and dimensions. Custom designed according to product geometry." },
-        { title: "Press Service", desc: "With completed molds, we provide pressing services in desired quantities within our own facility according to customer requests." },
+        { title: "Contract Manufacturing", desc: "You have a drawing and you need parts, not a tool. We build the die and run the series on our own presses. Instead of a stamper who buys tooling from a third party, you deal with one supplier — no added margin, no gap in accountability." },
         { title: "Assembly & Manufacturing", desc: "From parts to product; we manage design, manufacturing and assembly processes end-to-end." },
       ],
       photoLabel: "Photo coming soon",
@@ -227,7 +227,7 @@ const T = {
       index: "05",
       subtitle: "Who We Are",
       title: "About Us",
-      p1: "With the experience and trust we have gained in the metal processing industry since 1991, we aim to be a pioneering brand that brings together technology, engineering and quality in metal cutting die production.",
+      p1: "With the experience and trust we have gained in the metal processing industry since 1991, we aim to be a pioneering brand that brings together technology, engineering and quality in sheet metal stamping and die production.",
       p2: "Our goal is to increase competitiveness in both local and global markets through high-precision production, automation-supported processes and innovative mold designs, and to become a solution partner that shapes the industry.",
       p3: "In line with our principles of continuous improvement, sustainable production and customer satisfaction, we envision continuously raising quality standards in the industry.",
       statsTitle: "Özhan Metal in Numbers",
@@ -277,7 +277,7 @@ const T = {
       error: "Your request could not be sent. Please try again, or send it via WhatsApp — your message will open ready to go.",
       errorCta: "Send via WhatsApp",
       rateLimit: "Too many attempts. Please wait a minute and try again.",
-      services: ["Progressive Die", "Cutting Die", "CNC Wire EDM", "Hole Drilling EDM", "Surface Grinding", "Press Service", "Assembly & Manufacturing", "Other"],
+      services: ["Contract Manufacturing (stamped parts)", "Progressive Die", "Cutting Die", "CNC Wire EDM", "Hole Drilling EDM", "Surface Grinding", "Assembly & Manufacturing", "Other"],
       navLabel: "Get Quote",
     },
   },
@@ -287,7 +287,7 @@ const T = {
 const productImages = [
   "/products/prograsif_kalip.jpeg",     // Progresif Kalıpları
   "/products/Kesme_kaliplari.png",      // Kesme Kalıpları
-  "/products/Pres_Baski.png",           // Pres Baskı
+  "/products/Pres_Baski.png",           // Parça Üretimi (Pres Baskı)
   "/products/montajimalat.png",         // Montaj & İmalat
 ];
 

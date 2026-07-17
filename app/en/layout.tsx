@@ -1,13 +1,13 @@
 import type { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Ozhan Metal | Metal Cutting Dies",
+  title: "Ozhan Metal | Sheet Metal Stamping & Tooling — Turkey",
   description:
-    "Your trusted solution partner in metal cutting die production with high precision and low tolerance since 1991.",
+    "Sheet metal stamping and tooling from Istanbul, Turkey. We build the die and run the press under one roof — contract manufacturing of stamped parts at tight tolerances since 1991.",
   openGraph: {
-    title: "Ozhan Metal | Metal Cutting Dies",
+    title: "Ozhan Metal | Sheet Metal Stamping & Tooling — Turkey",
     description:
-      "Your trusted solution partner in metal cutting die production with high precision and low tolerance since 1991.",
+      "Sheet metal stamping and tooling from Istanbul, Turkey. We build the die and run the press under one roof — contract manufacturing of stamped parts at tight tolerances since 1991.",
     url: "https://ozhanmetal.com/en",
     siteName: "Ozhan Metal",
     locale: "en_US",
@@ -15,9 +15,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ozhan Metal | Metal Cutting Dies",
+    title: "Ozhan Metal | Sheet Metal Stamping & Tooling — Turkey",
     description:
-      "Your trusted solution partner in metal cutting die production with high precision and low tolerance since 1991.",
+      "Sheet metal stamping and tooling from Istanbul, Turkey. We build the die and run the press under one roof — contract manufacturing of stamped parts at tight tolerances since 1991.",
   },
   alternates: {
     canonical: "https://ozhanmetal.com/en",
