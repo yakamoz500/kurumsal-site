@@ -36,6 +36,29 @@ const nextConfig: NextConfig = {
       },
     ];
   },
+
+  // Önceki sitenin URL'leri Google'da hâlâ indeksli ve 404 veriyordu
+  // (ör. "Kapı Kilitleri – ÖZHAN METAL" sonucuna tıklayan 404 görüyordu).
+  // 301 ile karşılığına taşıyoruz: hem ziyaretçi doğru yere düşer, hem o
+  // sayfaların biriktirdiği arama değeri yeni sayfaya aktarılır.
+  async redirects() {
+    return [
+      // Ürün sayfaları ve tüm alt kırılımları (kapi-kilitleri, menteseler, ...)
+      { source: "/urunler", destination: "/#urunlerimiz", permanent: true },
+      { source: "/urunler/:slug*", destination: "/#urunlerimiz", permanent: true },
+      { source: "/hizmetlerimiz", destination: "/#yeteneklerimiz", permanent: true },
+      { source: "/hizmetlerimiz/:slug*", destination: "/#yeteneklerimiz", permanent: true },
+      { source: "/hakkimizda", destination: "/#hakkimizda", permanent: true },
+      { source: "/iletisim", destination: "/#iletisim", permanent: true },
+      // İngilizce karşılıkları
+      { source: "/en/products", destination: "/en#urunlerimiz", permanent: true },
+      { source: "/en/products/:slug*", destination: "/en#urunlerimiz", permanent: true },
+      { source: "/en/services", destination: "/en#yeteneklerimiz", permanent: true },
+      { source: "/en/services/:slug*", destination: "/en#yeteneklerimiz", permanent: true },
+      { source: "/en/about", destination: "/en#hakkimizda", permanent: true },
+      { source: "/en/contact", destination: "/en#iletisim", permanent: true },
+    ];
+  },
 };
 
 export default nextConfig;
