@@ -1063,6 +1063,98 @@ function ProductShowcase({ lang }: { lang: Lang }) {
   );
 }
 
+// ─── Capability Explorer ──────────────────────────────────────────────────────
+// 6 kabiliyeti 6 uzun kart olarak değil, tek interaktif panelde sunar: solda
+// aile gruplu liste (breadth burada görünür), sağda seçili çizim + açıklama.
+// Mobilde ~3 ekrandan ~1 ekrana iner.
+function CapabilityExplorer({ lang }: { lang: Lang }) {
+  const t = T[lang].capabilities;
+
+  // Aileleri düz sıraya aç — index capabilityDrawings ile birebir eşleşir.
+  const flat = t.families.flatMap((fam) =>
+    fam.items.map((c) => ({ family: fam.label, title: c.title, desc: c.desc }))
+  );
+  const [sel, setSel] = useState(0);
+  const active = flat[sel];
+  const panelRef = useRef<HTMLDivElement>(null);
+
+  // Mobilde liste uzun; tıklayınca panel ekran dışında kalabiliyor. Sadece dar
+  // ekranda ve yalnızca tıklamada (hover'da değil) paneli nazikçe görünür kıl.
+  const pick = (i: number, scroll: boolean) => {
+    setSel(i);
+    if (scroll && panelRef.current && window.matchMedia("(max-width: 767px)").matches) {
+      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      panelRef.current.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
+    }
+  };
+
+  return (
+    <div className="mt-12 grid md:grid-cols-12 border border-stone-200">
+      {/* Sol — aile gruplu, seçilebilir liste */}
+      <div
+        className="md:col-span-5 md:border-r border-stone-200"
+        role="tablist"
+        aria-orientation="vertical"
+        aria-label={t.title}
+      >
+        {(() => {
+          let idx = 0;
+          return t.families.map((fam, fi) => (
+            <div key={fi} className="border-b border-stone-100 last:border-b-0">
+              <div className="px-5 pt-4 pb-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-amber-700">
+                {fam.label}
+              </div>
+              {fam.items.map((c) => {
+                const my = idx++;
+                const on = my === sel;
+                return (
+                  <button
+                    key={c.title}
+                    role="tab"
+                    aria-selected={on}
+                    onClick={() => pick(my, true)}
+                    onMouseEnter={() => pick(my, false)}
+                    className={`w-full text-left flex items-center gap-3 px-5 py-3 border-l-2 transition-colors ${
+                      on
+                        ? "border-amber-500 bg-stone-50"
+                        : "border-transparent hover:bg-stone-50/70"
+                    }`}
+                  >
+                    <span className={`text-sm font-medium ${on ? "text-stone-900" : "text-stone-600"}`}>
+                      {c.title}
+                    </span>
+                    <span
+                      aria-hidden
+                      className={`ml-auto text-amber-600 text-sm transition-opacity ${on ? "opacity-100" : "opacity-0"}`}
+                    >
+                      →
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          ));
+        })()}
+      </div>
+
+      {/* Sağ — seçili yeteneğin büyük çizimi + açıklaması */}
+      <div ref={panelRef} className="md:col-span-7 flex flex-col bg-white scroll-mt-24" role="tabpanel" aria-live="polite">
+        <div className="relative border-b border-stone-200 bg-white h-56 md:h-72 flex items-center justify-center px-8">
+          <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
+          <div className="relative w-full max-w-xs">{capabilityDrawings[sel]}</div>
+        </div>
+        <div className="p-6 md:p-8">
+          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-700">
+            {active.family}
+          </span>
+          <h3 className="mt-2 text-xl font-semibold tracking-tight text-stone-900">{active.title}</h3>
+          <p className="mt-3 text-sm leading-relaxed text-stone-600">{active.desc}</p>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ─── Quote Form ───────────────────────────────────────────────────────────────
 function QuoteForm({ lang }: { lang: Lang }) {
   const t = T[lang].quote;
@@ -1328,40 +1420,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             title={t.capabilities.title}
             lead={t.capabilities.lead}
           />
-          {/* Aile gruplu kabiliyet ızgarası. Artık liner zincir DEĞİL — üç proses
-              ailesi (talaşlı / erozyon / taşlama), hepsi kendi bünyede. Tek ızgara,
-              aile etiketleri tam genişlik ayraç; kart genişlikleri her yerde eşit.
-              Çizimler capabilityDrawings sırasına göre düz index ile eşleşir. */}
-          <div className="mt-12 grid md:grid-cols-3 gap-5">
-            {(() => {
-              let di = 0;
-              const out: React.ReactNode[] = [];
-              t.capabilities.families.forEach((fam, fi) => {
-                out.push(
-                  <div key={`fam-${fi}`} className="md:col-span-3 flex items-center gap-3 first:mt-0 mt-2">
-                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-amber-700">{fam.label}</span>
-                    <span aria-hidden className="h-px flex-1 bg-stone-300" />
-                  </div>
-                );
-                fam.items.forEach((c, ci) => {
-                  const drawing = capabilityDrawings[di++];
-                  out.push(
-                    <div key={`cap-${fi}-${ci}`} className="flex flex-col border border-stone-200 bg-stone-50">
-                      <div className="relative bg-white border-b border-stone-200 aspect-4/3 flex items-center justify-center px-5">
-                        <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
-                        <div className="relative w-full">{drawing}</div>
-                      </div>
-                      <div className="p-5 md:p-6 flex flex-col flex-1">
-                        <h3 className="text-base font-semibold tracking-tight text-stone-900">{c.title}</h3>
-                        <p className="mt-2 text-sm leading-relaxed text-stone-600">{c.desc}</p>
-                      </div>
-                    </div>
-                  );
-                });
-              });
-              return out;
-            })()}
-          </div>
+          <CapabilityExplorer lang={defaultLang} />
         </div>
       </section>
 
