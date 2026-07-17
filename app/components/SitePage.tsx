@@ -51,11 +51,29 @@ const T = {
       index: "02",
       subtitle: "İmalat Yeteneklerimiz",
       title: "Yeteneklerimiz",
-      lead: "Sertleştirilmiş malzemede kalıp elemanı işlemek üç adımlı bir zincir gerektirir. Üçü de kendi bünyemizde.",
-      items: [
-        { title: "Delik Delme EDM", desc: "Sertleştirilmiş plakada, matkabın kesemediği yerde kıvılcımla delik açar. Tel erozyonun telini geçirebilmesi için gereken başlangıç deliğini bu adımda oluşturuyoruz." },
-        { title: "CNC Tel Erozyon", desc: "İnce tel açılan delikten geçirilir ve profili kıvılcım aşındırmayla keser. Sertleştirilmiş malzemede bile dar tolerans ve temiz yüzey; talaşlı imalatın zorlandığı karmaşık profiller ve keskin iç köşeler bu adımda çıkar." },
-        { title: "Taşlama", desc: "Yüzey taşlama ile kalıp plakalarının düzlemini ve kalınlık ölçüsünü hassaslaştırıyoruz. Kalıbın düzgün kapanması ve elemanların birbirine oturması bu adıma bağlı." },
+      lead: "Bir kalıbı ya da parçayı baştan sona işlemek farklı tezgahlar ister — talaşlı imalattan kıvılcım erozyonuna, taşlamaya kadar. Hepsini kendi bünyemizde topladık; torna ve freze işlerini ayrı hizmet olarak da alıyoruz.",
+      families: [
+        {
+          label: "Talaşlı İmalat",
+          items: [
+            { title: "Freze", desc: "Kalıp bloklarını, plakaları ve tutucuları CNC frezede talaşlı işliyoruz. Sertleştirme öncesi kaba ve hassas işleme burada yapılır; müşteri parçalarını da frezeliyoruz." },
+            { title: "Torna", desc: "Zımba, pim, burç gibi silindirik parçaları tornada çap hassasiyetiyle işliyoruz. Kendi kalıp elemanlarımızın yanı sıra dışarıdan torna işi de alıyoruz." },
+          ],
+        },
+        {
+          label: "Erozyon",
+          items: [
+            { title: "Delik Delme EDM", desc: "Sertleştirilmiş plakada, matkabın kesemediği yerde kıvılcımla delik açar. Tel erozyonun telini geçirebilmesi için gereken başlangıç deliğini oluşturur." },
+            { title: "CNC Tel Erozyon", desc: "İnce tel açılan delikten geçirilir ve profili kıvılcım aşındırmayla keser. Sertleştirilmiş malzemede bile dar tolerans ve temiz yüzey; talaşlı imalatın zorlandığı karmaşık profiller ve keskin iç köşeler burada çıkar." },
+            { title: "Dalma Erozyon", desc: "Şekilli elektrotla sertleştirilmiş çeliğe cep, kanal ve kör boşluk açar. Telin geçemediği kapalı formlar — kalıp cepleri, kaburga ve baskı izleri — bu yöntemle üretilir." },
+          ],
+        },
+        {
+          label: "Taşlama",
+          items: [
+            { title: "Yüzey Taşlama", desc: "Kalıp plakalarının düzlemini ve kalınlık ölçüsünü hassaslaştırıyoruz. Kalıbın düzgün kapanması ve elemanların birbirine oturması buna bağlı." },
+          ],
+        },
       ],
     },
     product: {
@@ -141,7 +159,7 @@ const T = {
       error: "Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da WhatsApp'tan yazın — mesajınız hazır olarak açılacak.",
       errorCta: "WhatsApp'tan gönder",
       rateLimit: "Çok fazla deneme yaptınız. Lütfen bir dakika bekleyip tekrar deneyin.",
-      services: ["Progresif Kalıp", "Kesme Kalıbı", "Parça Üretimi (Pres Baskı)", "CNC Tel Erozyon", "Delik Delme EDM", "Taşlama", "Montaj & İmalat", "Diğer"],
+      services: ["Progresif Kalıp", "Kesme Kalıbı", "Parça Üretimi (Pres Baskı)", "Freze", "Torna", "CNC Tel Erozyon", "Delik Delme EDM", "Dalma Erozyon", "Taşlama", "Montaj & İmalat", "Diğer"],
       navLabel: "Teklif Al",
     },
   },
@@ -187,11 +205,29 @@ const T = {
       index: "02",
       subtitle: "Manufacturing Capabilities",
       title: "Our Capabilities",
-      lead: "Machining a die component in hardened material takes a three-step chain. All three run in-house.",
-      items: [
-        { title: "Hole Drilling EDM", desc: "Burns a hole through hardened plate where a drill cannot cut. This is the step where we create the start hole the wire needs to pass through." },
-        { title: "CNC Wire EDM", desc: "A fine wire is threaded through that hole and cuts the profile by electrical discharge. Even in hardened material it achieves tight tolerances and a clean surface; complex profiles and sharp internal corners that conventional machining struggles with are produced at this step." },
-        { title: "Surface Grinding", desc: "Surface grinding refines the flatness and thickness of die plates. Whether the die closes properly and its components seat against each other depends on this step." },
+      lead: "Machining a die — or a part — end to end takes different machines: from chip machining to spark erosion to grinding. We've gathered them all under one roof, and we also take on turning and milling as standalone work.",
+      families: [
+        {
+          label: "Machining",
+          items: [
+            { title: "Milling", desc: "We machine die blocks, plates and holders on CNC milling. Roughing and finishing before hardening happens here — and we also produce customer parts by milling." },
+            { title: "Turning", desc: "We turn cylindrical parts — punches, pins, bushings — to close diameter tolerance. Alongside our own die components, we take on outside turning work." },
+          ],
+        },
+        {
+          label: "EDM",
+          items: [
+            { title: "Hole Drilling EDM", desc: "Burns a hole through hardened plate where a drill cannot cut. It creates the start hole the wire needs to pass through." },
+            { title: "CNC Wire EDM", desc: "A fine wire is threaded through that hole and cuts the profile by electrical discharge. Even in hardened material it achieves tight tolerances and a clean surface; complex profiles and sharp internal corners that conventional machining struggles with are produced here." },
+            { title: "Sinker EDM", desc: "A shaped electrode burns pockets, ribs and blind cavities into hardened steel. Closed forms a wire cannot reach — die pockets, ribs and impressions — are produced this way." },
+          ],
+        },
+        {
+          label: "Grinding",
+          items: [
+            { title: "Surface Grinding", desc: "Refines the flatness and thickness of die plates. Whether the die closes properly and its components seat against each other depends on this." },
+          ],
+        },
       ],
     },
     product: {
@@ -277,7 +313,7 @@ const T = {
       error: "Your request could not be sent. Please try again, or send it via WhatsApp — your message will open ready to go.",
       errorCta: "Send via WhatsApp",
       rateLimit: "Too many attempts. Please wait a minute and try again.",
-      services: ["Contract Manufacturing (stamped parts)", "Progressive Die", "Cutting Die", "CNC Wire EDM", "Hole Drilling EDM", "Surface Grinding", "Assembly & Manufacturing", "Other"],
+      services: ["Contract Manufacturing (stamped parts)", "Progressive Die", "Cutting Die", "Milling", "Turning", "CNC Wire EDM", "Hole Drilling EDM", "Sinker EDM", "Surface Grinding", "Assembly & Manufacturing", "Other"],
       navLabel: "Get Quote",
     },
   },
@@ -486,10 +522,151 @@ function DrawGrinding() {
   );
 }
 
+// Freze (dik freze — kesit yandan görünüm)
+function DrawMilling() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-mill" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+
+      {/* iş parçası + frezelenen kanal */}
+      <path
+        d="M25,96 H86 V110 H114 V96 H175 V132 H25 Z"
+        fill="url(#hatch-mill)"
+        className="stroke-stone-400"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+
+      {/* parmak freze — kanalın içinde */}
+      <rect x="88" y="26" width="24" height="82" className="stroke-amber-600 fill-white" strokeWidth="1.5" />
+      <path d="M88,44 L112,34 M88,62 L112,52 M88,80 L112,70 M88,98 L112,88" className="stroke-amber-600" strokeWidth="1" strokeOpacity="0.45" />
+
+      {/* dönüş yönü */}
+      <path d="M91,20 A11,6 0 0 1 113,19" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M110,15 L114,19 L109,22" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* talaş */}
+      <g className="stroke-amber-500" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M84,104 l-6,-3 M120,104 l6,-3 M82,110 l-7,1" />
+      </g>
+
+      {/* ilerleme yönü */}
+      <path d="M138,72 H168 M164,68 L168,72 L164,76" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// Torna (kademeli silindir + kesici — yandan görünüm)
+function DrawTurning() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-turn" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+
+      {/* dönme ekseni */}
+      <line x1="20" y1="75" x2="184" y2="75" className="stroke-stone-300" strokeWidth="1" strokeDasharray="10 3 2 3" />
+
+      {/* ayna (chuck) */}
+      <rect x="22" y="55" width="24" height="40" className="stroke-stone-400 fill-stone-100" strokeWidth="1.5" />
+      <path d="M30,55 V95 M38,55 V95" className="stroke-stone-300" strokeWidth="1" />
+
+      {/* kademeli silindirik parça */}
+      <path
+        d="M46,62 H118 V54 H156 V96 H118 V88 H46 Z"
+        fill="url(#hatch-turn)"
+        className="stroke-stone-400"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+
+      {/* dönüş yönü — sağ uçta */}
+      <path d="M156,42 A11,11 0 0 1 167,53" className="stroke-amber-600" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M163,39 L168,42 L165,47" className="stroke-amber-600" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* kesici uç — alttan */}
+      <path d="M124,122 L134,97 L146,122 Z" className="stroke-stone-500 fill-white" strokeWidth="1.5" strokeLinejoin="round" />
+      <circle cx="134" cy="97" r="2.2" className="fill-amber-600" />
+
+      {/* talaş — kıvrılan */}
+      <path d="M131,92 q-7,-5 -2,-12" className="stroke-amber-500" strokeWidth="1.5" strokeLinecap="round" />
+
+      {/* çap ölçüsü */}
+      <g className="stroke-stone-400" strokeWidth="1">
+        <line x1="160" y1="54" x2="180" y2="54" />
+        <line x1="160" y1="96" x2="180" y2="96" />
+        <line x1="175" y1="54" x2="175" y2="96" />
+        <path d="M172,58 L175,54 L178,58" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M172,92 L175,96 L178,92" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </svg>
+  );
+}
+
+// Dalma Erozyon (şekilli elektrot bir cebe dalıyor — kesit görünüm)
+function DrawSinkerEDM() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-sink" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+
+      {/* eksen */}
+      <line x1="100" y1="8" x2="100" y2="144" className="stroke-stone-300" strokeWidth="1" strokeDasharray="10 3 2 3" />
+
+      {/* plaka + kaburgalı cep (telin geçemediği kapalı form) */}
+      <path
+        d="M25,88 H80 V104 H96 V96 H104 V104 H120 V88 H175 V132 H25 Z"
+        fill="url(#hatch-sink)"
+        className="stroke-stone-400"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+
+      {/* şekilli elektrot — cebin negatifi, kıvılcım boşluğuyla */}
+      <path
+        d="M82,26 V100 H94 V92 H106 V100 H118 V26 Z"
+        className="stroke-amber-600 fill-white"
+        strokeWidth="1.5"
+        strokeLinejoin="round"
+      />
+
+      {/* ilerleme oku */}
+      <path d="M100,10 V22 M96,18 L100,22 L104,18" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* kıvılcım — boşluk boyunca */}
+      <g className="stroke-amber-500" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M88,101 v3 M112,101 v3 M100,90 v-4 M84,103 l-3,2 M116,103 l3,2" />
+      </g>
+
+      {/* derinlik ölçüsü */}
+      <g className="stroke-stone-400" strokeWidth="1">
+        <line x1="177" y1="88" x2="194" y2="88" />
+        <line x1="177" y1="132" x2="194" y2="132" />
+        <line x1="189" y1="88" x2="189" y2="132" />
+        <path d="M186,92 L189,88 L192,92" strokeLinecap="round" strokeLinejoin="round" />
+        <path d="M186,128 L189,132 L192,128" strokeLinecap="round" strokeLinejoin="round" />
+      </g>
+    </svg>
+  );
+}
+
+// Aile sırasıyla düz dizi: Talaşlı (Freze, Torna) · Erozyon (Delik, Tel, Dalma) · Taşlama
 const capabilityDrawings = [
-  <DrawHoleEDM key={0} />,
-  <DrawWireEDM key={1} />,
-  <DrawGrinding key={2} />,
+  <DrawMilling key={0} />,
+  <DrawTurning key={1} />,
+  <DrawHoleEDM key={2} />,
+  <DrawWireEDM key={3} />,
+  <DrawSinkerEDM key={4} />,
+  <DrawGrinding key={5} />,
 ];
 
 const sectorIcons = [
@@ -1151,40 +1328,40 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             title={t.capabilities.title}
             lead={t.capabilities.lead}
           />
-          {/* Üç adımlı zincir. Her kartta o operasyonun teknik kesiti; kartlar
-              arasındaki ok sırayı görünür kılıyor (Sektörler'den de ayrışır). */}
-          <ol className="mt-12 grid md:grid-cols-3 gap-px bg-stone-200 border border-stone-200">
-            {t.capabilities.items.map((c, i) => (
-              <li key={i} className="relative bg-stone-50 flex flex-col">
-                {/* çizim — blueprint zemin, hero ile aynı dil */}
-                <div className="relative bg-white border-b border-stone-200 aspect-4/3 flex items-center justify-center px-5">
-                  <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
-                  <div className="relative w-full">{capabilityDrawings[i]}</div>
-
-                  {/* zincir oku — son kartta yok */}
-                  {i < t.capabilities.items.length - 1 && (
-                    <span
-                      aria-hidden
-                      className="hidden md:flex absolute top-1/2 -right-3 -translate-y-1/2 z-10 w-6 h-6 items-center justify-center bg-white text-amber-600 text-sm"
-                    >
-                      →
-                    </span>
-                  )}
-                </div>
-
-                <div className="p-6 md:p-7 flex flex-col flex-1">
-                  <div className="flex items-baseline gap-3">
-                    <span className="font-mono text-2xl font-medium text-amber-600 tabular-nums">
-                      {String(i + 1).padStart(2, "0")}
-                    </span>
+          {/* Aile gruplu kabiliyet ızgarası. Artık liner zincir DEĞİL — üç proses
+              ailesi (talaşlı / erozyon / taşlama), hepsi kendi bünyede. Tek ızgara,
+              aile etiketleri tam genişlik ayraç; kart genişlikleri her yerde eşit.
+              Çizimler capabilityDrawings sırasına göre düz index ile eşleşir. */}
+          <div className="mt-12 grid md:grid-cols-3 gap-5">
+            {(() => {
+              let di = 0;
+              const out: React.ReactNode[] = [];
+              t.capabilities.families.forEach((fam, fi) => {
+                out.push(
+                  <div key={`fam-${fi}`} className="md:col-span-3 flex items-center gap-3 first:mt-0 mt-2">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-amber-700">{fam.label}</span>
                     <span aria-hidden className="h-px flex-1 bg-stone-300" />
                   </div>
-                  <h3 className="mt-4 text-lg font-semibold tracking-tight text-stone-900">{c.title}</h3>
-                  <p className="mt-3 text-sm leading-relaxed text-stone-600">{c.desc}</p>
-                </div>
-              </li>
-            ))}
-          </ol>
+                );
+                fam.items.forEach((c, ci) => {
+                  const drawing = capabilityDrawings[di++];
+                  out.push(
+                    <div key={`cap-${fi}-${ci}`} className="flex flex-col border border-stone-200 bg-stone-50">
+                      <div className="relative bg-white border-b border-stone-200 aspect-4/3 flex items-center justify-center px-5">
+                        <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
+                        <div className="relative w-full">{drawing}</div>
+                      </div>
+                      <div className="p-5 md:p-6 flex flex-col flex-1">
+                        <h3 className="text-base font-semibold tracking-tight text-stone-900">{c.title}</h3>
+                        <p className="mt-2 text-sm leading-relaxed text-stone-600">{c.desc}</p>
+                      </div>
+                    </div>
+                  );
+                });
+              });
+              return out;
+            })()}
+          </div>
         </div>
       </section>
 
