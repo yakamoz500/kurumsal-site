@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Car, ShieldCheck, Cpu, Building2, Settings2, Nut } from "lucide-react";
+import { Car, ShieldCheck, Cpu, Building2, Settings2, Nut, Cog, RotateCw, Zap, Disc } from "lucide-react";
 
 // ─── Types & Translations ────────────────────────────────────────────────────
 export type Lang = "TR" | "EN";
@@ -669,6 +669,16 @@ const capabilityDrawings = [
   <DrawGrinding key={5} />,
 ];
 
+// Kart bandındaki küçük ikonlar — capabilityDrawings ile aynı sırada
+const capabilityIcons = [
+  <Cog key={0} className="w-5 h-5" strokeWidth={1.5} />,       // Freze
+  <RotateCw key={1} className="w-5 h-5" strokeWidth={1.5} />,  // Torna
+  <Zap key={2} className="w-5 h-5" strokeWidth={1.5} />,       // Delik Delme EDM
+  <Zap key={3} className="w-5 h-5" strokeWidth={1.5} />,       // Tel Erozyon
+  <Zap key={4} className="w-5 h-5" strokeWidth={1.5} />,       // Dalma Erozyon
+  <Disc key={5} className="w-5 h-5" strokeWidth={1.5} />,      // Taşlama
+];
+
 const sectorIcons = [
   <Settings2  key={0} className="w-6 h-6" strokeWidth={1.5} />, // Makina Yedek Parça
   <Car        key={1} className="w-6 h-6" strokeWidth={1.5} />, // Otomotiv Sanayi
@@ -1063,93 +1073,74 @@ function ProductShowcase({ lang }: { lang: Lang }) {
   );
 }
 
-// ─── Capability Explorer ──────────────────────────────────────────────────────
-// 6 kabiliyeti 6 uzun kart olarak değil, tek interaktif panelde sunar: solda
-// aile gruplu liste (breadth burada görünür), sağda seçili çizim + açıklama.
-// Mobilde ~3 ekrandan ~1 ekrana iner.
-function CapabilityExplorer({ lang }: { lang: Lang }) {
+// ─── Capability Carousel ──────────────────────────────────────────────────────
+// Görsel kart şeridi (aslanmakina tarzı): her kart bir kabiliyet — teknik çizim +
+// ikon + amber başlık bandı. Yatay kaydırma + ok butonları. Fotoğraf yok, o yüzden
+// görsel alan şimdilik çizim; gerçek tezgah fotoğrafı gelince yerine oturur.
+function CapabilityCarousel({ lang }: { lang: Lang }) {
   const t = T[lang].capabilities;
 
-  // Aileleri düz sıraya aç — index capabilityDrawings ile birebir eşleşir.
+  // Aileleri düz sıraya aç — index capabilityDrawings/Icons ile birebir eşleşir.
   const flat = t.families.flatMap((fam) =>
     fam.items.map((c) => ({ family: fam.label, title: c.title, desc: c.desc }))
   );
-  const [sel, setSel] = useState(0);
-  const active = flat[sel];
-  const panelRef = useRef<HTMLDivElement>(null);
 
-  // Mobilde liste uzun; tıklayınca panel ekran dışında kalabiliyor. Sadece dar
-  // ekranda ve yalnızca tıklamada (hover'da değil) paneli nazikçe görünür kıl.
-  const pick = (i: number, scroll: boolean) => {
-    setSel(i);
-    if (scroll && panelRef.current && window.matchMedia("(max-width: 767px)").matches) {
-      const reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-      panelRef.current.scrollIntoView({ behavior: reduce ? "auto" : "smooth", block: "nearest" });
-    }
+  const scroller = useRef<HTMLDivElement>(null);
+  const scrollByCard = (dir: 1 | -1) => {
+    const el = scroller.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    const step = card ? card.getBoundingClientRect().width + 20 : el.clientWidth * 0.8;
+    // behavior:"auto" — smooth, snap konteynerinde bazı motorlarda iptal
+    // ediliyor (animasyon ilerlemiyor). Anında geçiş her yerde güvenilir.
+    el.scrollBy({ left: dir * step, behavior: "auto" });
   };
 
+  const arrowBtn =
+    "w-9 h-9 flex items-center justify-center border border-stone-300 text-stone-600 hover:border-stone-900 hover:text-stone-900 transition-colors";
+
   return (
-    <div className="mt-12 grid md:grid-cols-12 border border-stone-200">
-      {/* Sol — aile gruplu, seçilebilir liste */}
-      <div
-        className="md:col-span-5 md:border-r border-stone-200"
-        role="tablist"
-        aria-orientation="vertical"
-        aria-label={t.title}
-      >
-        {(() => {
-          let idx = 0;
-          return t.families.map((fam, fi) => (
-            <div key={fi} className="border-b border-stone-100 last:border-b-0">
-              <div className="px-5 pt-4 pb-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-amber-700">
-                {fam.label}
-              </div>
-              {fam.items.map((c) => {
-                const my = idx++;
-                const on = my === sel;
-                return (
-                  <button
-                    key={c.title}
-                    role="tab"
-                    aria-selected={on}
-                    onClick={() => pick(my, true)}
-                    onMouseEnter={() => pick(my, false)}
-                    className={`w-full text-left flex items-center gap-3 px-5 py-3 border-l-2 transition-colors ${
-                      on
-                        ? "border-amber-500 bg-stone-50"
-                        : "border-transparent hover:bg-stone-50/70"
-                    }`}
-                  >
-                    <span className={`text-sm font-medium ${on ? "text-stone-900" : "text-stone-600"}`}>
-                      {c.title}
-                    </span>
-                    <span
-                      aria-hidden
-                      className={`ml-auto text-amber-600 text-sm transition-opacity ${on ? "opacity-100" : "opacity-0"}`}
-                    >
-                      →
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-          ));
-        })()}
+    <div className="mt-10">
+      {/* Ok navigasyonu — referanstaki gibi */}
+      <div className="flex justify-end gap-2 mb-4">
+        <button type="button" onClick={() => scrollByCard(-1)} aria-label="Önceki" className={arrowBtn}>
+          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
+        </button>
+        <button type="button" onClick={() => scrollByCard(1)} aria-label="Sonraki" className={arrowBtn}>
+          <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M9 6l6 6-6 6" /></svg>
+        </button>
       </div>
 
-      {/* Sağ — seçili yeteneğin büyük çizimi + açıklaması */}
-      <div ref={panelRef} className="md:col-span-7 flex flex-col bg-white scroll-mt-24" role="tabpanel" aria-live="polite">
-        <div className="relative border-b border-stone-200 bg-white h-56 md:h-72 flex items-center justify-center px-8">
-          <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
-          <div className="relative w-full max-w-xs">{capabilityDrawings[sel]}</div>
-        </div>
-        <div className="p-6 md:p-8">
-          <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-amber-700">
-            {active.family}
-          </span>
-          <h3 className="mt-2 text-xl font-semibold tracking-tight text-stone-900">{active.title}</h3>
-          <p className="mt-3 text-sm leading-relaxed text-stone-600">{active.desc}</p>
-        </div>
+      <div
+        ref={scroller}
+        className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 -mx-6 px-6 md:mx-0 md:px-0"
+        style={{ scrollbarWidth: "thin" }}
+      >
+        {flat.map((c, i) => (
+          <article
+            key={c.title}
+            data-card
+            className="group snap-start shrink-0 w-64 sm:w-72 flex flex-col border border-stone-200 bg-white overflow-hidden"
+          >
+            {/* Görsel alan — çizim (foto gelince buraya) */}
+            <div className="relative h-60 bg-stone-50 flex items-center justify-center px-7">
+              <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
+              <div className="absolute top-4 left-4 text-amber-600">{capabilityIcons[i]}</div>
+              <div className="relative w-full max-w-[180px]">{capabilityDrawings[i]}</div>
+            </div>
+
+            {/* Amber başlık bandı — referansın turuncu bandının bizim karşılığı */}
+            <div className="bg-amber-600 px-5 pt-4 pb-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-amber-100">{c.family}</p>
+              <h3 className="mt-0.5 text-white text-lg font-semibold tracking-tight">{c.title}</h3>
+            </div>
+
+            {/* Açıklama — açık zeminde okunaklı */}
+            <div className="px-5 py-4 flex-1">
+              <p className="text-sm leading-relaxed text-stone-600">{c.desc}</p>
+            </div>
+          </article>
+        ))}
       </div>
     </div>
   );
@@ -1420,7 +1411,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             title={t.capabilities.title}
             lead={t.capabilities.lead}
           />
-          <CapabilityExplorer lang={defaultLang} />
+          <CapabilityCarousel lang={defaultLang} />
         </div>
       </section>
 
