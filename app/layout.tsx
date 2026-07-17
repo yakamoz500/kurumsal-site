@@ -94,7 +94,8 @@ const jsonLd = {
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Delik Delme EDM" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Taşlama" } },
           { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Pres Baskı" } },
-          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Montaj & İmalat" } }
+          { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Montaj & İmalat" } },
+          { "@type": "Offer", "itemOffered": { "@type": "Product", "name": "Polis Kelepçesi", "description": "Tasarımından seri üretimine kadar kendi bünyemizde ürettiğimiz kendi ürünümüz." } }
         ]
       }
     },

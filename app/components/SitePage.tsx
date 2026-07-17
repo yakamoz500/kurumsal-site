@@ -58,8 +58,23 @@ const T = {
         { title: "Taşlama", desc: "Yüzey taşlama ile kalıp plakalarının düzlemini ve kalınlık ölçüsünü hassaslaştırıyoruz. Kalıbın düzgün kapanması ve elemanların birbirine oturması bu adıma bağlı." },
       ],
     },
-    services: {
+    product: {
       index: "03",
+      subtitle: "Kendi Ürünümüz",
+      title: "Polis Kelepçesi",
+      lead: "Kalıpçıların çoğu takımı yapar ve orada bırakır. Biz bir ürünü uçtan uca kendimiz çıkarıyoruz.",
+      p1: "Polis kelepçesini tasarımından seri üretimine kadar bu atölyede üretiyoruz. Zorlu bir parça: dayanım, kilit mekanizmasının hassasiyeti ve emniyetli çalışma aynı anda tutmak zorunda.",
+      p2: "Kalıbını da, baskısını da, montajını da kendimiz yaptığımız için toleransı süreç boyunca biz kontrol ediyoruz. Sayfanın başında yazan “uçtan uca” ifadesinin kanıtı bu.",
+      specs: [
+        { k: "Ürün", v: "Polis kelepçesi" },
+        { k: "Üretim", v: "Seri üretim" },
+        { k: "Süreç", v: "Tasarım · Kalıp · Pres · Montaj" },
+        { k: "Kapsam", v: "Tamamı kendi bünyemizde" },
+        { k: "Satış", v: "Toptancı üzerinden dağıtım" },
+      ],
+    },
+    services: {
+      index: "04",
       subtitle: "Hizmet Verdiğimiz Alanlar",
       title: "Sektörlerimiz",
       lead: "Farklı sektörlerin tolerans, adet ve dayanım gereksinimlerine göre çözüm geliştiriyoruz.",
@@ -73,7 +88,7 @@ const T = {
       ],
     },
     about: {
-      index: "04",
+      index: "05",
       subtitle: "Biz Kimiz",
       title: "Hakkımızda",
       p1: "1991 yılından bu yana metal işleme sektöründe edindiğimiz tecrübe ve güvenle, metal kesme kalıbı üretiminde teknolojiyi, mühendisliği ve kaliteyi bir araya getiren öncü bir marka olmak.",
@@ -105,7 +120,7 @@ const T = {
       serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Savunma Sanayi"],
     },
     quote: {
-      index: "05",
+      index: "06",
       subtitle: "Size Özel Çözümler",
       title: "Teklif Al",
       lead: "Teknik resminizi veya numunenizi paylaşın; kalıp tipi, adet ve tolerans ihtiyacınıza göre size dönelim.",
@@ -179,8 +194,23 @@ const T = {
         { title: "Surface Grinding", desc: "Surface grinding refines the flatness and thickness of die plates. Whether the die closes properly and its components seat against each other depends on this step." },
       ],
     },
-    services: {
+    product: {
       index: "03",
+      subtitle: "Our Own Product",
+      title: "Police Handcuffs",
+      lead: "Most die makers build the tool and stop there. We take one product end to end ourselves.",
+      p1: "Police handcuffs are designed and series-produced in this workshop. It is a demanding part: strength, lock precision and safe operation all have to hold at the same time.",
+      p2: "Because we make the die, run the press and assemble it ourselves, we control the tolerance across the whole process. This is the proof behind the “end to end” claim at the top of this page.",
+      specs: [
+        { k: "Product", v: "Police handcuffs" },
+        { k: "Production", v: "Series production" },
+        { k: "Process", v: "Design · Die · Press · Assembly" },
+        { k: "Scope", v: "Entirely in-house" },
+        { k: "Channel", v: "Distributed via wholesaler" },
+      ],
+    },
+    services: {
+      index: "04",
       subtitle: "Industries We Serve",
       title: "Our Sectors",
       lead: "We develop solutions according to the tolerance, volume and strength requirements of different industries.",
@@ -194,7 +224,7 @@ const T = {
       ],
     },
     about: {
-      index: "04",
+      index: "05",
       subtitle: "Who We Are",
       title: "About Us",
       p1: "With the experience and trust we have gained in the metal processing industry since 1991, we aim to be a pioneering brand that brings together technology, engineering and quality in metal cutting die production.",
@@ -226,7 +256,7 @@ const T = {
       serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Defense Industry"],
     },
     quote: {
-      index: "05",
+      index: "06",
       subtitle: "Custom Solutions",
       title: "Get a Quote",
       lead: "Share your technical drawing or sample; we will get back to you based on your mold type, volume and tolerance requirements.",
@@ -1158,8 +1188,41 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
         </div>
       </section>
 
+      {/* ── KENDİ ÜRÜNÜMÜZ — "uçtan uca" iddiasının kanıtı ── */}
+      <section id="kendi-urunumuz" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
+        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+          <div className="lg:col-span-6">
+            <SectionHead
+              index={t.product.index}
+              subtitle={t.product.subtitle}
+              title={t.product.title}
+              lead={t.product.lead}
+            />
+            <div className="mt-6 space-y-4 max-w-xl">
+              <p className="text-stone-600 leading-relaxed">{t.product.p1}</p>
+              <p className="text-stone-600 leading-relaxed">{t.product.p2}</p>
+            </div>
+          </div>
+
+          {/* Künye — fotoğraf gelene kadar bölümün ağırlığını bu taşıyor */}
+          <div className="lg:col-span-6 lg:pt-2">
+            <div className="relative border border-stone-300 p-6 md:p-8 bg-stone-50">
+              <CornerTicks className="border-amber-500" />
+              <dl className="divide-y divide-stone-200">
+                {t.product.specs.map((s) => (
+                  <div key={s.k} className="flex items-baseline justify-between gap-6 py-3.5 first:pt-0 last:pb-0">
+                    <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-stone-400 shrink-0">{s.k}</dt>
+                    <dd className="text-sm font-medium text-stone-900 text-right">{s.v}</dd>
+                  </div>
+                ))}
+              </dl>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ── SEKTÖRLER ── */}
-      <section id="hizmetler" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
+      <section id="hizmetler" className="scroll-mt-24 py-20 md:py-28 px-6 bg-stone-50 border-y border-stone-200">
         <div className="max-w-6xl mx-auto">
           <SectionHead
             index={t.services.index}
@@ -1188,7 +1251,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── HAKKIMIZDA ── */}
-      <section id="hakkimizda" className="scroll-mt-24 py-20 md:py-28 px-6 bg-stone-50 border-y border-stone-200">
+      <section id="hakkimizda" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Sol — anlatı */}
           <div className="lg:col-span-7">
