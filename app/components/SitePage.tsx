@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Car, ShieldCheck, Cpu, Building2, Settings2, Nut, Cog, RotateCw, Zap, Disc } from "lucide-react";
+import { Car, ShieldCheck, Cpu, Building2, Settings2, Nut, Cog, RotateCw, Zap, Disc, Scissors, Hammer, Spline, Circle, Flame } from "lucide-react";
 
 // ─── Types & Translations ────────────────────────────────────────────────────
 export type Lang = "TR" | "EN";
@@ -51,7 +51,7 @@ const T = {
       index: "02",
       subtitle: "İmalat Yeteneklerimiz",
       title: "Yeteneklerimiz",
-      lead: "Bir kalıbı ya da parçayı baştan sona işlemek farklı tezgahlar ister — talaşlı imalattan kıvılcım erozyonuna, taşlamaya kadar. Hepsini kendi bünyemizde topladık; torna ve freze işlerini ayrı hizmet olarak da alıyoruz.",
+      lead: "Ham malzemeyi kesmekten şekillendirmeye, talaşlı işlemeden erozyona, taşlamadan kaynağa kadar — bir parçayı baştan sona çıkaracak tezgahları tek çatı altında topladık. Her birini ayrı hizmet olarak da veriyoruz.",
       families: [
         {
           label: "Talaşlı İmalat",
@@ -72,6 +72,28 @@ const T = {
           label: "Taşlama",
           items: [
             { title: "Yüzey Taşlama", desc: "Kalıp plakalarının düzlemini ve kalınlık ölçüsünü hassaslaştırıyoruz. Kalıbın düzgün kapanması ve elemanların birbirine oturması buna bağlı." },
+          ],
+        },
+        {
+          label: "Kesme",
+          items: [
+            { title: "Şerit Kesme Testere", desc: "Ham çubuk, lama ve profili istenen boyda kesiyoruz. Talaşlı işleme ve pres öncesi malzeme hazırlığı buradan başlar." },
+            { title: "Profil Kesme Testere", desc: "Profil, boru ve kutu kesitlerini düz veya açılı kesiyoruz. Konstrüksiyon ve montaj parçaları için ölçülü kesim sağlar." },
+            { title: "Şerit Dekupaj Testere", desc: "Dikey şerit testere ile demir, çelik, profil ve boru gibi sert malzemeleri kesiyoruz; düz kesimin yanı sıra kontur takibi de yapabiliyoruz." },
+          ],
+        },
+        {
+          label: "Şekillendirme",
+          items: [
+            { title: "Eksantrik Pres", desc: "15–60 ton aralığında birden fazla eksantrik presimizle sac parçaları kesiyor, deliyor, büküyor ve şekillendiriyoruz. Kendi kalıbınızla seri baskı da bu preslerde alınır." },
+            { title: "Rolform", desc: "Sac şeridi ardışık merdanelerden geçirerek sürekli profil haline getiriyoruz. Uzun ve sabit kesitli parçalar için pres yerine rolform daha verimlidir." },
+          ],
+        },
+        {
+          label: "Birleştirme",
+          items: [
+            { title: "Perçin", desc: "Parçaları perçinle kalıcı olarak birleştiriyoruz. Kaynak istenmeyen ya da farklı malzemelerin bir arada tutulduğu montajlarda tercih edilir." },
+            { title: "Gaz Altı Kaynak", desc: "Gazaltı (MIG/MAG) kaynağıyla çelik parçaları birleştiriyoruz. Montaj ve konstrüksiyon işlerini uçtan uca kendi bünyemizde tamamlıyoruz." },
           ],
         },
       ],
@@ -159,7 +181,7 @@ const T = {
       error: "Talebiniz gönderilemedi. Lütfen tekrar deneyin ya da WhatsApp'tan yazın — mesajınız hazır olarak açılacak.",
       errorCta: "WhatsApp'tan gönder",
       rateLimit: "Çok fazla deneme yaptınız. Lütfen bir dakika bekleyip tekrar deneyin.",
-      services: ["Progresif Kalıp", "Kesme Kalıbı", "Parça Üretimi (Pres Baskı)", "Freze", "Torna", "CNC Tel Erozyon", "Delik Delme EDM", "Dalma Erozyon", "Taşlama", "Montaj & İmalat", "Diğer"],
+      services: ["Progresif Kalıp", "Kesme Kalıbı", "Parça Üretimi (Pres Baskı)", "Freze", "Torna", "CNC Tel Erozyon", "Delik Delme EDM", "Dalma Erozyon", "Taşlama", "Şerit / Profil Kesim", "Rolform", "Perçin", "Gaz Altı Kaynak", "Montaj & İmalat", "Diğer"],
       navLabel: "Teklif Al",
     },
   },
@@ -205,7 +227,7 @@ const T = {
       index: "02",
       subtitle: "Manufacturing Capabilities",
       title: "Our Capabilities",
-      lead: "Machining a die — or a part — end to end takes different machines: from chip machining to spark erosion to grinding. We've gathered them all under one roof, and we also take on turning and milling as standalone work.",
+      lead: "From cutting raw stock to forming, from machining to EDM, from grinding to welding — we've gathered the machines to take a part end to end under one roof. Each is available as a standalone service too.",
       families: [
         {
           label: "Machining",
@@ -226,6 +248,28 @@ const T = {
           label: "Grinding",
           items: [
             { title: "Surface Grinding", desc: "Refines the flatness and thickness of die plates. Whether the die closes properly and its components seat against each other depends on this." },
+          ],
+        },
+        {
+          label: "Cutting",
+          items: [
+            { title: "Band Saw", desc: "We cut raw bar, flat and profile stock to length. Material prep before machining and pressing starts here." },
+            { title: "Profile Cut-off Saw", desc: "We cut profiles, pipe and box sections straight or mitred — sized cutting for structural and assembly parts." },
+            { title: "Vertical Band Saw", desc: "On our vertical band saw we cut hard material — iron, steel, profile and pipe — following a contour as well as straight cuts." },
+          ],
+        },
+        {
+          label: "Forming",
+          items: [
+            { title: "Eccentric Press", desc: "With several eccentric presses from 15 to 60 tons we blank, punch, bend and form sheet parts. Series pressing with your own die runs on these too." },
+            { title: "Roll Forming", desc: "We roll a metal strip through successive rollers into a continuous profile. For long, constant-section parts, roll forming beats pressing on efficiency." },
+          ],
+        },
+        {
+          label: "Joining",
+          items: [
+            { title: "Riveting", desc: "We join parts permanently with rivets — preferred where welding is unwanted or dissimilar materials must be held together." },
+            { title: "MIG/MAG Welding", desc: "We join steel parts by gas metal arc (MIG/MAG) welding, completing assembly and fabrication end to end in-house." },
           ],
         },
       ],
@@ -313,7 +357,7 @@ const T = {
       error: "Your request could not be sent. Please try again, or send it via WhatsApp — your message will open ready to go.",
       errorCta: "Send via WhatsApp",
       rateLimit: "Too many attempts. Please wait a minute and try again.",
-      services: ["Contract Manufacturing (stamped parts)", "Progressive Die", "Cutting Die", "Milling", "Turning", "CNC Wire EDM", "Hole Drilling EDM", "Sinker EDM", "Surface Grinding", "Assembly & Manufacturing", "Other"],
+      services: ["Contract Manufacturing (stamped parts)", "Progressive Die", "Cutting Die", "Milling", "Turning", "CNC Wire EDM", "Hole Drilling EDM", "Sinker EDM", "Surface Grinding", "Sawing (band / profile)", "Roll Forming", "Riveting", "MIG/MAG Welding", "Assembly & Manufacturing", "Other"],
       navLabel: "Get Quote",
     },
   },
@@ -659,7 +703,195 @@ function DrawSinkerEDM() {
   );
 }
 
-// Aile sırasıyla düz dizi: Talaşlı (Freze, Torna) · Erozyon (Delik, Tel, Dalma) · Taşlama
+// Şerit Kesme Testere (yatay — boyuna kesim)
+function DrawBandSaw() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-band" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+      {/* mengene tablası */}
+      <rect x="18" y="112" width="164" height="12" className="stroke-stone-400 fill-stone-100" strokeWidth="1.5" />
+      {/* çubuk malzeme (kesit) */}
+      <rect x="55" y="80" width="90" height="32" fill="url(#hatch-band)" className="stroke-stone-400" strokeWidth="1.5" />
+      {/* kerf — kesik hattı */}
+      <line x1="100" y1="80" x2="100" y2="112" className="stroke-white" strokeWidth="2" />
+      {/* şerit testere (yatay bıçak) */}
+      <line x1="20" y1="94" x2="180" y2="94" className="stroke-amber-600" strokeWidth="2" />
+      <path d="M40,94 v3 M55,94 v3 M70,94 v3 M130,94 v3 M145,94 v3 M160,94 v3" className="stroke-amber-600" strokeWidth="1" />
+      {/* bıçak tekerleri */}
+      <circle cx="24" cy="94" r="7" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+      <circle cx="176" cy="94" r="7" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+      {/* iniş yönü */}
+      <path d="M100,58 V70 M96,66 L100,70 L104,66" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// Profil Kesme Testere (daire testere)
+function DrawProfileSaw() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-prof" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+      {/* kutu profil kesiti */}
+      <path d="M35,100 H150 V120 H35 Z M45,108 H140 V114 H45 Z" fill="url(#hatch-prof)" className="stroke-stone-400" strokeWidth="1.5" strokeLinejoin="round" fillRule="evenodd" />
+      {/* daire testere */}
+      <circle cx="108" cy="66" r="40" className="stroke-amber-600 fill-white" strokeWidth="1.5" />
+      <circle cx="108" cy="66" r="6" className="stroke-stone-400" strokeWidth="1.5" />
+      {/* dişler */}
+      <g className="stroke-amber-600" strokeWidth="1">
+        <path d="M108,26 v-5 M134,40 l4,-3 M148,66 h5 M134,92 l4,3 M82,40 l-4,-3 M68,66 h-5 M82,92 l-4,3" />
+      </g>
+      {/* dönüş yönü */}
+      <path d="M108,34 A32,32 0 0 1 140,66" className="stroke-amber-600" strokeWidth="1.5" strokeLinecap="round" />
+      <path d="M136,62 L140,66 L136,70" className="stroke-amber-600" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* kıvılcım */}
+      <g className="stroke-amber-500" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M100,102 l-6,4 M114,102 l6,4 M108,104 v6" />
+      </g>
+    </svg>
+  );
+}
+
+// Şerit Dekupaj Testere (dikey — kontur kesimi)
+function DrawContourSaw() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-cont" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+      {/* tabla */}
+      <rect x="20" y="118" width="160" height="10" className="stroke-stone-400 fill-stone-100" strokeWidth="1.5" />
+      {/* üst kılavuz */}
+      <rect x="94" y="14" width="12" height="10" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+      {/* iş parçası — kontur kesikli */}
+      <path d="M32,90 H92 Q80,104 92,118 H32 Z" fill="url(#hatch-cont)" className="stroke-stone-400" strokeWidth="1.5" strokeLinejoin="round" />
+      {/* dikey şerit bıçak */}
+      <line x1="100" y1="24" x2="100" y2="118" className="stroke-amber-600" strokeWidth="2" />
+      <path d="M100,34 h3 M100,46 h3 M100,58 h3 M100,70 h3 M100,82 h3 M100,94 h3 M100,106 h3" className="stroke-amber-600" strokeWidth="1" />
+      {/* besleme yönü */}
+      <path d="M22,104 H44 M40,100 L44,104 L40,108" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      {/* kıvılcım/talaş */}
+      <g className="stroke-amber-500" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M96,104 l-4,2 M96,110 l-4,1" />
+      </g>
+    </svg>
+  );
+}
+
+// Eksantrik Pres
+function DrawPress() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-press" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+      {/* eksantrik krank */}
+      <circle cx="100" cy="20" r="11" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+      <circle cx="100" cy="16" r="2.5" className="fill-amber-600" />
+      <line x1="100" y1="18" x2="100" y2="40" className="stroke-stone-400" strokeWidth="1.5" />
+      {/* koç / zımba */}
+      <rect x="86" y="40" width="28" height="46" className="stroke-amber-600 fill-white" strokeWidth="1.5" />
+      {/* sac şerit */}
+      <rect x="30" y="88" width="140" height="8" fill="url(#hatch-press)" className="stroke-stone-400" strokeWidth="1.5" />
+      {/* alt kalıp + boşluk */}
+      <path d="M45,96 H90 V108 H110 V96 H155 V122 H45 Z" fill="url(#hatch-press)" className="stroke-stone-400" strokeWidth="1.5" strokeLinejoin="round" />
+      {/* baskı kuvveti */}
+      <path d="M100,44 v-0 M79,58 h-14 M65,54 L61,58 L65,62" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <path d="M135,58 h14 M149,54 L153,58 L149,62" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// Rolform (ardışık merdaneler)
+function DrawRollForm() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      {/* merdane çiftleri */}
+      {[48, 100, 152].map((cx, i) => (
+        <g key={i}>
+          <circle cx={cx} cy="52" r="15" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+          <circle cx={cx} cy="98" r="15" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+          <circle cx={cx} cy="52" r="2.5" className="fill-stone-400" />
+          <circle cx={cx} cy="98" r="2.5" className="fill-stone-400" />
+        </g>
+      ))}
+      {/* dönüş yönleri (ilk çift) */}
+      <path d="M48,34 A6,6 0 0 1 56,40" className="stroke-amber-600" strokeWidth="1.5" strokeLinecap="round" />
+      {/* şerit — düz girip profilleşerek çıkıyor */}
+      <path d="M20,75 H48 M48,75 H100 M100,75 H152 M152,75 H182" className="stroke-amber-600" strokeWidth="2" strokeLinecap="round" />
+      {/* profilleşme: çıkışta kenarlar yukarı bükülüyor (kesit ipucu) */}
+      <path d="M170,75 v-10 M182,75 v-10" className="stroke-amber-600" strokeWidth="2" strokeLinecap="round" />
+      <path d="M26,75 v6 M38,75 v6" className="stroke-amber-600" strokeWidth="2" strokeOpacity="0.4" strokeLinecap="round" />
+      {/* besleme yönü */}
+      <path d="M22,120 H46 M42,116 L46,120 L42,124" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// Perçin
+function DrawRivet() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-rivet" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+      {/* eksen */}
+      <line x1="100" y1="10" x2="100" y2="140" className="stroke-stone-300" strokeWidth="1" strokeDasharray="10 3 2 3" />
+      {/* üst ve alt sac (iki katman) */}
+      <rect x="40" y="70" width="120" height="16" fill="url(#hatch-rivet)" className="stroke-stone-400" strokeWidth="1.5" />
+      <rect x="40" y="86" width="120" height="16" fill="url(#hatch-rivet)" className="stroke-stone-400" strokeWidth="1.5" />
+      {/* perçin — gövde + baş + kapatılmış kuyruk */}
+      <path d="M88,64 Q100,56 112,64 L108,70 H92 Z" className="stroke-amber-600 fill-white" strokeWidth="1.5" strokeLinejoin="round" />
+      <rect x="92" y="70" width="16" height="32" className="stroke-amber-600 fill-white" strokeWidth="1.5" />
+      <path d="M88,102 Q100,112 112,102 L108,102 H92 Z" className="stroke-amber-600 fill-white" strokeWidth="1.5" strokeLinejoin="round" />
+      {/* baskı yönü */}
+      <path d="M100,40 V52 M96,48 L100,52 L104,48" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// Gaz Altı Kaynak (MIG/MAG)
+function DrawWelding() {
+  return (
+    <svg viewBox="0 0 200 150" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-weld" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+      {/* iki parça — küt ek */}
+      <rect x="24" y="98" width="72" height="26" fill="url(#hatch-weld)" className="stroke-stone-400" strokeWidth="1.5" />
+      <rect x="104" y="98" width="72" height="26" fill="url(#hatch-weld)" className="stroke-stone-400" strokeWidth="1.5" />
+      {/* tamamlanan kaynak dikişi */}
+      <g className="stroke-amber-600" strokeWidth="2" strokeLinecap="round" fill="none">
+        <path d="M30,98 q5,-5 10,0 q5,-5 10,0 q5,-5 10,0 q5,-5 10,0" />
+      </g>
+      {/* torç (açılı) */}
+      <path d="M150,34 L128,88 L138,92 L160,38 Z" className="stroke-stone-500 fill-white" strokeWidth="1.5" strokeLinejoin="round" />
+      {/* tel */}
+      <line x1="131" y1="90" x2="100" y2="97" className="stroke-stone-400" strokeWidth="1.5" />
+      {/* ark */}
+      <g className="stroke-amber-500" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M100,90 v6 M94,92 l-4,3 M106,92 l4,3 M100,84 v-4" />
+      </g>
+    </svg>
+  );
+}
+
+// Aile sırasıyla düz dizi — mevcut 6 önde, yeni fabrikasyon yetenekleri arkada
 const capabilityDrawings = [
   <DrawMilling key={0} />,
   <DrawTurning key={1} />,
@@ -667,16 +899,30 @@ const capabilityDrawings = [
   <DrawWireEDM key={3} />,
   <DrawSinkerEDM key={4} />,
   <DrawGrinding key={5} />,
+  <DrawBandSaw key={6} />,
+  <DrawProfileSaw key={7} />,
+  <DrawContourSaw key={8} />,
+  <DrawPress key={9} />,
+  <DrawRollForm key={10} />,
+  <DrawRivet key={11} />,
+  <DrawWelding key={12} />,
 ];
 
 // Kart bandındaki küçük ikonlar — capabilityDrawings ile aynı sırada
 const capabilityIcons = [
-  <Cog key={0} className="w-5 h-5" strokeWidth={1.5} />,       // Freze
-  <RotateCw key={1} className="w-5 h-5" strokeWidth={1.5} />,  // Torna
-  <Zap key={2} className="w-5 h-5" strokeWidth={1.5} />,       // Delik Delme EDM
-  <Zap key={3} className="w-5 h-5" strokeWidth={1.5} />,       // Tel Erozyon
-  <Zap key={4} className="w-5 h-5" strokeWidth={1.5} />,       // Dalma Erozyon
-  <Disc key={5} className="w-5 h-5" strokeWidth={1.5} />,      // Taşlama
+  <Cog key={0} className="w-5 h-5" strokeWidth={1.5} />,        // Freze
+  <RotateCw key={1} className="w-5 h-5" strokeWidth={1.5} />,   // Torna
+  <Zap key={2} className="w-5 h-5" strokeWidth={1.5} />,        // Delik Delme EDM
+  <Zap key={3} className="w-5 h-5" strokeWidth={1.5} />,        // Tel Erozyon
+  <Zap key={4} className="w-5 h-5" strokeWidth={1.5} />,        // Dalma Erozyon
+  <Disc key={5} className="w-5 h-5" strokeWidth={1.5} />,       // Taşlama
+  <Scissors key={6} className="w-5 h-5" strokeWidth={1.5} />,   // Şerit Kesme Testere
+  <Scissors key={7} className="w-5 h-5" strokeWidth={1.5} />,   // Profil Kesme Testere
+  <Scissors key={8} className="w-5 h-5" strokeWidth={1.5} />,   // Şerit Dekupaj Testere
+  <Hammer key={9} className="w-5 h-5" strokeWidth={1.5} />,     // Eksantrik Pres
+  <Spline key={10} className="w-5 h-5" strokeWidth={1.5} />,    // Rolform
+  <Circle key={11} className="w-5 h-5" strokeWidth={1.5} />,    // Perçin
+  <Flame key={12} className="w-5 h-5" strokeWidth={1.5} />,     // Gaz Altı Kaynak
 ];
 
 const sectorIcons = [
