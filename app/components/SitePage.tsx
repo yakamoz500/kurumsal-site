@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Car, ShieldCheck, Cpu, Building2, Settings2, Nut, Cog, RotateCw, Zap, Disc, Scissors, Hammer, Spline, Circle, Flame } from "lucide-react";
+import { Car, ShieldCheck, Cpu, Building2, Settings2, Nut, Cog, RotateCw, Zap, Disc, Scissors, Hammer, Spline, Circle, Flame, Sofa } from "lucide-react";
 
 // ─── Types & Translations ────────────────────────────────────────────────────
 export type Lang = "TR" | "EN";
@@ -124,6 +124,7 @@ const T = {
         { title: "Hırdavat", desc: "Civata, somun, klips ve benzeri hırdavat ürünlerin kalıpla üretimine yönelik çözümler geliştiriyoruz." },
         { title: "İnşaat", desc: "İnşaat sektörüne yönelik metal profil, bağlantı elemanı ve özel parça üretimi gerçekleştiriyoruz." },
         { title: "Elektrik-Elektronik Parça", desc: "Elektrik panelleri, bağlantı elemanları ve elektronik muhafazalar için hassas sac metal kalıpları üretiyoruz." },
+        { title: "Mobilya", desc: "Mobilya sektörüne metal donanım üretiyoruz: sihirli sehpa mekanizması, halatlı masa rayı, zigon tekeri ve masa köşe bağlantısı gibi parçaları kalıptan seri baskıya kadar kendi bünyemizde çıkarıyoruz." },
         { title: "Savunma Sanayi", desc: "Yüksek dayanım ve hassasiyet gerektiren savunma sanayi bileşenlerinin üretiminde güvenilir çözüm ortağınızız." },
       ],
     },
@@ -157,7 +158,7 @@ const T = {
         { label: "Ürünlerimiz", href: "#urunlerimiz" },
         { label: "Sektörler", href: "#hizmetler" },
       ],
-      serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Savunma Sanayi"],
+      serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Mobilya", "Savunma Sanayi"],
     },
     quote: {
       index: "06",
@@ -300,6 +301,7 @@ const T = {
         { title: "Hardware", desc: "We develop solutions for the mold-based production of hardware products such as bolts, nuts, clips and similar items." },
         { title: "Construction", desc: "We produce metal profiles, fasteners and custom parts for the construction sector." },
         { title: "Electrical-Electronic Parts", desc: "We produce precision sheet metal molds for electrical panels, connectors and electronic enclosures." },
+        { title: "Furniture", desc: "We produce metal hardware for the furniture industry: lift-top coffee table mechanisms, cable-synchronised extension table slides, nesting-table casters and corner brackets — from die to series, in-house." },
         { title: "Defense Industry", desc: "We are your reliable solution partner in the production of defense industry components requiring high strength and precision." },
       ],
     },
@@ -333,7 +335,7 @@ const T = {
         { label: "Products", href: "#urunlerimiz" },
         { label: "Sectors", href: "#hizmetler" },
       ],
-      serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Defense Industry"],
+      serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Furniture", "Defense Industry"],
     },
     quote: {
       index: "06",
@@ -931,7 +933,8 @@ const sectorIcons = [
   <Nut        key={2} className="w-6 h-6" strokeWidth={1.5} />, // Hırdavat
   <Building2  key={3} className="w-6 h-6" strokeWidth={1.5} />, // İnşaat
   <Cpu        key={4} className="w-6 h-6" strokeWidth={1.5} />, // Elektrik-Elektronik
-  <ShieldCheck key={5} className="w-6 h-6" strokeWidth={1.5} />, // Savunma Sanayi
+  <Sofa       key={5} className="w-6 h-6" strokeWidth={1.5} />, // Mobilya
+  <ShieldCheck key={6} className="w-6 h-6" strokeWidth={1.5} />, // Savunma Sanayi
 ];
 
 // ─── Shared bits ──────────────────────────────────────────────────────────────
