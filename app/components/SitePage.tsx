@@ -1100,7 +1100,7 @@ function Navbar({ lang }: { lang: Lang }) {
           : "bg-white border-transparent py-5"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 flex items-center gap-8">
+      <div className="max-w-6xl mx-auto px-6 flex items-center gap-4">
         {/* Logo — sol */}
         <a href={lang === "EN" ? "/en" : "/"} className="flex items-center gap-1.5 shrink-0">
           <Image src="/logo2.png" alt="Özhan Metal Logo" width={36} height={36} className="object-contain" />
@@ -1109,19 +1109,19 @@ function Navbar({ lang }: { lang: Lang }) {
         </a>
 
         {/* Desktop Nav — orta */}
-        <nav className="hidden md:flex flex-1 items-center justify-center gap-1">
+        <nav className="hidden lg:flex flex-1 items-center justify-center">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
               onClick={() => setActive(link.href)}
-              className={`relative px-3 py-2 text-[13px] font-medium transition-colors group ${
-                active === link.href ? "text-stone-900" : "text-stone-500 hover:text-stone-900"
+              className={`relative whitespace-nowrap px-2 py-2 text-sm font-medium transition-colors group ${
+                active === link.href ? "text-stone-900" : "text-stone-600 hover:text-stone-900"
               }`}
             >
               {link.label}
               <span
-                className={`absolute bottom-0.5 left-3 right-3 h-0.5 bg-amber-500 transition-transform origin-left duration-300 ${
+                className={`absolute bottom-0.5 left-2 right-2 h-0.5 bg-amber-500 transition-transform origin-left duration-300 ${
                   active === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                 }`}
               />
@@ -1133,18 +1133,21 @@ function Navbar({ lang }: { lang: Lang }) {
             Sosyal medya buradan kaldırıldı: footer'da zaten açıkta duruyordu ve
             header'ın en değerli alanını bir tekrar için harcıyordu. Yerine, B2B'de
             asıl dönüşüm olan telefon geldi. */}
-        <div className="hidden md:flex items-center gap-5 shrink-0">
+        <div className="hidden lg:flex items-center gap-4 shrink-0">
+          {/* Dar masaüstünde (1280px altı) numara metni gizlenir, ikon kalır —
+              yoksa "Teklif Al" ve TR/EN ekrandan taşıyordu. */}
           <a
             href={PHONE_HREF}
+            aria-label={PHONE_DISPLAY[lang]}
             className="group flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors"
           >
             <IconPhone className="w-4 h-4 text-stone-400 group-hover:text-amber-600 transition-colors" />
-            <span className="font-mono text-[13px] tabular-nums">{PHONE_DISPLAY[lang]}</span>
+            <span className="hidden xl:inline font-mono text-sm tabular-nums">{PHONE_DISPLAY[lang]}</span>
           </a>
 
           <a
             href="#teklif"
-            className="bg-stone-900 hover:bg-amber-600 text-white font-medium px-4 py-2 text-[13px] transition-colors"
+            className="whitespace-nowrap bg-stone-900 hover:bg-amber-600 text-white font-medium px-4 py-2 text-sm transition-colors"
           >
             {t.quote}
           </a>
@@ -1157,7 +1160,7 @@ function Navbar({ lang }: { lang: Lang }) {
         </div>
 
         {/* Mobile — tıkla-ara + hamburger */}
-        <div className="md:hidden ml-auto flex items-center gap-1">
+        <div className="lg:hidden ml-auto flex items-center gap-1">
           <a
             href={PHONE_HREF}
             aria-label={PHONE_DISPLAY[lang]}
@@ -1180,7 +1183,7 @@ function Navbar({ lang }: { lang: Lang }) {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden overflow-hidden transition-all duration-300 bg-white ${
+        className={`lg:hidden overflow-hidden transition-all duration-300 bg-white ${
           menuOpen ? "max-h-96 border-t border-stone-200" : "max-h-0"
         }`}
       >
