@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { Car, ShieldCheck, Cpu, Building2, Settings2, Nut, Cog, RotateCw, Zap, Disc, Scissors, Hammer, Spline, Circle, Flame, Sofa } from "lucide-react";
+import { Cog, RotateCw, Zap, Disc, Scissors, Hammer, Spline, Circle, Flame } from "lucide-react";
 
 // ─── Types & Translations ────────────────────────────────────────────────────
 export type Lang = "TR" | "EN";
@@ -927,16 +927,6 @@ const capabilityIcons = [
   <Flame key={12} className="w-5 h-5" strokeWidth={1.5} />,     // Gaz Altı Kaynak
 ];
 
-const sectorIcons = [
-  <Settings2  key={0} className="w-6 h-6" strokeWidth={1.5} />, // Makina Yedek Parça
-  <Car        key={1} className="w-6 h-6" strokeWidth={1.5} />, // Otomotiv Sanayi
-  <Nut        key={2} className="w-6 h-6" strokeWidth={1.5} />, // Hırdavat
-  <Building2  key={3} className="w-6 h-6" strokeWidth={1.5} />, // İnşaat
-  <Cpu        key={4} className="w-6 h-6" strokeWidth={1.5} />, // Elektrik-Elektronik
-  <Sofa       key={5} className="w-6 h-6" strokeWidth={1.5} />, // Mobilya
-  <ShieldCheck key={6} className="w-6 h-6" strokeWidth={1.5} />, // Savunma Sanayi
-];
-
 // ─── Shared bits ──────────────────────────────────────────────────────────────
 
 // Teknik çizim hissi veren ince blueprint gridi
@@ -1709,20 +1699,26 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             title={t.services.title}
             lead={t.services.lead}
           />
-          {/* Kutusuz, hairline ayrımlı liste — Ürünler bölümünden kasıtlı olarak daha sakin */}
-          <div className="mt-12 grid md:grid-cols-2 md:gap-x-12 border-t border-stone-200">
+          {/* Teknik sicil/indeks düzeni: mono sıra no · büyük sektör adı · ikincil
+              açıklama, tam genişlik hairline satırlar. Önceki hâlinde her sektörün
+              yanında jenerik bir stok ikon (araba, koltuk, çip) vardı — sayfanın
+              imzası size özel teknik çizimken o ikonlar "hazır şablon" sinyali
+              veriyordu. Çıkarıldı; ağırlığı artık tipografi taşıyor. */}
+          <div className="mt-12 border-t border-stone-300">
             {t.services.items.map((s, i) => (
-              <div key={i} className="group flex items-start gap-5 py-7 border-b border-stone-200">
-                <div className="shrink-0 mt-0.5 text-stone-400 group-hover:text-amber-600 transition-colors">
-                  {sectorIcons[i]}
+              <div
+                key={i}
+                className="grid md:grid-cols-12 gap-x-10 gap-y-2 items-baseline py-7 md:py-8 border-b border-stone-200"
+              >
+                <div className="md:col-span-5 flex items-baseline gap-4">
+                  <span className="font-mono text-xs text-amber-600 tabular-nums shrink-0">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-stone-900">
+                    {s.title}
+                  </h3>
                 </div>
-                <div>
-                  <div className="flex items-baseline gap-2.5">
-                    <span className="font-mono text-[10px] text-stone-400">{String(i + 1).padStart(2, "0")}</span>
-                    <h3 className="font-semibold text-stone-900">{s.title}</h3>
-                  </div>
-                  <p className="mt-2 text-sm text-stone-600 leading-relaxed">{s.desc}</p>
-                </div>
+                <p className="md:col-span-7 text-sm leading-relaxed text-stone-500">{s.desc}</p>
               </div>
             ))}
           </div>
