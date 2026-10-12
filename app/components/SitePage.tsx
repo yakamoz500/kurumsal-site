@@ -1838,7 +1838,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
 
         <div className="relative max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-10 items-center">
           {/* Sol — mesaj */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-7">
             <div className="flex items-center gap-3">
               <span aria-hidden className="h-px w-6 bg-amber-500" />
               <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-amber-700">{t.hero.eyebrow}</span>
@@ -1871,12 +1871,10 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
           </div>
 
           {/* Sağ — çerçeveli görsel */}
-          <div className="lg:col-span-6">
+          <div className="lg:col-span-5">
             <div className="relative border border-stone-300 p-1.5 bg-white">
               <CornerTicks className="border-amber-500" />
-              {/* Geniş şerit kadraj: görselin alt bandındaki sac/el bölgesi
-                  teknik olarak tutarsızdı, kadraj dışında bırakıldı. */}
-              <div className="relative w-full aspect-[1024/486] overflow-hidden bg-stone-100">
+              <div className="relative w-full aspect-4/5 overflow-hidden bg-stone-100">
                 <Image
                   src="/hero-pres.jpg"
                   alt="Pres tezgahında kesme kalıbı ile sac parça basımı"
