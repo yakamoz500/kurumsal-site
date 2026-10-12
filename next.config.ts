@@ -28,6 +28,12 @@ const securityHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  // Paylaşım kartı (app/opengraph-image.tsx) bu fotoğrafı diskten okuyor.
+  // public/ klasörü sunucu paketine otomatik girmiyor; açıkça dahil ediyoruz.
+  outputFileTracingIncludes: {
+    "/opengraph-image": ["./public/hero-pres.jpg"],
+  },
+
   async headers() {
     return [
       {
