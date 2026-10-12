@@ -1685,7 +1685,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── ÜRÜNLERİMİZ ── */}
-      <section id="urunlerimiz" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
+      <section id="urunlerimiz" className="scroll-mt-24 py-14 md:py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
           <SectionHead
             index={t.products.index}
@@ -1700,7 +1700,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── YETENEKLERİMİZ ── */}
-      <section id="yeteneklerimiz" className="scroll-mt-24 py-20 md:py-28 px-6 bg-stone-50 border-y border-stone-200">
+      <section id="yeteneklerimiz" className="scroll-mt-24 py-14 md:py-20 px-6 bg-stone-50 border-y border-stone-200">
         <div className="max-w-6xl mx-auto">
           <SectionHead
             index={t.capabilities.index}
@@ -1713,7 +1713,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── KENDİ ÜRÜNÜMÜZ — "uçtan uca" iddiasının kanıtı ── */}
-      <section id="kendi-urunumuz" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
+      <section id="kendi-urunumuz" className="scroll-mt-24 py-14 md:py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
           <div className="lg:col-span-6">
             <SectionHead
@@ -1746,7 +1746,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── SEKTÖRLER ── */}
-      <section id="hizmetler" className="scroll-mt-24 py-20 md:py-28 px-6 bg-stone-50 border-y border-stone-200">
+      <section id="hizmetler" className="scroll-mt-24 py-14 md:py-20 px-6 bg-stone-50 border-y border-stone-200">
         <div className="max-w-6xl mx-auto">
           <SectionHead
             index={t.services.index}
@@ -1759,7 +1759,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── HAKKIMIZDA ── */}
-      <section id="hakkimizda" className="scroll-mt-24 py-20 md:py-28 px-6 bg-white">
+      <section id="hakkimizda" className="scroll-mt-24 py-14 md:py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16">
           {/* Sol — anlatı */}
           <div className="lg:col-span-7">
@@ -1791,7 +1791,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── TEKLİF AL — koyu kapanış bandı, footer'a geçiş ── */}
-      <section id="teklif" className="scroll-mt-24 relative overflow-hidden bg-stone-950 py-20 md:py-28 px-6">
+      <section id="teklif" className="scroll-mt-24 relative overflow-hidden bg-stone-950 py-14 md:py-20 px-6">
         <div
           aria-hidden
           className="absolute inset-0 opacity-60"
