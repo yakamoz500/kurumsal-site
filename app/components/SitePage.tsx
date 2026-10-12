@@ -102,9 +102,17 @@ const T = {
       index: "03",
       subtitle: "Kendi Ürünümüz",
       title: "Polis Kelepçesi",
-      lead: "Kalıpçıların çoğu takımı yapar ve orada bırakır. Biz bir ürünü uçtan uca kendimiz çıkarıyoruz.",
+      lead: "Kalıp yapmakla kalmıyor, bir ürünü tasarımından montajına kadar kendimiz üretiyoruz.",
       p1: "Polis kelepçesini tasarımından seri üretimine kadar bu atölyede üretiyoruz. Zorlu bir parça: dayanım, kilit mekanizmasının hassasiyeti ve emniyetli çalışma aynı anda tutmak zorunda.",
       p2: "Kalıbını da, baskısını da, montajını da kendimiz yaptığımız için toleransı süreç boyunca biz kontrol ediyoruz. Sayfanın başında yazan “uçtan uca” ifadesinin kanıtı bu.",
+      chainTitle: "Tek çatı altında",
+      chain: [
+        { k: "Tasarım", v: "Tasarım bize ait; parça geometrisi ve kilit mekanizması dahil." },
+        { k: "Kalıp", v: "Kesme ve progresif kalıpları kendi atölyemizde işliyoruz." },
+        { k: "Pres", v: "Seri baskı kendi eksantrik preslerimizde alınıyor." },
+        { k: "Montaj", v: "Parça montajı ve çalışma kontrolü de bizde bitiyor." },
+      ],
+      /* Eski künye listesi — fotoğraf/teknik veri gelince geri dönebilir. */
       specs: [
         { k: "Ürün", v: "Polis kelepçesi" },
         { k: "Üretim", v: "Seri üretim" },
@@ -279,9 +287,17 @@ const T = {
       index: "03",
       subtitle: "Our Own Product",
       title: "Police Handcuffs",
-      lead: "Most die makers build the tool and stop there. We take one product end to end ourselves.",
+      lead: "We don't stop at the tooling — we make one product ourselves, from design through assembly.",
       p1: "Police handcuffs are designed and series-produced in this workshop. It is a demanding part: strength, lock precision and safe operation all have to hold at the same time.",
       p2: "Because we make the die, run the press and assemble it ourselves, we control the tolerance across the whole process. This is the proof behind the “end to end” claim at the top of this page.",
+      chainTitle: "Under one roof",
+      chain: [
+        { k: "Design", v: "The design is ours, including the part geometry and lock mechanism." },
+        { k: "Die", v: "Blanking and progressive dies are machined in our own workshop." },
+        { k: "Press", v: "Series runs are stamped on our own eccentric presses." },
+        { k: "Assembly", v: "Assembly and function checks are finished in-house as well." },
+      ],
+      /* Eski künye listesi — fotoğraf/teknik veri gelince geri dönebilir. */
       specs: [
         { k: "Product", v: "Police handcuffs" },
         { k: "Production", v: "Series production" },
@@ -1229,7 +1245,17 @@ function useCounter(target: number, duration = 2000, startCounting: boolean) {
 }
 
 // Teknik föy satırı: solda etiket, sağda sayaç
-function StatRow({ label, target }: { label: string; target: number }) {
+function StatRow({
+  label,
+  target,
+  layout = "row",
+}: {
+  label: string;
+  target: number;
+  /** "row" — etiket solda, rakam sağda (dikey föy).
+   *  "cell" — rakam üstte, etiket altta (yatay şerit). */
+  layout?: "row" | "cell";
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const [started, setStarted] = useState(false);
   const count = useCounter(target, 1600, started);
@@ -1243,12 +1269,31 @@ function StatRow({ label, target }: { label: string; target: number }) {
     return () => observer.disconnect();
   }, []);
 
+  const value = (
+    <>
+      {count.toLocaleString("tr-TR")}
+      <span className="text-amber-600">+</span>
+    </>
+  );
+
+  if (layout === "cell") {
+    return (
+      <div ref={ref} className="border-t border-stone-900 pt-4">
+        <span className="block font-mono text-3xl md:text-4xl font-medium tabular-nums text-stone-900">
+          {value}
+        </span>
+        <span className="mt-1 block font-mono text-[11px] uppercase tracking-[0.18em] text-stone-500">
+          {label}
+        </span>
+      </div>
+    );
+  }
+
   return (
     <div ref={ref} className="flex items-baseline justify-between gap-6 border-b border-stone-200 py-5">
       <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-500">{label}</span>
       <span className="font-mono text-3xl md:text-4xl font-medium tabular-nums text-stone-900">
-        {count.toLocaleString("tr-TR")}
-        <span className="text-amber-600">+</span>
+        {value}
       </span>
     </div>
   );
@@ -1714,33 +1759,36 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
 
       {/* ── KENDİ ÜRÜNÜMÜZ — "uçtan uca" iddiasının kanıtı ── */}
       <section id="kendi-urunumuz" className="scroll-mt-24 py-14 md:py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-          <div className="lg:col-span-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl">
             <SectionHead
               index={t.product.index}
               subtitle={t.product.subtitle}
               title={t.product.title}
               lead={t.product.lead}
             />
-            <div className="mt-6 space-y-4 max-w-xl">
-              <p className="text-stone-600 leading-relaxed">{t.product.p1}</p>
-              <p className="text-stone-600 leading-relaxed">{t.product.p2}</p>
-            </div>
+            <p className="mt-6 max-w-2xl text-stone-600 leading-relaxed">{t.product.p1}</p>
+            {/* p2 çeviri nesnesinde duruyor; söylediği şeyi artık aşağıdaki
+                proses zinciri gösterdiği için basılmıyor. */}
           </div>
 
-          {/* Künye — fotoğraf gelene kadar bölümün ağırlığını bu taşıyor */}
-          <div className="lg:col-span-6 lg:pt-2">
-            <div className="relative border border-stone-300 p-6 md:p-8 bg-stone-50">
-              <CornerTicks className="border-amber-500" />
-              <dl className="divide-y divide-stone-200">
-                {t.product.specs.map((s) => (
-                  <div key={s.k} className="flex items-baseline justify-between gap-6 py-3.5 first:pt-0 last:pb-0">
-                    <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-stone-400 shrink-0">{s.k}</dt>
-                    <dd className="text-sm font-medium text-stone-900 text-right">{s.v}</dd>
-                  </div>
-                ))}
-              </dl>
-            </div>
+          {/* Kanıt zinciri — "uçtan uca" iddiasını adım adım gösterir.
+              Fotoğraf gelince bu şerit sağ sütuna, foto sola geçebilir. */}
+          <div className="mt-10">
+            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400">
+              {t.product.chainTitle}
+            </p>
+            <ol className="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
+              {t.product.chain.map((s, i) => (
+                <li key={s.k} className="relative border-t border-stone-900 pt-4">
+                  <span className="font-mono text-[10px] text-amber-600">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <h3 className="mt-1 text-base font-semibold tracking-tight text-stone-900">{s.k}</h3>
+                  <p className="mt-1.5 text-sm leading-relaxed text-stone-500">{s.v}</p>
+                </li>
+              ))}
+            </ol>
           </div>
         </div>
       </section>
@@ -1760,9 +1808,8 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
 
       {/* ── HAKKIMIZDA ── */}
       <section id="hakkimizda" className="scroll-mt-24 py-14 md:py-20 px-6 bg-white">
-        <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Sol — anlatı */}
-          <div className="lg:col-span-7">
+        <div className="max-w-6xl mx-auto">
+          <div className="max-w-3xl">
             <SectionHead
               index={t.about.index}
               subtitle={t.about.subtitle}
@@ -1773,17 +1820,12 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
                 için şimdilik gösterilmiyor, ileride geri alınabilir. */}
           </div>
 
-          {/* Sağ — teknik föy */}
-          <div className="lg:col-span-5">
-            <div className="lg:sticky lg:top-28">
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400 pb-4 border-b border-stone-900">
-                {t.about.statsTitle}
-              </p>
-              <StatRow label={t.about.experience} target={34} />
-              <StatRow label={t.about.projects} target={3000} />
-              <StatRow label={t.about.clients} target={120} />
-              <StatRow label={t.about.staff} target={8} />
-            </div>
+          {/* Rakam föyü — metnin altında yatay şerit */}
+          <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8">
+            <StatRow layout="cell" label={t.about.experience} target={34} />
+            <StatRow layout="cell" label={t.about.projects} target={3000} />
+            <StatRow layout="cell" label={t.about.clients} target={120} />
+            <StatRow layout="cell" label={t.about.staff} target={8} />
           </div>
         </div>
       </section>
