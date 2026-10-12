@@ -1624,7 +1624,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       <Navbar lang={defaultLang} />
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-stone-50 pt-32 pb-16 md:pt-40 md:pb-24 px-6">
+      <section className="relative overflow-hidden bg-stone-50 pt-28 pb-16 md:pt-32 md:pb-20 px-6">
         <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
         <div aria-hidden className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-b from-transparent to-white" />
 
@@ -1769,10 +1769,8 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
               title={t.about.title}
               lead={t.about.p1}
             />
-            <div className="mt-6 space-y-4 max-w-2xl">
-              <p className="text-stone-600 leading-relaxed">{t.about.p2}</p>
-              <p className="text-stone-600 leading-relaxed">{t.about.p3}</p>
-            </div>
+            {/* p2 ve p3 çeviri nesnesinde duruyor; sayfa uzunluğunu kısaltmak
+                için şimdilik gösterilmiyor, ileride geri alınabilir. */}
           </div>
 
           {/* Sağ — teknik föy */}
