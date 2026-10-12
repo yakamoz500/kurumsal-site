@@ -1388,6 +1388,61 @@ function CapabilityCarousel({ lang }: { lang: Lang }) {
   );
 }
 
+// ─── Sector Grid ──────────────────────────────────────────────────────────────
+// 7 sektör, 3'erli kompakt ızgara. Açıklamalar varsayılan kapalı, tıkla açılır —
+// bölümün işi "kapsam göstermek", detay ikincil. Bölüm ~1180px'den ~400px'e iner.
+// İkon YOK: jenerik stok ikonlar sayfanın tek "şablon" öğesiydi, kaldırıldı;
+// kendi çizgi dilimizde denenen ikonlar da 22px'te bilgi taşımayıp süse dönüştü.
+function SectorGrid({ lang }: { lang: Lang }) {
+  const t = T[lang].services;
+  const [open, setOpen] = useState<number | null>(null);
+
+  return (
+    <div className="mt-12 grid sm:grid-cols-2 lg:grid-cols-3 gap-4 items-start">
+      {t.items.map((s, i) => {
+        const on = open === i;
+        return (
+          <div
+            key={s.title}
+            className={`bg-white border transition-colors ${on ? "border-stone-400" : "border-stone-200 hover:border-stone-300"}`}
+          >
+            <button
+              type="button"
+              onClick={() => setOpen(on ? null : i)}
+              aria-expanded={on}
+              aria-controls={`sektor-${i}`}
+              className="w-full flex items-center gap-3 text-left px-5 py-4"
+            >
+              <span className="flex-1 text-base md:text-lg font-semibold tracking-tight text-stone-900">
+                {s.title}
+              </span>
+              <span
+                aria-hidden
+                className={`shrink-0 text-lg leading-none transition-colors ${on ? "text-amber-600" : "text-stone-400"}`}
+              >
+                {on ? "−" : "+"}
+              </span>
+            </button>
+
+            {/* Açıklama HER ZAMAN DOM'da — sadece görsel olarak kapalı. Koşullu
+                render edilseydi arama motoru bu içeriği hiç göremezdi. */}
+            <div
+              id={`sektor-${i}`}
+              className={`grid transition-all duration-300 motion-reduce:transition-none ${
+                on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"
+              }`}
+            >
+              <div className="overflow-hidden">
+                <p className="px-5 pb-4 text-sm leading-relaxed text-stone-500">{s.desc}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
+
 // ─── Quote Form ───────────────────────────────────────────────────────────────
 function QuoteForm({ lang }: { lang: Lang }) {
   const t = T[lang].quote;
@@ -1699,29 +1754,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             title={t.services.title}
             lead={t.services.lead}
           />
-          {/* Teknik sicil/indeks düzeni: mono sıra no · büyük sektör adı · ikincil
-              açıklama, tam genişlik hairline satırlar. Önceki hâlinde her sektörün
-              yanında jenerik bir stok ikon (araba, koltuk, çip) vardı — sayfanın
-              imzası size özel teknik çizimken o ikonlar "hazır şablon" sinyali
-              veriyordu. Çıkarıldı; ağırlığı artık tipografi taşıyor. */}
-          <div className="mt-12 border-t border-stone-300">
-            {t.services.items.map((s, i) => (
-              <div
-                key={i}
-                className="grid md:grid-cols-12 gap-x-10 gap-y-2 items-baseline py-7 md:py-8 border-b border-stone-200"
-              >
-                <div className="md:col-span-5 flex items-baseline gap-4">
-                  <span className="font-mono text-xs text-amber-600 tabular-nums shrink-0">
-                    {String(i + 1).padStart(2, "0")}
-                  </span>
-                  <h3 className="text-xl md:text-2xl font-semibold tracking-tight text-stone-900">
-                    {s.title}
-                  </h3>
-                </div>
-                <p className="md:col-span-7 text-sm leading-relaxed text-stone-500">{s.desc}</p>
-              </div>
-            ))}
-          </div>
+          <SectorGrid lang={defaultLang} />
         </div>
       </section>
 
