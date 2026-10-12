@@ -1378,9 +1378,12 @@ function CapabilityCarousel({ lang }: { lang: Lang }) {
               <div className="relative w-full max-w-[180px]">{capabilityDrawings[i]}</div>
             </div>
 
-            {/* Amber başlık bandı — referansın turuncu bandının bizim karşılığı */}
-            <div className="bg-amber-600 px-5 pt-4 pb-3">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-amber-100">{c.family}</p>
+            {/* Grafit başlık bandı. Dolu amber'di; 13 kart yan yana gelince turuncu
+                bir duvara dönüşüp "Teklif Al" CTA'sını bastırıyordu. Artık amber
+                sadece aile etiketinde — sistemin geri kalanındaki gibi hassas bir
+                aksan — ve bant koyu Teklif/footer bandıyla aynı dili konuşuyor. */}
+            <div className="bg-stone-900 px-5 pt-4 pb-3">
+              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-amber-400">{c.family}</p>
               <h3 className="mt-0.5 text-white text-lg font-semibold tracking-tight">{c.title}</h3>
             </div>
 
