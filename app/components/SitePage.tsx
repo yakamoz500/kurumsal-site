@@ -382,21 +382,6 @@ const T = {
 } as const;
 
 // ─── Image paths ──────────────────────────────────────────────────────────────
-const productImages = [
-  "/products/prograsif_kalip.jpeg",     // Progresif Kalıpları
-  "/products/Kesme_kaliplari.png",      // Kesme Kalıpları
-  "/products/Pres_Baski.png",           // Parça Üretimi (Pres Baskı)
-  "/products/montajimalat.png",         // Montaj & İmalat
-];
-
-// Her ürün kartı için fotoğraf pozisyonu (object-position)
-const productPositions = [
-  "center", // Progresif Kalıpları
-  "center", // Kesme Kalıpları
-  "center", // Pres Baskı
-  "center", // Montaj & İmalat
-];
-
 const WHATSAPP_NUMBER = "905456462356";
 const PHONE_HREF = "tel:+905456462356";
 // Yurt dışındaki alıcı "0545" ile arayamaz — EN tarafında uluslararası format.
@@ -450,6 +435,212 @@ function IconLocation() {
     </svg>
   );
 }
+
+// ─── Ürün çizimleri ──────────────────────────────────────────────────────────
+// Yetenek çizimleri TEZGAHI anlatır; bunlar ÇIKTIYI anlatır. Aynı teknik resim
+// dili, ayrı iş — iki bölüm birbirine karışmasın diye bilinçli olarak farklı
+// karakterde. Dördü de geniş kadraj (400x160), ürün panelinin oranına göre.
+// Önceki stok fotoğraflar kaldırıldı: ikisi başka atölyelere aitti, biri de
+// yanlış prosesi (abkant büküm) gösteriyordu.
+
+// 01 — Progresif kalıp: şerit düzeni. Parça istasyon istasyon oluşur.
+function DrawProgressiveDie() {
+  // Her istasyonda parçanın kazandığı özellik artar.
+  const stations = [70, 140, 210, 280];
+  return (
+    <svg viewBox="0 0 400 160" fill="none" aria-hidden className="w-full h-auto">
+      {/* besleme yönü */}
+      <path d="M6,80 H22 M18,76 L22,80 L18,84" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* sac şerit */}
+      <rect x="28" y="50" width="316" height="60" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+      {/* pilot delikleri */}
+      {stations.map((x) => (
+        <circle key={`p${x}`} cx={x} cy={59} r="2.6" className="stroke-stone-400 fill-white" strokeWidth="1.2" />
+      ))}
+
+      {/* istasyon ayrım çizgileri + numaraları */}
+      {stations.map((x, i) => (
+        <g key={`s${x}`}>
+          <line x1={x + 35} y1="44" x2={x + 35} y2="116" className="stroke-stone-300" strokeWidth="1" strokeDasharray="4 3" />
+          <text x={x - 4} y="38" fontSize="9" className="fill-stone-400 font-mono">
+            {String(i + 1).padStart(2, "0")}
+          </text>
+        </g>
+      ))}
+
+      {/* 01 — ham blank konturu */}
+      <path d="M52,70 h36 v28 h-36 z" className="stroke-stone-400 fill-white" strokeWidth="1.3" />
+
+      {/* 02 — delikler açıldı */}
+      <path d="M122,70 h36 v28 h-36 z" className="stroke-stone-400 fill-white" strokeWidth="1.3" />
+      <circle cx="131" cy="84" r="3.4" className="stroke-stone-400 fill-white" strokeWidth="1.2" />
+      <circle cx="149" cy="84" r="3.4" className="stroke-stone-400 fill-white" strokeWidth="1.2" />
+
+      {/* 03 — kenar formu kesildi */}
+      <path d="M192,70 h36 v12 l-9,8 v8 h-27 z" className="stroke-stone-400 fill-white" strokeWidth="1.3" strokeLinejoin="round" />
+      <circle cx="201" cy="84" r="3.4" className="stroke-stone-400 fill-white" strokeWidth="1.2" />
+      <circle cx="219" cy="78" r="3.4" className="stroke-stone-400 fill-white" strokeWidth="1.2" />
+
+      {/* 04 — parça tamamlandı, şeritten kopmak üzere */}
+      <path d="M262,70 h36 v12 l-9,8 v8 h-27 z" className="stroke-amber-600 fill-white" strokeWidth="1.6" strokeLinejoin="round" />
+      <circle cx="271" cy="84" r="3.4" className="stroke-amber-600 fill-white" strokeWidth="1.3" />
+      <circle cx="289" cy="78" r="3.4" className="stroke-amber-600 fill-white" strokeWidth="1.3" />
+
+      {/* şeritten çıkan bitmiş parça */}
+      <path d="M356,70 h36 v12 l-9,8 v8 h-27 z" className="stroke-amber-600 fill-white" strokeWidth="1.8" strokeLinejoin="round" />
+      <circle cx="365" cy="84" r="3.4" className="stroke-amber-600 fill-white" strokeWidth="1.3" />
+      <circle cx="383" cy="78" r="3.4" className="stroke-amber-600 fill-white" strokeWidth="1.3" />
+      <path d="M346,84 h-0 M332,84 h12 M340,80 L344,84 L340,88" className="stroke-stone-400" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+// 02 — Kesme kalıbı: kesit. Zımba sacı keser, parça aşağı düşer, hurda kalır.
+function DrawBlankingDie() {
+  return (
+    <svg viewBox="0 0 400 160" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-blank" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+
+      {/* üst kalıp takozu */}
+      <rect x="120" y="14" width="160" height="22" fill="url(#hatch-blank)" className="stroke-stone-400" strokeWidth="1.5" />
+      {/* zımba */}
+      <rect x="170" y="36" width="60" height="42" className="stroke-amber-600 fill-white" strokeWidth="1.6" />
+      {/* iniş yönü */}
+      <path d="M200,4 V12 M196,8 L200,12 L204,8" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* sac — taralı. Kesilen bölge boş, iki yanda hurda kalıyor */}
+      <rect x="40" y="78" width="130" height="12" fill="url(#hatch-blank)" className="stroke-stone-400" strokeWidth="1.5" />
+      <rect x="230" y="78" width="130" height="12" fill="url(#hatch-blank)" className="stroke-stone-400" strokeWidth="1.5" />
+      <text x="62" y="72" fontSize="9" className="fill-stone-400 font-mono">HURDA</text>
+      <text x="302" y="72" fontSize="9" className="fill-stone-400 font-mono">HURDA</text>
+
+      {/* alt kalıp — düz dolgu, sacın taramasıyla karışmasın */}
+      <path d="M40,94 H168 V130 H40 Z" className="stroke-stone-400 fill-stone-100" strokeWidth="1.5" />
+      <path d="M232,94 H360 V130 H232 Z" className="stroke-stone-400 fill-stone-100" strokeWidth="1.5" />
+      <text x="84" y="116" fontSize="9" className="fill-stone-400 font-mono">ALT KALIP</text>
+      <text x="276" y="116" fontSize="9" className="fill-stone-400 font-mono">ALT KALIP</text>
+
+      {/* kesilen parça — kalıp boşluğundan düşüyor */}
+      <rect x="170" y="100" width="60" height="12" className="stroke-amber-600 fill-white" strokeWidth="1.6" />
+      <path d="M200,118 V134 M196,130 L200,134 L204,130" className="stroke-amber-600" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+      <text x="182" y="150" fontSize="9" className="fill-amber-600 font-mono">PARÇA</text>
+
+      {/* kesme kuvveti */}
+      <g className="stroke-amber-500" strokeWidth="1.5" strokeLinecap="round">
+        <path d="M166,84 l-5,3 M234,84 l5,3" />
+      </g>
+    </svg>
+  );
+}
+
+// 03 — Parça üretimi: teknik resim → kalıp → pres → parça. Zincirin tamamı.
+function DrawPartProduction() {
+  return (
+    <svg viewBox="0 0 400 160" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-prod" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+
+      {/* teknik resim paftası — müşteriden gelen */}
+      <rect x="14" y="44" width="68" height="76" className="stroke-stone-400 fill-white" strokeWidth="1.5" />
+      <path d="M30,66 h24 v20 h-24 z" className="stroke-stone-400" strokeWidth="1.2" />
+      <g className="stroke-stone-300" strokeWidth="1">
+        <line x1="30" y1="58" x2="54" y2="58" />
+        <path d="M33,55 L30,58 L33,61 M51,55 L54,58 L51,61" strokeLinecap="round" strokeLinejoin="round" />
+        <line x1="22" y1="100" x2="74" y2="100" />
+        <line x1="22" y1="108" x2="60" y2="108" />
+      </g>
+      <text x="22" y="38" fontSize="9" className="fill-stone-400 font-mono">RESİM</text>
+
+      <path d="M90,82 h18 M104,78 L108,82 L104,86" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* kalıp — iki yarım */}
+      <rect x="118" y="52" width="66" height="22" fill="url(#hatch-prod)" className="stroke-stone-400" strokeWidth="1.5" />
+      <rect x="118" y="90" width="66" height="22" fill="url(#hatch-prod)" className="stroke-stone-400" strokeWidth="1.5" />
+      <rect x="140" y="74" width="22" height="16" className="stroke-amber-600 fill-white" strokeWidth="1.5" />
+      <text x="124" y="38" fontSize="9" className="fill-stone-400 font-mono">KALIP</text>
+
+      <path d="M192,82 h18 M206,78 L210,82 L206,86" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* pres — C gövde + koç */}
+      <path d="M220,36 H286 V124 H262 V60 H244 V124 H220 Z" className="stroke-stone-400 fill-white" strokeWidth="1.5" strokeLinejoin="round" />
+      <rect x="244" y="44" width="18" height="16" className="stroke-amber-600 fill-white" strokeWidth="1.5" />
+      <text x="226" y="30" fontSize="9" className="fill-stone-400 font-mono">PRES</text>
+
+      <path d="M294,82 h18 M308,78 L312,82 L308,86" className="stroke-stone-400" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
+
+      {/* çıkan parçalar — istiflenmiş */}
+      <g className="stroke-amber-600 fill-white" strokeWidth="1.5">
+        <path d="M322,110 h50 v10 h-50 z" />
+        <path d="M328,98 h50 v10 h-50 z" />
+        <path d="M334,86 h50 v10 h-50 z" />
+      </g>
+      <text x="330" y="78" fontSize="9" className="fill-stone-400 font-mono">PARÇA</text>
+    </svg>
+  );
+}
+
+// 04 — Montaj: patlatılmış görünüm. Parçalar aynı eksende birleşir.
+function DrawAssembly() {
+  return (
+    <svg viewBox="0 0 400 160" fill="none" aria-hidden className="w-full h-auto">
+      <defs>
+        <pattern id="hatch-asm" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+          <line x1="0" y1="0" x2="0" y2="6" className="stroke-stone-300" strokeWidth="1" />
+        </pattern>
+      </defs>
+
+      {/* montaj ekseni */}
+      <line x1="16" y1="80" x2="252" y2="80" className="stroke-stone-300" strokeWidth="1" strokeDasharray="10 3 2 3" />
+
+      {/* gövde plakası */}
+      <path d="M24,54 h44 v52 h-44 z" fill="url(#hatch-asm)" className="stroke-stone-400" strokeWidth="1.5" />
+      <circle cx="46" cy="80" r="8" className="stroke-stone-400 fill-white" strokeWidth="1.3" />
+
+      {/* burç */}
+      <path d="M96,68 h26 v24 h-26 z" fill="url(#hatch-asm)" className="stroke-stone-400" strokeWidth="1.5" />
+      <circle cx="109" cy="80" r="5" className="stroke-stone-400 fill-white" strokeWidth="1.3" />
+
+      {/* pim — amber, birleştiren eleman */}
+      <path d="M150,74 h40 v12 h-40 z" className="stroke-amber-600 fill-white" strokeWidth="1.6" />
+
+      {/* kapak */}
+      <path d="M216,58 h30 v44 h-30 z" fill="url(#hatch-asm)" className="stroke-stone-400" strokeWidth="1.5" />
+
+      {/* birleşme yönü okları */}
+      <g className="stroke-stone-400" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M80,44 h10 M86,40 L90,44 L86,48" />
+        <path d="M134,44 h10 M140,40 L144,44 L140,48" />
+        <path d="M206,44 h-10 M200,40 L196,44 L200,48" />
+      </g>
+
+      {/* eşittir — montajlı hal */}
+      <g className="stroke-stone-400" strokeWidth="1.5">
+        <line x1="270" y1="74" x2="286" y2="74" />
+        <line x1="270" y1="86" x2="286" y2="86" />
+      </g>
+
+      {/* montajlı ürün */}
+      <path d="M306,54 h62 v52 h-62 z" fill="url(#hatch-asm)" className="stroke-stone-400" strokeWidth="1.5" />
+      <path d="M322,74 h40 v12 h-40 z" className="stroke-amber-600 fill-white" strokeWidth="1.6" />
+      <circle cx="322" cy="80" r="5" className="stroke-stone-400 fill-white" strokeWidth="1.3" />
+    </svg>
+  );
+}
+
+const productDrawings = [
+  <DrawProgressiveDie key={0} />,
+  <DrawBlankingDie key={1} />,
+  <DrawPartProduction key={2} />,
+  <DrawAssembly key={3} />,
+];
 
 // ─── Yetenek çizimleri ────────────────────────────────────────────────────────
 // Foto değil çizim: bu bölümün işi tezgahı değil prosesi göstermek. Kapalı bir
@@ -997,33 +1188,6 @@ function SectionHead({
 }
 
 // ─── Product Image (next/image + hata yönetimi) ───────────────────────────────
-function ProductImage({ src, alt, label, position = "center" }: { src: string; alt: string; label: string; position?: string }) {
-  const [error, setError] = useState(false);
-
-  if (!src || error) {
-    return (
-      <div className="w-full h-full flex flex-col items-center justify-center gap-2 bg-stone-100">
-        <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10 text-stone-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
-        </svg>
-        <span className="text-stone-500 text-xs font-mono">{label}</span>
-      </div>
-    );
-  }
-
-  return (
-    <Image
-      src={src}
-      alt={alt}
-      fill
-      className="object-cover"
-      style={{ objectPosition: position }}
-      sizes="(max-width: 768px) 100vw, 60vw"
-      onError={() => setError(true)}
-    />
-  );
-}
-
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 const SECTION_IDS = ["urunlerimiz", "yeteneklerimiz", "hizmetler", "hakkimizda", "iletisim"];
 
@@ -1333,13 +1497,9 @@ function ProductShowcase({ lang }: { lang: Lang }) {
 
       {/* Sağ — seçili ürün */}
       <div className="md:col-span-8 flex flex-col bg-white">
-        <div className="relative w-full h-64 md:h-80 bg-stone-100 overflow-hidden shrink-0">
-          <ProductImage
-            src={productImages[selected]}
-            alt={t.items[selected].title}
-            label={t.photoLabel}
-            position={productPositions[selected]}
-          />
+        <div className="relative w-full h-auto md:h-80 bg-white border-b border-stone-200 overflow-hidden shrink-0 flex items-center justify-center px-8 pt-7 pb-9 md:pb-7">
+          <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
+          <div className="relative w-full max-w-[560px]">{productDrawings[selected]}</div>
           <span className="absolute bottom-0 left-0 font-mono text-[10px] tracking-[0.18em] uppercase bg-white/90 text-stone-600 px-2.5 py-1">
             {String(selected + 1).padStart(2, "0")} / {String(t.items.length).padStart(2, "0")}
           </span>
