@@ -1716,17 +1716,17 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
               <CornerTicks className="border-amber-500" />
               <div className="relative w-full aspect-4/5 overflow-hidden bg-stone-100">
                 <Image
-                  src="/header_1.jpeg"
-                  alt="Özhan Metal üretim tesisi"
+                  src="/hero-pres.jpg"
+                  alt="Pres tezgahında kesme kalıbı ile sac parça basımı"
                   fill
                   priority
-                  className="object-cover object-left"
+                  className="object-cover"
                   sizes="(max-width: 1024px) 100vw, 40vw"
                 />
               </div>
-              <p className="font-mono text-[10px] uppercase tracking-[0.15em] text-stone-500 px-1 pt-2 pb-0.5">
-                {t.hero.imgCaption}
-              </p>
+              {/* Künye kaldırıldı: görselin nerede çekildiğini iddia etmiyoruz.
+                  Metin (hero.imgCaption) çeviri nesnesinde duruyor — atölyeden
+                  gerçek fotoğraf gelince geri açılabilir. */}
             </div>
           </div>
         </div>
