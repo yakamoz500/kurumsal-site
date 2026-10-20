@@ -49,8 +49,16 @@ const PHONE_HREF = "tel:+905456462356";
 const EMAIL = "info@ozhanmetal.com";
 const MAPS_URL =
   "https://www.google.com/maps/place/%C3%96zhan+Metal+Kal%C4%B1p+Sanayi+Ltd/@41.050258,28.9071769,17z";
-const MAPS_EMBED =
-  "https://www.google.com/maps?q=41.050254,28.9097572&hl=tr&z=17&output=embed";
+// Google Maps'in kendi "Yerleştir" çıktısı: koordinat değil, işletme kaydını
+// gösterir — iğnede "Özhan Metal Kalıp Sanayi Ltd" yazar.
+// URL'deki `!1sXX` dil kodu; harita arayüzü sayfanın diliyle aynı olsun diye
+// TR'de `tr`, EN'de `en` veriyoruz (`!2str` = bölge Türkiye, ikisinde de aynı).
+const mapsEmbed = (lang: Lang) =>
+  "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3008.857100272588!2d28.907182276420414!3d41.05025397134454!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x14cab081d1abf565%3A0x12ef9edb4764cd34!2s%C3%96zhan%20Metal%20Kal%C4%B1p%20Sanayi%20Ltd!5e0!3m2!1s" +
+  (lang === "EN" ? "en" : "tr") +
+  "!2str!4v1792521336913!5m2!1s" +
+  (lang === "EN" ? "en" : "tr") +
+  "!2str";
 
 export default function ContactPage({ lang }: { lang: Lang }) {
   const t = C[lang];
@@ -135,10 +143,11 @@ export default function ContactPage({ lang }: { lang: Lang }) {
                 <div className="relative w-full aspect-4/3 bg-stone-100 overflow-hidden">
                   {mapOn ? (
                     <iframe
-                      src={MAPS_EMBED}
+                      src={mapsEmbed(lang)}
                       title={t.mapTitle}
                       loading="lazy"
-                      referrerPolicy="no-referrer-when-downgrade"
+                      allowFullScreen
+                      referrerPolicy="strict-origin-when-cross-origin"
                       className="absolute inset-0 w-full h-full border-0"
                     />
                   ) : (
