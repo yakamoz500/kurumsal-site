@@ -1284,12 +1284,42 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-        scrolled
-          ? "bg-white/90 backdrop-blur-md border-stone-200 py-3"
-          : "bg-white border-transparent py-5"
+        scrolled ? "bg-white/90 backdrop-blur-md border-stone-200" : "bg-white border-transparent"
       }`}
     >
-      <div className="max-w-6xl mx-auto px-6 flex items-center gap-4">
+      {/* Servis şeridi — telefon ve e-posta her sayfada görünür. Sayfa başında
+          açık, kaydırınca kapanıyor: okurken sabit alanı geri veriyor.
+          Sosyal medya bilerek yok — bu kitle teklif istemeden önce sosyal
+          hesaplara bakmıyor, footer doğru yer. */}
+      <div
+        className={`hidden lg:block overflow-hidden transition-all duration-300 ${
+          scrolled ? "max-h-0 opacity-0" : "max-h-10 opacity-100 border-b border-stone-200"
+        }`}
+      >
+        <div className="max-w-6xl mx-auto px-6 h-9 flex items-center justify-between">
+          <div className="flex items-center gap-6">
+            <a href={PHONE_HREF} className="group flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors">
+              <IconPhone className="w-3.5 h-3.5 text-stone-400 group-hover:text-amber-600 transition-colors" />
+              <span className="font-mono text-[13px] tabular-nums">{PHONE_DISPLAY[lang]}</span>
+            </a>
+            <a href="mailto:info@ozhanmetal.com" className="group flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors">
+              <span className="text-stone-400 group-hover:text-amber-600 transition-colors"><IconMail /></span>
+              <span className="text-[13px]">info@ozhanmetal.com</span>
+            </a>
+          </div>
+          <div className="flex items-center gap-1.5">
+            <button onClick={() => switchLang("TR")} className={langBtn("TR")}>TR</button>
+            <span aria-hidden className="text-stone-300 text-xs">/</span>
+            <button onClick={() => switchLang("EN")} className={langBtn("EN")}>EN</button>
+          </div>
+        </div>
+      </div>
+
+      <div
+        className={`max-w-6xl mx-auto px-6 flex items-center gap-4 transition-all duration-300 ${
+          scrolled ? "py-3" : "py-5"
+        }`}
+      >
         {/* Logo — sol */}
         <a href={lang === "EN" ? "/en" : "/"} className="flex items-center gap-1.5 shrink-0">
           <Image src="/logo2.png" alt="Özhan Metal Logo" width={36} height={36} className="object-contain" />
@@ -1322,30 +1352,16 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
             Sosyal medya buradan kaldırıldı: footer'da zaten açıkta duruyordu ve
             header'ın en değerli alanını bir tekrar için harcıyordu. Yerine, B2B'de
             asıl dönüşüm olan telefon geldi. */}
+        {/* Sağ — numara ve dil seçici servis şeridine taşındı; burada yalnızca
+            her zaman erişilebilir kalması gereken telefon ikonu ve tek dolu
+            çağrı olan "Teklif Al" var. Menü böylece nefes alıyor. */}
         <div className="hidden lg:flex items-center gap-4 shrink-0">
-          {/* Dar masaüstünde (1280px altı) numara metni gizlenir, ikon kalır —
-              yoksa "Teklif Al" ve TR/EN ekrandan taşıyordu. */}
           <a
-            href={PHONE_HREF}
-            aria-label={PHONE_DISPLAY[lang]}
-            className="group flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors"
-          >
-            <IconPhone className="w-4 h-4 text-stone-400 group-hover:text-amber-600 transition-colors" />
-            <span className="hidden xl:inline font-mono text-sm tabular-nums">{PHONE_DISPLAY[lang]}</span>
-          </a>
-
-          <a
-            href="#teklif"
+            href={CONTACT_PATH[lang]}
             className="whitespace-nowrap bg-stone-900 hover:bg-amber-600 text-white font-medium px-4 py-2 text-sm transition-colors"
           >
             {t.quote}
           </a>
-
-          <div className="flex items-center gap-1.5">
-            <button onClick={() => switchLang("TR")} className={langBtn("TR")}>TR</button>
-            <span aria-hidden className="text-stone-300 text-xs">/</span>
-            <button onClick={() => switchLang("EN")} className={langBtn("EN")}>EN</button>
-          </div>
         </div>
 
         {/* Mobile — tıkla-ara + hamburger */}
@@ -1390,7 +1406,7 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
         ))}
         <div className="flex items-center justify-between gap-3 px-6 py-4">
           <a
-            href="#teklif"
+            href={CONTACT_PATH[lang]}
             onClick={() => setMenuOpen(false)}
             className="bg-stone-900 text-white font-medium px-4 py-2 text-[13px]"
           >
@@ -1533,7 +1549,7 @@ function ProductShowcase({ lang }: { lang: Lang }) {
           <h3 className="text-stone-900 text-xl font-semibold tracking-tight">{t.items[selected].title}</h3>
           <p className="text-stone-600 leading-relaxed text-sm">{t.items[selected].desc}</p>
           <a
-            href="#teklif"
+            href={CONTACT_PATH[lang]}
             className="mt-auto pt-4 inline-flex items-center gap-2 text-[13px] font-medium text-amber-700 hover:text-amber-800 transition-colors w-fit"
           >
             {t.cta}
@@ -2048,7 +2064,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             <p className="mt-6 text-base md:text-lg leading-relaxed text-stone-600 max-w-xl">{t.hero.sub}</p>
 
             <div className="mt-8 flex flex-col sm:flex-row gap-3">
-              <a href="#teklif" className="bg-stone-900 hover:bg-amber-600 text-white font-medium px-7 py-3 text-sm text-center transition-colors">
+              <a href={CONTACT_PATH[defaultLang]} className="bg-stone-900 hover:bg-amber-600 text-white font-medium px-7 py-3 text-sm text-center transition-colors">
                 {t.hero.btn1}
               </a>
               <a href="#urunlerimiz" className="border border-stone-300 hover:border-stone-900 text-stone-800 font-medium px-7 py-3 text-sm text-center transition-colors">
