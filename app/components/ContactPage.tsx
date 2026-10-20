@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { Navbar, SiteFooter, QuoteForm, CornerTicks, blueprintGrid, type Lang } from "./SitePage";
+import { FAQ } from "./faqData";
 
 const C = {
   TR: {
@@ -18,6 +19,8 @@ const C = {
     mapTitle: "Üretim tesisi",
     mapNote: "Harita Google Maps üzerinden yüklenir ve Google çerez yerleştirir. Yüklemek için tıklayın.",
     mapLoad: "Haritayı yükle",
+    faqEyebrow: "Sıkça sorulanlar",
+    faqTitle: "Teklif istemeden önce",
     formTitle: "Teklif isteyin",
     formLead: "Kalıp tipi, adet ve tolerans ihtiyacınızı yazın; size dönelim.",
     whatsapp: "WhatsApp'tan yazın",
@@ -37,6 +40,8 @@ const C = {
     mapTitle: "Production facility",
     mapNote: "The map loads from Google Maps, which sets cookies. Click to load it.",
     mapLoad: "Load map",
+    faqEyebrow: "Frequently asked",
+    faqTitle: "Before you ask for a quote",
     formTitle: "Request a quote",
     formLead: "Tell us the tool type, volume and tolerance you need and we will come back to you.",
     whatsapp: "Message on WhatsApp",
@@ -59,6 +64,50 @@ const mapsEmbed = (lang: Lang) =>
   "!2str!4v1792521336913!5m2!1s" +
   (lang === "EN" ? "en" : "tr") +
   "!2str";
+
+/** Sektörler ızgarasıyla aynı mantık: aynı anda tek açık, cevaplar kapalıyken
+ *  de DOM'da — yoksa arama motoru ve ekran okuyucu metni hiç görmez. */
+function FaqList({ lang }: { lang: Lang }) {
+  const [open, setOpen] = useState<number | null>(0);
+  return (
+    <div className="mt-10 border-t border-stone-900">
+      {FAQ[lang].map((item, i) => {
+        const on = open === i;
+        return (
+          <div key={item.q} className="border-b border-stone-200">
+            <h3>
+              <button
+                type="button"
+                onClick={() => setOpen(on ? null : i)}
+                aria-expanded={on}
+                aria-controls={`sss-${i}`}
+                className="w-full flex items-start gap-4 text-left py-5 group"
+              >
+                <span className="flex-1 text-[15px] md:text-base font-medium text-stone-900 group-hover:text-amber-700 transition-colors">
+                  {item.q}
+                </span>
+                <span
+                  aria-hidden
+                  className={`shrink-0 mt-0.5 text-lg leading-none transition-colors ${on ? "text-amber-600" : "text-stone-400"}`}
+                >
+                  {on ? "−" : "+"}
+                </span>
+              </button>
+            </h3>
+            <div
+              id={`sss-${i}`}
+              className={`grid transition-all duration-300 motion-reduce:transition-none ${on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
+            >
+              <div className="overflow-hidden">
+                <p className="pb-5 pr-10 text-[15px] leading-relaxed text-stone-600 max-w-3xl">{item.a}</p>
+              </div>
+            </div>
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 export default function ContactPage({ lang }: { lang: Lang }) {
   const t = C[lang];
@@ -152,6 +201,19 @@ export default function ContactPage({ lang }: { lang: Lang }) {
                 </div>
               </div>
             </div>
+          </div>
+        </section>
+
+        {/* SSS — formun hemen altında: teklif istemeden önceki tereddütler
+            burada kapanıyor. */}
+        <section className="pb-14 md:pb-20 px-6 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="flex items-center gap-3">
+              <span aria-hidden className="h-px w-6 bg-amber-500" />
+              <span className="font-medium text-[11px] uppercase tracking-[0.2em] text-amber-700">{t.faqEyebrow}</span>
+            </div>
+            <h2 className="mt-4 text-2xl md:text-3xl font-semibold tracking-tight text-stone-900">{t.faqTitle}</h2>
+            <FaqList lang={lang} />
           </div>
         </section>
 

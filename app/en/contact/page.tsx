@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import ContactPage from "../../components/ContactPage";
+import { FAQ } from "../../components/faqData";
 
 export const metadata: Metadata = {
   title: "Contact | Ozhan Metal — Istanbul, Türkiye",
@@ -23,6 +24,27 @@ export const metadata: Metadata = {
   },
 };
 
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: FAQ.EN.map((f) => ({
+    "@type": "Question",
+    name: f.q,
+    acceptedAnswer: { "@type": "Answer", text: f.a },
+  })),
+};
+
 export default function Page() {
-  return <ContactPage lang="EN" />;
+  return (
+    <>
+      {/* Şema, sayfadaki görünen soru-cevapların aynısı — ayrışmasın diye
+          ikisi de faqData'dan okuyor. */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      <ContactPage lang="EN" />
+    </>
+  );
 }
