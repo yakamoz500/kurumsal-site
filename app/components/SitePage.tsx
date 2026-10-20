@@ -197,6 +197,9 @@ const T = {
       rateLimit: "Çok fazla deneme yaptınız. Lütfen bir dakika bekleyip tekrar deneyin.",
       services: ["Progresif Kalıp", "Kesme Kalıbı", "Parça Üretimi (Pres Baskı)", "Freze", "Torna", "CNC Tel Erozyon", "Delik Delme EDM", "Dalma Erozyon", "Taşlama", "Şerit / Profil Kesim", "Rolform", "Perçin", "Gaz Altı Kaynak", "Montaj & İmalat", "Diğer"],
       navLabel: "Teklif Al",
+      formCardLabel: "Teklif formu",
+      formCardText: "Talebinizi aldıktan sonra uygun kalıp tipini ve termini birlikte netleştiriyoruz.",
+      formCardCta: "Teklif formuna git",
     },
   },
   EN: {
@@ -387,6 +390,9 @@ const T = {
       rateLimit: "Too many attempts. Please wait a minute and try again.",
       services: ["Contract Manufacturing (stamped parts)", "Progressive Die", "Cutting Die", "Milling", "Turning", "CNC Wire EDM", "Hole Drilling EDM", "Sinker EDM", "Surface Grinding", "Sawing (band / profile)", "Roll Forming", "Riveting", "MIG/MAG Welding", "Assembly & Manufacturing", "Other"],
       navLabel: "Get Quote",
+      formCardLabel: "Quote form",
+      formCardText: "Once we have your request, we work out the right tool type and schedule with you.",
+      formCardCta: "Go to the quote form",
     },
   },
 } as const;
@@ -2224,11 +2230,25 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             </div>
           </div>
 
-          {/* Sağ — form */}
-          <div className="lg:col-span-7">
-            <div className="relative border border-stone-800 p-6 md:p-8 bg-stone-900/40">
+          {/* Sağ — iletişim sayfasına yönlendirme.
+              Form buradan kaldırıldı, /iletisim sayfasına taşındı; ama
+              dönüşüm yolu kapanmasın diye yerine büyük bir giriş kondu. */}
+          <div className="lg:col-span-7 flex">
+            <div className="relative w-full border border-stone-800 bg-stone-900/40 p-7 md:p-10 flex flex-col justify-center">
               <CornerTicks className="border-stone-700" />
-              <QuoteForm lang={defaultLang} />
+              <p className="font-medium text-[10px] uppercase tracking-[0.2em] text-amber-400">
+                {t.quote.formCardLabel}
+              </p>
+              <p className="mt-4 text-xl md:text-2xl leading-snug text-white max-w-md">
+                {t.quote.formCardText}
+              </p>
+              <a
+                href={CONTACT_PATH[defaultLang]}
+                className="mt-7 self-start inline-flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-black font-semibold px-6 py-3 text-sm transition-colors"
+              >
+                {t.quote.formCardCta}
+                <span aria-hidden>&rarr;</span>
+              </a>
             </div>
           </div>
         </div>
