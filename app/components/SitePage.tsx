@@ -1173,9 +1173,9 @@ function SectionHead({
   return (
     <div className="max-w-2xl">
       <div className="flex items-center gap-3">
-        <span className={`font-mono text-xs font-medium ${dark ? "text-amber-400" : "text-amber-700"}`}>{index}</span>
+        <span className={`text-xs font-medium ${dark ? "text-amber-400" : "text-amber-700"}`}>{index}</span>
         <span aria-hidden className={`h-px w-6 ${dark ? "bg-stone-700" : "bg-stone-300"}`} />
-        <span className={`font-mono text-[11px] uppercase tracking-[0.2em] ${dark ? "text-stone-400" : "text-stone-500"}`}>
+        <span className={`font-medium text-[11px] uppercase tracking-[0.2em] ${dark ? "text-stone-400" : "text-stone-500"}`}>
           {subtitle}
         </span>
       </div>
@@ -1252,7 +1252,7 @@ function Navbar({ lang }: { lang: Lang }) {
 
   // Dolgu yok — header'daki tek dolu öğe "Teklif Al" kalsın, hiyerarşi orada.
   const langBtn = (target: Lang) =>
-    `font-mono text-xs transition-colors ${
+    `text-xs transition-colors ${
       lang === target ? "text-stone-900 font-semibold" : "text-stone-400 hover:text-stone-600"
     }`;
 
@@ -1446,10 +1446,10 @@ function StatRow({
   if (layout === "cell") {
     return (
       <div ref={ref} className="border-t border-stone-900 pt-4">
-        <span className="block font-mono text-3xl md:text-4xl font-medium tabular-nums text-stone-900">
+        <span className="block text-3xl md:text-4xl font-medium tabular-nums text-stone-900">
           {value}
         </span>
-        <span className="mt-1 block font-mono text-[11px] uppercase tracking-[0.18em] text-stone-500">
+        <span className="font-medium mt-1 block text-[11px] uppercase tracking-[0.18em] text-stone-500">
           {label}
         </span>
       </div>
@@ -1458,8 +1458,8 @@ function StatRow({
 
   return (
     <div ref={ref} className="flex items-baseline justify-between gap-6 border-b border-stone-200 py-5">
-      <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-stone-500">{label}</span>
-      <span className="font-mono text-3xl md:text-4xl font-medium tabular-nums text-stone-900">
+      <span className="font-medium text-[11px] uppercase tracking-[0.18em] text-stone-500">{label}</span>
+      <span className="text-3xl md:text-4xl font-medium tabular-nums text-stone-900">
         {value}
       </span>
     </div>
@@ -1485,7 +1485,7 @@ function ProductShowcase({ lang }: { lang: Lang }) {
               selected === i ? "bg-stone-900" : "bg-white hover:bg-stone-50"
             }`}
           >
-            <span className={`font-mono text-xs shrink-0 ${selected === i ? "text-amber-400" : "text-stone-400"}`}>
+            <span className={`font-medium text-xs shrink-0 ${selected === i ? "text-amber-400" : "text-stone-400"}`}>
               {String(i + 1).padStart(2, "0")}
             </span>
             <span className={`text-sm font-medium ${selected === i ? "text-white" : "text-stone-700"}`}>
@@ -1500,7 +1500,7 @@ function ProductShowcase({ lang }: { lang: Lang }) {
         <div className="relative w-full h-auto md:h-80 bg-white border-b border-stone-200 overflow-hidden shrink-0 flex items-center justify-center px-8 pt-7 pb-9 md:pb-7">
           <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
           <div className="relative w-full max-w-[560px]">{productDrawings[selected]}</div>
-          <span className="absolute bottom-0 left-0 font-mono text-[10px] tracking-[0.18em] uppercase bg-white/90 text-stone-600 px-2.5 py-1">
+          <span className="font-medium absolute bottom-0 left-0 text-[10px] tracking-[0.18em] uppercase bg-white/90 text-stone-600 px-2.5 py-1">
             {String(selected + 1).padStart(2, "0")} / {String(t.items.length).padStart(2, "0")}
           </span>
         </div>
@@ -1581,7 +1581,7 @@ function CapabilityCarousel({ lang }: { lang: Lang }) {
                 sadece aile etiketinde — sistemin geri kalanındaki gibi hassas bir
                 aksan — ve bant koyu Teklif/footer bandıyla aynı dili konuşuyor. */}
             <div className="bg-stone-900 px-5 pt-4 pb-3">
-              <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-amber-400">{c.family}</p>
+              <p className="font-medium text-[10px] uppercase tracking-[0.18em] text-amber-400">{c.family}</p>
               <h3 className="mt-0.5 text-white text-lg font-semibold tracking-tight">{c.title}</h3>
             </div>
 
@@ -1716,7 +1716,7 @@ function QuoteForm({ lang }: { lang: Lang }) {
     }
   };
 
-  const labelClass = "font-mono text-[10px] uppercase tracking-[0.18em] text-stone-400";
+  const labelClass = "text-[10px] uppercase tracking-[0.18em] text-stone-400";
   const inputClass =
     "w-full bg-stone-900 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-white placeholder-stone-600 px-3.5 py-2.5 outline-none transition-colors text-sm";
 
@@ -1841,7 +1841,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
           <div className="lg:col-span-7">
             <div className="flex items-center gap-3">
               <span aria-hidden className="h-px w-6 bg-amber-500" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-amber-700">{t.hero.eyebrow}</span>
+              <span className="font-medium text-[11px] uppercase tracking-[0.2em] text-amber-700">{t.hero.eyebrow}</span>
             </div>
 
             <h1 className="mt-6 text-4xl md:text-6xl font-semibold tracking-tight leading-[1.05] text-stone-900">
@@ -1863,8 +1863,8 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             <dl className="mt-10 pt-6 border-t border-stone-200 grid grid-cols-3 gap-4 max-w-lg">
               {t.hero.specs.map((s) => (
                 <div key={s.k}>
-                  <dt className="font-mono text-[10px] uppercase tracking-[0.18em] text-stone-400">{s.k}</dt>
-                  <dd className="mt-1 font-mono text-sm font-medium text-stone-900">{s.v}</dd>
+                  <dt className="font-medium text-[10px] uppercase tracking-[0.18em] text-stone-400">{s.k}</dt>
+                  <dd className="mt-1 text-sm font-medium text-stone-900">{s.v}</dd>
                 </div>
               ))}
             </dl>
@@ -1938,13 +1938,13 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
           {/* Kanıt zinciri — "uçtan uca" iddiasını adım adım gösterir.
               Fotoğraf gelince bu şerit sağ sütuna, foto sola geçebilir. */}
           <div className="mt-10">
-            <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-400">
+            <p className="font-medium text-[10px] uppercase tracking-[0.2em] text-stone-400">
               {t.product.chainTitle}
             </p>
             <ol className="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
               {t.product.chain.map((s, i) => (
                 <li key={s.k} className="relative border-t border-stone-900 pt-4">
-                  <span className="font-mono text-[10px] text-amber-600">
+                  <span className="font-medium text-[10px] text-amber-600">
                     {String(i + 1).padStart(2, "0")}
                   </span>
                   <h3 className="mt-1 text-base font-semibold tracking-tight text-stone-900">{s.k}</h3>
@@ -2016,7 +2016,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
               dark
             />
             <div className="mt-10 pt-8 border-t border-stone-800">
-              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-stone-500">{t.quote.directTitle}</p>
+              <p className="font-medium text-[10px] uppercase tracking-[0.2em] text-stone-500">{t.quote.directTitle}</p>
               <a href={PHONE_HREF} className="mt-3 block font-mono text-2xl md:text-3xl text-white hover:text-amber-400 transition-colors">
                 {PHONE_DISPLAY[defaultLang]}
               </a>
