@@ -3,9 +3,10 @@ import type { Lang } from "./SitePage";
 /** SSS içeriği. Hem iletişim sayfası hem FAQPage şema işaretlemesi buradan
  *  okuyor — ikisi ayrı yerde yazılırsa er geç birbirinden ayrışır.
  *
- *  KURAL: yalnızca sitede zaten doğrulanmış bilgiler. Minimum adet, termin,
- *  tolerans, dosya formatı ve yurt dışı gönderim soruları bilerek YOK —
- *  cevapları kullanıcıdan gelmeden eklenmeyecek. */
+ *  KURAL: yalnızca doğrulanmış bilgiler. Dosya formatı, yurt dışı gönderim
+ *  ve gizlilik sözleşmesi cevapları 2026-10-20'de kullanıcıdan alındı.
+ *  Minimum sipariş adedi ve termin bilerek YOK: kullanıcı "bu konuya gelene
+ *  kadar birkaç aşama var" dedi. Tolerans da yok (B2 verisi bekliyor). */
 export const FAQ: Record<Lang, { q: string; a: string }[]> = {
   TR: [
     {
@@ -27,6 +28,18 @@ export const FAQ: Record<Lang, { q: string; a: string }[]> = {
     {
       q: "Teklif alabilmem için ne göndermem gerekiyor?",
       a: "Teknik resminizi ya da numunenizi paylaşmanız yeterli. Kalıp tipi, adet ve tolerans ihtiyacınızı yazarsanız dönüşümüz daha net olur. Elinizde çizim yoksa parçayı anlatmanız da bir başlangıç olur.",
+    },
+    {
+      q: "Hangi dosya formatlarını kabul ediyorsunuz?",
+      a: "Teknik resmi DWG veya PDF olarak gönderebilirsiniz. Fiziksel numune de kabul ediyoruz; elinizde çizim yoksa parçanın kendisi yeterli.",
+    },
+    {
+      q: "Yurt dışına gönderim yapıyor musunuz?",
+      a: "Evet, ülke kısıtımız yok. Nakliye ve teslim şekli siparişe göre konuşuluyor.",
+    },
+    {
+      q: "Gizlilik sözleşmesi imzalıyor musunuz?",
+      a: "Gerekiyorsa imzalıyoruz. Teklif isterken belirtmeniz yeterli.",
     },
     {
       q: "Nerede üretim yapıyorsunuz?",
@@ -57,6 +70,18 @@ export const FAQ: Record<Lang, { q: string; a: string }[]> = {
     {
       q: "What do I need to send to get a quote?",
       a: "Your technical drawing or a sample is enough. Telling us the tool type, volume and tolerance you need makes our reply more precise. If you have no drawing, describing the part is a starting point.",
+    },
+    {
+      q: "Which file formats do you accept?",
+      a: "Send the drawing as DWG or PDF. We also accept a physical sample; if you have no drawing, the part itself is enough.",
+    },
+    {
+      q: "Do you ship abroad?",
+      a: "Yes, with no country restriction. Shipping and delivery terms are agreed per order.",
+    },
+    {
+      q: "Do you sign a non-disclosure agreement?",
+      a: "We sign one if it is needed. Just mention it when you ask for a quote.",
     },
     {
       q: "Where do you manufacture?",

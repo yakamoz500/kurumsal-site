@@ -28,7 +28,7 @@ const T = {
       btn2: "Ürünlerimizi İnceleyin",
       imgCaption: "Üretim tesisi — Bayrampaşa, İstanbul",
       specs: [
-        { k: "Tecrübe", v: "34 yıl" },
+        { k: "Tecrübe", v: "35 yıl" },
         { k: "Kesim", v: "Tel erozyon" },
         { k: "Süreç", v: "Uçtan uca" },
       ],
@@ -221,7 +221,7 @@ const T = {
       btn2: "Explore Our Products",
       imgCaption: "Production facility — Bayrampaşa, Istanbul",
       specs: [
-        { k: "Experience", v: "34 years" },
+        { k: "Experience", v: "35 years" },
         { k: "Cutting", v: "Wire EDM" },
         { k: "Process", v: "End to end" },
       ],
@@ -2187,7 +2187,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
 
           {/* Rakam föyü — metnin altında yatay şerit */}
           <div className="mt-10 grid grid-cols-2 md:grid-cols-4 gap-x-8 gap-y-8">
-            <StatRow layout="cell" label={t.about.experience} target={34} />
+            <StatRow layout="cell" label={t.about.experience} target={35} />
             <StatRow layout="cell" label={t.about.projects} target={3000} />
             <StatRow layout="cell" label={t.about.clients} target={120} />
             <StatRow layout="cell" label={t.about.staff} target={8} />
