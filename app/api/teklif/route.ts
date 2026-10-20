@@ -1,10 +1,14 @@
 import { NextRequest, NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import { Resend } from "resend";
 
-// Node runtime gerekli — nodemailer edge'de çalışmaz.
 export const runtime = "nodejs";
 
 const TO_ADDRESS = "info@ozhanmetal.com";
+
+// Gönderen, Resend'de doğrulanmış alan adında olmalı. Alan adı doğrulanana
+// kadar RESEND_FROM tanımlanmazsa Resend'in test adresi kullanılır; o adresle
+// yalnızca hesabın kendi e-postasına gönderim yapılabilir.
+const FROM_ADDRESS = process.env.RESEND_FROM || "Özhan Metal Web <onboarding@resend.dev>";
 
 // ─── Basit IP rate limit ─────────────────────────────────────────────────────
 // Serverless'ta her instance kendi belleğini tutar, yani bu kesin bir sınır
@@ -89,21 +93,15 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 422 });
   }
 
-  const user = process.env.SMTP_USER;
-  const pass = process.env.SMTP_PASS;
-  if (!user || !pass) {
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
     // Yapılandırma eksik. İstemciye ayrıntı sızdırma, ama hatayı YUT-MA:
     // form bunu görüp kullanıcıyı WhatsApp'a düşürecek.
-    console.error("[teklif] SMTP_USER/SMTP_PASS tanımlı değil");
+    console.error("[teklif] RESEND_API_KEY tanımlı değil");
     return NextResponse.json({ ok: false, error: "server" }, { status: 500 });
   }
 
-  const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,
-    secure: false, // 587 STARTTLS ile yükseltir
-    auth: { user, pass },
-  });
+  const resend = new Resend(apiKey);
 
   const L =
     lang === "EN"
@@ -125,9 +123,9 @@ export async function POST(request: NextRequest) {
     s.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
 
   try {
-    await transporter.sendMail({
-      from: `"Özhan Metal Web" <${user}>`,
-      to: TO_ADDRESS,
+    const { error } = await resend.emails.send({
+      from: FROM_ADDRESS,
+      to: [TO_ADDRESS],
       // Gelen maile doğrudan "Yanıtla" deyince müşteriye gitsin.
       replyTo: `"${name.replace(/"/g, "")}" <${email}>`,
       subject: `${L.subject} — ${name}${company ? ` (${company})` : ""}`,
@@ -141,8 +139,15 @@ ${rows
   .join("\n")}
 </table>`,
     });
+
+    // Resend hatayı fırlatmaz, döner. Yutarsak form "başarılı" der ve
+    // talep sessizce kaybolur.
+    if (error) {
+      console.error("[teklif] Resend gönderim hatası:", error);
+      return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
+    }
   } catch (err) {
-    console.error("[teklif] sendMail başarısız:", err);
+    console.error("[teklif] Resend isteği başarısız:", err);
     return NextResponse.json({ ok: false, error: "send_failed" }, { status: 502 });
   }
 
