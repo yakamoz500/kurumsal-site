@@ -70,20 +70,20 @@ const mapsEmbed = (lang: Lang) =>
 function FaqList({ lang }: { lang: Lang }) {
   const [open, setOpen] = useState<number | null>(0);
   return (
-    <div className="mt-10 border-t border-stone-900">
+    <div className="mt-10 grid lg:grid-cols-2 gap-x-10 gap-y-0 items-start">
       {FAQ[lang].map((item, i) => {
         const on = open === i;
         return (
-          <div key={item.q} className="border-b border-stone-200">
+          <div key={item.q} className="border-t border-stone-900 lg:[&:nth-child(2)]:border-t-stone-900">
             <h3>
               <button
                 type="button"
                 onClick={() => setOpen(on ? null : i)}
                 aria-expanded={on}
                 aria-controls={`sss-${i}`}
-                className="w-full flex items-start gap-4 text-left py-5 group"
+                className="w-full flex items-start gap-4 text-left py-4 group"
               >
-                <span className="flex-1 text-[15px] md:text-base font-medium text-stone-900 group-hover:text-amber-700 transition-colors">
+                <span className="flex-1 text-[15px] font-medium text-stone-900 group-hover:text-amber-700 transition-colors">
                   {item.q}
                 </span>
                 <span
@@ -99,7 +99,7 @@ function FaqList({ lang }: { lang: Lang }) {
               className={`grid transition-all duration-300 motion-reduce:transition-none ${on ? "grid-rows-[1fr] opacity-100" : "grid-rows-[0fr] opacity-0"}`}
             >
               <div className="overflow-hidden">
-                <p className="pb-5 pr-10 text-[15px] leading-relaxed text-stone-600 max-w-3xl">{item.a}</p>
+                <p className="pb-4 pr-8 text-[15px] leading-relaxed text-stone-600">{item.a}</p>
               </div>
             </div>
           </div>
