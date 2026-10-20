@@ -7,7 +7,7 @@ const C = {
   TR: {
     eyebrow: "Bize ulaşın",
     title: "İletişim",
-    lead: "Teknik resminizi gönderin ya da doğrudan arayın. Kalıp mı, parça mı, ikisi birden mi — tek muhatapla ilerlersiniz.",
+    lead: "Teknik resminizi veya numunenizi paylaşın; kalıp tipi, adet ve tolerans ihtiyacınıza göre size dönelim.",
     addressLabel: "Adres",
     address: ["Muratpaşa Mah. Uluyol İşkent Sanayi Sitesi", "D Blok No:64, Bayrampaşa / İstanbul"],
     phoneLabel: "Telefon",
@@ -26,7 +26,7 @@ const C = {
   EN: {
     eyebrow: "Get in touch",
     title: "Contact",
-    lead: "Send us your drawing or call directly. Tooling, parts, or both — you deal with one supplier.",
+    lead: "Share your technical drawing or sample; we will get back to you based on your mold type, volume and tolerance requirements.",
     addressLabel: "Address",
     address: ["Muratpasa Mah. Uluyol Iskent Sanayi Sitesi", "D Blok No:64, Bayrampasa / Istanbul, Türkiye"],
     phoneLabel: "Phone",
@@ -89,108 +89,114 @@ export default function ContactPage({ lang }: { lang: Lang }) {
           </div>
         </section>
 
+        {/* İki kart yan yana: solda künye, sağda form. Altında harita. */}
         <section className="py-14 md:py-20 px-6 bg-white">
-          <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
-            {/* Sol — künye */}
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-8">
+            {/* Sol kart — künye */}
             <div className="lg:col-span-5">
-              <dl className="divide-y divide-stone-200 border-t border-stone-900">
-                {rows.map((r) => (
-                  <div key={r.label} className="py-5">
-                    <dt className="font-medium text-[10px] uppercase tracking-[0.18em] text-stone-400">{r.label}</dt>
-                    <dd className="mt-1.5 text-stone-900">
-                      {r.href ? (
-                        <a
-                          href={r.href}
-                          {...(r.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-                          className="hover:text-amber-700 transition-colors"
-                        >
-                          {r.body.map((line) => (
-                            <span key={line} className="block text-[15px] leading-relaxed">{line}</span>
-                          ))}
-                        </a>
-                      ) : (
-                        r.body.map((line) => (
-                          <span key={line} className="block text-[15px] leading-relaxed">{line}</span>
-                        ))
-                      )}
-                    </dd>
-                  </div>
-                ))}
-              </dl>
+              <div className="relative h-full border border-stone-200 bg-stone-50 p-7 md:p-8">
+                <CornerTicks className="border-amber-500" />
+                <h2 className="text-2xl font-semibold tracking-tight text-stone-900">{t.title}</h2>
 
-              <div className="mt-7 flex flex-col sm:flex-row gap-3">
-                <a
-                  href={PHONE_HREF}
-                  className="bg-stone-900 hover:bg-amber-600 text-white font-medium px-6 py-3 text-sm text-center transition-colors"
-                >
-                  {t.callNow}
-                </a>
-                <a
-                  href={`https://wa.me/905456462356`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="border border-stone-300 hover:border-stone-900 text-stone-800 font-medium px-6 py-3 text-sm text-center transition-colors"
-                >
-                  {t.whatsapp}
-                </a>
+                <dl className="mt-7 divide-y divide-stone-200 border-t border-stone-900">
+                  {rows.map((r) => (
+                    <div key={r.label} className="py-4">
+                      <dt className="font-medium text-[10px] uppercase tracking-[0.18em] text-stone-400">{r.label}</dt>
+                      <dd className="mt-1.5 text-stone-900">
+                        {r.href ? (
+                          <a
+                            href={r.href}
+                            {...(r.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                            className="hover:text-amber-700 transition-colors"
+                          >
+                            {r.body.map((line) => (
+                              <span key={line} className="block text-[15px] leading-relaxed">{line}</span>
+                            ))}
+                          </a>
+                        ) : (
+                          r.body.map((line) => (
+                            <span key={line} className="block text-[15px] leading-relaxed">{line}</span>
+                          ))
+                        )}
+                      </dd>
+                    </div>
+                  ))}
+                </dl>
+
+                <div className="mt-6 flex flex-col gap-2.5">
+                  <a
+                    href={PHONE_HREF}
+                    className="bg-stone-900 hover:bg-amber-600 text-white font-medium px-6 py-3 text-sm text-center transition-colors"
+                  >
+                    {t.callNow}
+                  </a>
+                  <a
+                    href="https://wa.me/905456462356"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="border border-stone-300 hover:border-stone-900 text-stone-800 font-medium px-6 py-3 text-sm text-center transition-colors"
+                  >
+                    {t.whatsapp}
+                  </a>
+                </div>
               </div>
             </div>
 
-            {/* Sağ — harita */}
+            {/* Sağ kart — teklif formu (açık tema) */}
             <div className="lg:col-span-7">
-              <div className="relative border border-stone-300 p-1.5 bg-white">
-                <CornerTicks className="border-amber-500" />
-                <div className="relative w-full aspect-4/3 bg-stone-100 overflow-hidden">
-                  {mapOn ? (
-                    <iframe
-                      src={mapsEmbed(lang)}
-                      title={t.mapTitle}
-                      loading="lazy"
-                      allowFullScreen
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      className="absolute inset-0 w-full h-full border-0"
-                    />
-                  ) : (
-                    <button
-                      type="button"
-                      onClick={() => setMapOn(true)}
-                      className="absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-3 px-8 text-center hover:bg-stone-50 transition-colors"
-                    >
-                      <span aria-hidden className="absolute inset-0" style={blueprintGrid} />
-                      <span className="relative font-medium text-[10px] uppercase tracking-[0.18em] text-stone-400">
-                        {t.mapTitle}
-                      </span>
-                      <span className="relative text-sm font-medium text-stone-900 border border-stone-900 px-5 py-2">
-                        {t.mapLoad}
-                      </span>
-                      <span className="relative text-xs leading-relaxed text-stone-500 max-w-xs">{t.mapNote}</span>
-                    </button>
-                  )}
-                </div>
-                <div className="flex justify-end px-1 pt-2 pb-0.5">
-                  <a
-                    href={MAPS_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[13px] font-medium text-amber-700 hover:text-amber-800 transition-colors"
-                  >
-                    {t.directions} &rarr;
-                  </a>
+              <div className="relative h-full border border-stone-200 bg-white p-7 md:p-8 flex flex-col">
+                <h2 className="text-2xl font-semibold tracking-tight text-stone-900">{t.formTitle}</h2>
+                <p className="mt-2.5 text-sm leading-relaxed text-stone-500">{t.formLead}</p>
+                <div className="mt-6 flex-1">
+                  <QuoteForm lang={lang} theme="light" />
                 </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Form — ana sayfadakiyle aynı bileşen */}
-        <section className="relative overflow-hidden bg-stone-950 py-14 md:py-20 px-6">
-          <div className="relative max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
-            <div className="lg:col-span-5">
-              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">{t.formTitle}</h2>
-              <p className="mt-4 text-stone-400 leading-relaxed">{t.formLead}</p>
-            </div>
-            <div className="lg:col-span-7">
-              <QuoteForm lang={lang} />
+        {/* Harita — tam genişlik, tıklayınca yüklenir */}
+        <section className="pb-14 md:pb-20 px-6 bg-white">
+          <div className="max-w-6xl mx-auto">
+            <div className="relative border border-stone-300 p-1.5 bg-white">
+              <CornerTicks className="border-amber-500" />
+              <div className="relative w-full aspect-16/9 md:aspect-21/9 bg-stone-100 overflow-hidden">
+                {mapOn ? (
+                  <iframe
+                    src={mapsEmbed(lang)}
+                    title={t.mapTitle}
+                    loading="lazy"
+                    allowFullScreen
+                    referrerPolicy="strict-origin-when-cross-origin"
+                    className="absolute inset-0 w-full h-full border-0"
+                  />
+                ) : (
+                  <button
+                    type="button"
+                    onClick={() => setMapOn(true)}
+                    className="absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-3 px-8 text-center hover:bg-stone-50 transition-colors"
+                  >
+                    <span aria-hidden className="absolute inset-0" style={blueprintGrid} />
+                    <span className="relative font-medium text-[10px] uppercase tracking-[0.18em] text-stone-400">
+                      {t.mapTitle}
+                    </span>
+                    <span className="relative text-sm font-medium text-stone-900 border border-stone-900 px-5 py-2">
+                      {t.mapLoad}
+                    </span>
+                    <span className="relative text-xs leading-relaxed text-stone-500 max-w-sm">{t.mapNote}</span>
+                  </button>
+                )}
+              </div>
+              <div className="flex justify-end px-1 pt-2 pb-0.5">
+                <a
+                  href={MAPS_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[13px] font-medium text-amber-700 hover:text-amber-800 transition-colors"
+                >
+                  {t.directions} &rarr;
+                </a>
+              </div>
             </div>
           </div>
         </section>

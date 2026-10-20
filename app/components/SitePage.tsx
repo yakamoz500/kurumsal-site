@@ -1671,7 +1671,10 @@ function SectorGrid({ lang }: { lang: Lang }) {
 }
 
 // ─── Quote Form ───────────────────────────────────────────────────────────────
-export function QuoteForm({ lang }: { lang: Lang }) {
+export function QuoteForm({ lang, theme = "dark" }: { lang: Lang; theme?: "dark" | "light" }) {
+  // Form hem koyu kapanış bandında (ana sayfa) hem açık kartta (/iletisim)
+  // kullanılıyor; renkler tek yerden ayrılsın.
+  const light = theme === "light";
   const t = T[lang].quote;
   const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", service: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
@@ -1738,13 +1741,16 @@ export function QuoteForm({ lang }: { lang: Lang }) {
     }
   };
 
-  const labelClass = "text-[10px] uppercase tracking-[0.18em] text-stone-400";
-  const inputClass =
-    "w-full bg-stone-900 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-white placeholder-stone-600 px-3.5 py-2.5 outline-none transition-colors text-sm";
+  const labelClass = `text-[10px] uppercase tracking-[0.18em] ${light ? "text-stone-500" : "text-stone-400"}`;
+  const inputClass = light
+    ? "w-full bg-white border border-stone-300 focus:border-amber-600 focus:ring-1 focus:ring-amber-600 text-stone-900 placeholder-stone-400 px-3.5 py-2.5 outline-none transition-colors text-sm"
+    : "w-full bg-stone-900 border border-stone-700 focus:border-amber-500 focus:ring-1 focus:ring-amber-500 text-white placeholder-stone-600 px-3.5 py-2.5 outline-none transition-colors text-sm";
 
   if (status === "success") {
     return (
-      <div className="relative border border-amber-500/40 bg-amber-500/5 text-amber-300 px-6 py-12 text-center h-full flex flex-col items-center justify-center gap-4">
+      <div className={`relative border px-6 py-12 text-center h-full flex flex-col items-center justify-center gap-4 ${
+        light ? "border-amber-600/40 bg-amber-50 text-amber-800" : "border-amber-500/40 bg-amber-500/5 text-amber-300"
+      }`}>
         <CornerTicks className="border-amber-500" />
         <svg xmlns="http://www.w3.org/2000/svg" className="w-10 h-10" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -1822,13 +1828,13 @@ export function QuoteForm({ lang }: { lang: Lang }) {
           onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity(t.consentRequired)}
           onInput={(e) => (e.target as HTMLInputElement).setCustomValidity("")}
         />
-        <span className="text-[11px] leading-relaxed text-stone-400">
+        <span className={`text-[11px] leading-relaxed ${light ? "text-stone-500" : "text-stone-400"}`}>
           {t.consent}{" "}
           <a
             href={KVKK_PATH[lang]}
             target="_blank"
             rel="noopener noreferrer"
-            className="text-amber-400 hover:text-amber-300 underline underline-offset-2"
+            className={`underline underline-offset-2 ${light ? "text-amber-700 hover:text-amber-800" : "text-amber-400 hover:text-amber-300"}`}
           >
             {t.consentLink}
           </a>
@@ -1837,8 +1843,10 @@ export function QuoteForm({ lang }: { lang: Lang }) {
 
       {/* Hata: sesli patla ve kullanıcıyı WhatsApp'a düşür — lead kaybolmasın. */}
       {status === "error" && (
-        <div role="alert" className="border border-red-500/50 bg-red-500/10 px-4 py-3 flex flex-col gap-3">
-          <p className="text-red-400 text-xs leading-relaxed">{errorMsg}</p>
+        <div role="alert" className={`border px-4 py-3 flex flex-col gap-3 ${
+          light ? "border-red-300 bg-red-50" : "border-red-500/50 bg-red-500/10"
+        }`}>
+          <p className={`text-xs leading-relaxed ${light ? "text-red-700" : "text-red-400"}`}>{errorMsg}</p>
           <a
             href={whatsappUrl()}
             target="_blank"
