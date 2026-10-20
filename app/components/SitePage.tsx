@@ -200,6 +200,7 @@ const T = {
       formCardLabel: "Teklif formu",
       formCardText: "Talebinizi aldıktan sonra uygun kalıp tipini ve termini birlikte netleştiriyoruz.",
       formCardCta: "Teklif formuna git",
+      faqLink: "Sık sorulan sorular",
     },
   },
   EN: {
@@ -393,6 +394,7 @@ const T = {
       formCardLabel: "Quote form",
       formCardText: "Once we have your request, we work out the right tool type and schedule with you.",
       formCardCta: "Go to the quote form",
+      faqLink: "Frequently asked questions",
     },
   },
 } as const;
@@ -1515,14 +1517,14 @@ function ProductShowcase({ lang }: { lang: Lang }) {
   return (
     <div className="grid md:grid-cols-12 border border-stone-200">
       {/* Sol — numaralı liste */}
-      <div className="md:col-span-4 flex flex-col border-b md:border-b-0 md:border-r border-stone-200" role="tablist" aria-orientation="vertical">
+      <div className="md:col-span-4 flex flex-col self-start border-b md:border-b-0 md:border-r border-stone-200" role="tablist" aria-orientation="vertical">
         {t.items.map((p, i) => (
           <button
             key={i}
             role="tab"
             aria-selected={selected === i}
             onClick={() => setSelected(i)}
-            className={`w-full md:flex-1 flex items-center gap-4 px-5 py-4 text-left border-b border-stone-100 last:border-b-0 transition-colors ${
+            className={`w-full flex items-center gap-4 px-5 py-5 text-left border-b border-stone-100 last:border-b-0 transition-colors ${
               selected === i ? "bg-stone-900" : "bg-white hover:bg-stone-50"
             }`}
           >
@@ -1574,6 +1576,27 @@ function CapabilityCarousel({ lang }: { lang: Lang }) {
   );
 
   const scroller = useRef<HTMLDivElement>(null);
+  // Karusel 13 kart taşıyor ama ekranda ~4'ü görünüyor. Kaç tane olduğu ve
+  // nerede olunduğu görünmezse kalanı kimse aramıyor.
+  const [pos, setPos] = useState({ ilk: 1, oran: 0 });
+
+  const olcPos = () => {
+    const el = scroller.current;
+    if (!el) return;
+    const card = el.querySelector<HTMLElement>("[data-card]");
+    const step = card ? card.getBoundingClientRect().width + 20 : 1;
+    const maks = Math.max(el.scrollWidth - el.clientWidth, 1);
+    setPos({
+      ilk: Math.min(flat.length, Math.round(el.scrollLeft / step) + 1),
+      oran: Math.min(1, el.scrollLeft / maks),
+    });
+  };
+
+  useEffect(() => {
+    olcPos();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const scrollByCard = (dir: 1 | -1) => {
     const el = scroller.current;
     if (!el) return;
@@ -1582,6 +1605,7 @@ function CapabilityCarousel({ lang }: { lang: Lang }) {
     // behavior:"auto" — smooth, snap konteynerinde bazı motorlarda iptal
     // ediliyor (animasyon ilerlemiyor). Anında geçiş her yerde güvenilir.
     el.scrollBy({ left: dir * step, behavior: "auto" });
+    olcPos();
   };
 
   const arrowBtn =
@@ -1589,8 +1613,19 @@ function CapabilityCarousel({ lang }: { lang: Lang }) {
 
   return (
     <div className="mt-10">
-      {/* Ok navigasyonu — referanstaki gibi */}
-      <div className="flex justify-end gap-2 mb-4">
+      {/* Sayaç + ilerleme + oklar */}
+      <div className="flex items-center gap-4 mb-4">
+        <span className="font-medium text-[11px] tracking-[0.18em] text-stone-500 tabular-nums">
+          {String(pos.ilk).padStart(2, "0")} / {String(flat.length).padStart(2, "0")}
+        </span>
+        <div aria-hidden className="flex-1 h-px bg-stone-200 relative">
+          <span
+            className="absolute inset-y-0 left-0 bg-amber-500 transition-[width] duration-300"
+            style={{ width: `${Math.max(8, pos.oran * 100)}%` }}
+          />
+        </div>
+      </div>
+      <div className="flex justify-end gap-2 mb-4 -mt-1">
         <button type="button" onClick={() => scrollByCard(-1)} aria-label="Önceki" className={arrowBtn}>
           <svg viewBox="0 0 24 24" className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M15 18l-6-6 6-6" /></svg>
         </button>
@@ -1601,6 +1636,7 @@ function CapabilityCarousel({ lang }: { lang: Lang }) {
 
       <div
         ref={scroller}
+        onScroll={olcPos}
         className="flex gap-5 overflow-x-auto snap-x snap-mandatory pb-2 -mx-6 px-6 md:mx-0 md:px-0"
         style={{ scrollbarWidth: "thin" }}
       >
@@ -2230,13 +2266,23 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
                 {t.quote.formCardText}
               </p>
             </div>
-            <a
-              href={CONTACT_PATH[defaultLang]}
-              className="shrink-0 self-start md:self-auto inline-flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-black font-semibold px-7 py-3.5 text-sm transition-colors"
-            >
-              {t.quote.formCardCta}
-              <span aria-hidden>&rarr;</span>
-            </a>
+            {/* SSS'ye ikincil yol: tereddüdü olan ziyaretçi, teklif isteme
+                niyetine gelmeden önce cevapları bulabilsin. */}
+            <div className="shrink-0 flex flex-col items-start md:items-end gap-3">
+              <a
+                href={CONTACT_PATH[defaultLang]}
+                className="inline-flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-black font-semibold px-7 py-3.5 text-sm transition-colors"
+              >
+                {t.quote.formCardCta}
+                <span aria-hidden>&rarr;</span>
+              </a>
+              <a
+                href={`${CONTACT_PATH[defaultLang]}#sss`}
+                className="text-[13px] text-stone-400 hover:text-amber-400 underline underline-offset-4 transition-colors"
+              >
+                {t.quote.faqLink}
+              </a>
+            </div>
           </div>
         </div>
       </section>

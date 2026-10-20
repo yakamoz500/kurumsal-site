@@ -206,7 +206,7 @@ export default function ContactPage({ lang }: { lang: Lang }) {
 
         {/* SSS — formun hemen altında: teklif istemeden önceki tereddütler
             burada kapanıyor. */}
-        <section className="pb-14 md:pb-20 px-6 bg-white">
+        <section id="sss" className="scroll-mt-28 pb-14 md:pb-20 px-6 bg-white">
           <div className="max-w-6xl mx-auto">
             <div className="flex items-center gap-3">
               <span aria-hidden className="h-px w-6 bg-amber-500" />
