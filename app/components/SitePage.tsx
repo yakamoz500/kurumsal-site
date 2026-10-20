@@ -135,7 +135,7 @@ const T = {
         { title: "Mobilya", desc: "Mobilya sektörüne metal donanım üretiyoruz: sihirli sehpa mekanizması, halatlı masa rayı, zigon tekeri ve masa köşe bağlantısı gibi parçaları kalıptan seri baskıya kadar kendi bünyemizde çıkarıyoruz." },
         { title: "Mutfak ve Sofra Gereçleri", desc: "Çatal, kaşık ve benzeri sofra gereçlerinin kesme ve şekillendirme kalıplarını üretiyoruz." },
         { title: "Beyaz Eşya Yan Sanayi", desc: "Beyaz eşya üreticilerinin braket, klips ve montaj parçalarını kalıptan seri baskıya kadar çıkarıyoruz." },
-        { title: "Savunma Sanayi", desc: "Yüksek dayanım ve hassasiyet gerektiren savunma sanayi bileşenlerinin üretiminde güvenilir çözüm ortağınızız." },
+        { title: "Savunma ve Güvenlik", desc: "Kendi ürünümüz olan polis kelepçesini tasarımından montajına kadar bu atölyede üretiyoruz — dayanımın, kilit mekanizmasının ve emniyetli çalışmanın aynı anda tutması gereken bir parça. Savunma ve güvenlik tarafındaki bileşenlerde aynı disiplinle çalışıyoruz." },
       ],
     },
     about: {
@@ -170,7 +170,7 @@ const T = {
         { label: "Sektörler", href: "#hizmetler" },
         { label: "İletişim", href: "/iletisim" },
       ],
-      serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Mobilya", "Mutfak ve Sofra Gereçleri", "Beyaz Eşya Yan Sanayi", "Savunma Sanayi"],
+      serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Mobilya", "Mutfak ve Sofra Gereçleri", "Beyaz Eşya Yan Sanayi", "Savunma ve Güvenlik"],
     },
     quote: {
       index: "06",
@@ -331,7 +331,7 @@ const T = {
         { title: "Furniture", desc: "We produce metal hardware for the furniture industry: lift-top coffee table mechanisms, cable-synchronised extension table slides, nesting-table casters and corner brackets — from die to series, in-house." },
         { title: "Kitchen and Tableware", desc: "We produce the blanking and forming dies for cutlery and similar tableware." },
         { title: "White Goods Suppliers", desc: "We take the brackets, clips and assembly parts of white goods manufacturers from die to series production." },
-        { title: "Defense Industry", desc: "We are your reliable solution partner in the production of defense industry components requiring high strength and precision." },
+        { title: "Defense and Security", desc: "Our own product, police handcuffs, is designed and assembled in this workshop — a part where strength, lock precision and safe operation all have to hold at once. We bring the same discipline to defense and security components." },
       ],
     },
     about: {
@@ -366,7 +366,7 @@ const T = {
         { label: "Sectors", href: "#hizmetler" },
         { label: "Contact", href: "/en/contact" },
       ],
-      serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Furniture", "Kitchen and Tableware", "White Goods Suppliers", "Defense Industry"],
+      serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Furniture", "Kitchen and Tableware", "White Goods Suppliers", "Defense and Security"],
     },
     quote: {
       index: "06",
