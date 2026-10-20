@@ -1322,9 +1322,9 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
       >
         {/* Logo — sol */}
         <a href={lang === "EN" ? "/en" : "/"} className="flex items-center gap-1.5 shrink-0">
-          <Image src="/logo2.png" alt="Özhan Metal Logo" width={36} height={36} className="object-contain" />
-          <span className="text-stone-900 font-bold text-base tracking-[0.15em]">ÖZHAN</span>
-          <span className="text-amber-600 font-bold text-base tracking-[0.15em]">METAL</span>
+          <Image src="/logo2.png" alt="Özhan Metal Logo" width={42} height={42} className="object-contain" />
+          <span className="text-stone-900 font-bold text-lg tracking-[0.15em]">ÖZHAN</span>
+          <span className="text-amber-600 font-bold text-lg tracking-[0.15em]">METAL</span>
         </a>
 
         {/* Desktop Nav — orta */}
@@ -1334,13 +1334,13 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
               key={link.href}
               href={link.href}
               onClick={() => setActive(link.href)}
-              className={`relative whitespace-nowrap px-2 py-2 text-sm font-medium transition-colors group ${
+              className={`relative whitespace-nowrap px-2.5 py-2 text-[15px] font-medium transition-colors group ${
                 active === link.href ? "text-stone-900" : "text-stone-600 hover:text-stone-900"
               }`}
             >
               {link.label}
               <span
-                className={`absolute bottom-0.5 left-2 right-2 h-0.5 bg-amber-500 transition-transform origin-left duration-300 ${
+                className={`absolute bottom-0.5 left-2.5 right-2.5 h-0.5 bg-amber-500 transition-transform origin-left duration-300 ${
                   active === link.href ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
                 }`}
               />
