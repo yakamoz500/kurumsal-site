@@ -55,14 +55,14 @@ const nextConfig: NextConfig = {
       { source: "/hizmetlerimiz", destination: "/#yeteneklerimiz", permanent: true },
       { source: "/hizmetlerimiz/:slug*", destination: "/#yeteneklerimiz", permanent: true },
       { source: "/hakkimizda", destination: "/#hakkimizda", permanent: true },
-      { source: "/iletisim", destination: "/#iletisim", permanent: true },
+      // NOT: /iletisim ve /en/contact artık gerçek sayfa; buradaki
+      // 301 kuralları kaldırıldı.
       // İngilizce karşılıkları
       { source: "/en/products", destination: "/en#urunlerimiz", permanent: true },
       { source: "/en/products/:slug*", destination: "/en#urunlerimiz", permanent: true },
       { source: "/en/services", destination: "/en#yeteneklerimiz", permanent: true },
       { source: "/en/services/:slug*", destination: "/en#yeteneklerimiz", permanent: true },
       { source: "/en/about", destination: "/en#hakkimizda", permanent: true },
-      { source: "/en/contact", destination: "/en#iletisim", permanent: true },
     ];
   },
 };

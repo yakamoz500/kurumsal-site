@@ -1,0 +1,193 @@
+"use client";
+
+import { useState } from "react";
+import { Navbar, SiteFooter, QuoteForm, CornerTicks, blueprintGrid, type Lang } from "./SitePage";
+
+const C = {
+  TR: {
+    eyebrow: "Bize ulaşın",
+    title: "İletişim",
+    lead: "Teknik resminizi gönderin ya da doğrudan arayın. Kalıp mı, parça mı, ikisi birden mi — tek muhatapla ilerlersiniz.",
+    addressLabel: "Adres",
+    address: ["Muratpaşa Mah. Uluyol İşkent Sanayi Sitesi", "D Blok No:64, Bayrampaşa / İstanbul"],
+    phoneLabel: "Telefon",
+    emailLabel: "E-posta",
+    hoursLabel: "Çalışma saatleri",
+    hours: ["Pazartesi – Cuma", "08:00 – 19:00"],
+    directions: "Yol tarifi al",
+    mapTitle: "Üretim tesisi",
+    mapNote: "Harita Google Maps üzerinden yüklenir ve Google çerez yerleştirir. Yüklemek için tıklayın.",
+    mapLoad: "Haritayı yükle",
+    formTitle: "Teklif isteyin",
+    formLead: "Kalıp tipi, adet ve tolerans ihtiyacınızı yazın; size dönelim.",
+    whatsapp: "WhatsApp'tan yazın",
+    callNow: "Hemen arayın",
+  },
+  EN: {
+    eyebrow: "Get in touch",
+    title: "Contact",
+    lead: "Send us your drawing or call directly. Tooling, parts, or both — you deal with one supplier.",
+    addressLabel: "Address",
+    address: ["Muratpasa Mah. Uluyol Iskent Sanayi Sitesi", "D Blok No:64, Bayrampasa / Istanbul, Türkiye"],
+    phoneLabel: "Phone",
+    emailLabel: "E-mail",
+    hoursLabel: "Working hours",
+    hours: ["Monday – Friday", "08:00 – 19:00 (GMT+3)"],
+    directions: "Get directions",
+    mapTitle: "Production facility",
+    mapNote: "The map loads from Google Maps, which sets cookies. Click to load it.",
+    mapLoad: "Load map",
+    formTitle: "Request a quote",
+    formLead: "Tell us the tool type, volume and tolerance you need and we will come back to you.",
+    whatsapp: "Message on WhatsApp",
+    callNow: "Call now",
+  },
+} as const;
+
+const PHONE_DISPLAY = { TR: "0545 646 23 56", EN: "+90 545 646 23 56" } as const;
+const PHONE_HREF = "tel:+905456462356";
+const EMAIL = "info@ozhanmetal.com";
+const MAPS_URL =
+  "https://www.google.com/maps/place/%C3%96zhan+Metal+Kal%C4%B1p+Sanayi+Ltd/@41.050258,28.9071769,17z";
+const MAPS_EMBED =
+  "https://www.google.com/maps?q=41.050254,28.9097572&hl=tr&z=17&output=embed";
+
+export default function ContactPage({ lang }: { lang: Lang }) {
+  const t = C[lang];
+  // Harita tıklanana kadar yüklenmez: Google'ın çerezi izinsiz düşmesin.
+  const [mapOn, setMapOn] = useState(false);
+
+  const rows = [
+    { label: t.addressLabel, body: t.address, href: MAPS_URL, external: true },
+    { label: t.phoneLabel, body: [PHONE_DISPLAY[lang]], href: PHONE_HREF },
+    { label: t.emailLabel, body: [EMAIL], href: `mailto:${EMAIL}` },
+    { label: t.hoursLabel, body: t.hours },
+  ];
+
+  return (
+    <div className="min-h-screen flex flex-col bg-white">
+      <Navbar lang={lang} standalone />
+
+      <main className="flex-1">
+        <section className="relative overflow-hidden bg-stone-50 pt-28 pb-14 md:pt-32 md:pb-16 px-6">
+          <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
+          <div className="relative max-w-6xl mx-auto">
+            <div className="flex items-center gap-3">
+              <span aria-hidden className="h-px w-6 bg-amber-500" />
+              <span className="font-medium text-[11px] uppercase tracking-[0.2em] text-amber-700">{t.eyebrow}</span>
+            </div>
+            <h1 className="mt-5 text-4xl md:text-5xl font-semibold tracking-tight text-stone-900">{t.title}</h1>
+            <p className="mt-5 max-w-2xl text-base md:text-lg leading-relaxed text-stone-600">{t.lead}</p>
+          </div>
+        </section>
+
+        <section className="py-14 md:py-20 px-6 bg-white">
+          <div className="max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-16 items-start">
+            {/* Sol — künye */}
+            <div className="lg:col-span-5">
+              <dl className="divide-y divide-stone-200 border-t border-stone-900">
+                {rows.map((r) => (
+                  <div key={r.label} className="py-5">
+                    <dt className="font-medium text-[10px] uppercase tracking-[0.18em] text-stone-400">{r.label}</dt>
+                    <dd className="mt-1.5 text-stone-900">
+                      {r.href ? (
+                        <a
+                          href={r.href}
+                          {...(r.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
+                          className="hover:text-amber-700 transition-colors"
+                        >
+                          {r.body.map((line) => (
+                            <span key={line} className="block text-[15px] leading-relaxed">{line}</span>
+                          ))}
+                        </a>
+                      ) : (
+                        r.body.map((line) => (
+                          <span key={line} className="block text-[15px] leading-relaxed">{line}</span>
+                        ))
+                      )}
+                    </dd>
+                  </div>
+                ))}
+              </dl>
+
+              <div className="mt-7 flex flex-col sm:flex-row gap-3">
+                <a
+                  href={PHONE_HREF}
+                  className="bg-stone-900 hover:bg-amber-600 text-white font-medium px-6 py-3 text-sm text-center transition-colors"
+                >
+                  {t.callNow}
+                </a>
+                <a
+                  href={`https://wa.me/905456462356`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="border border-stone-300 hover:border-stone-900 text-stone-800 font-medium px-6 py-3 text-sm text-center transition-colors"
+                >
+                  {t.whatsapp}
+                </a>
+              </div>
+            </div>
+
+            {/* Sağ — harita */}
+            <div className="lg:col-span-7">
+              <div className="relative border border-stone-300 p-1.5 bg-white">
+                <CornerTicks className="border-amber-500" />
+                <div className="relative w-full aspect-4/3 bg-stone-100 overflow-hidden">
+                  {mapOn ? (
+                    <iframe
+                      src={MAPS_EMBED}
+                      title={t.mapTitle}
+                      loading="lazy"
+                      referrerPolicy="no-referrer-when-downgrade"
+                      className="absolute inset-0 w-full h-full border-0"
+                    />
+                  ) : (
+                    <button
+                      type="button"
+                      onClick={() => setMapOn(true)}
+                      className="absolute inset-0 w-full h-full flex flex-col items-center justify-center gap-3 px-8 text-center hover:bg-stone-50 transition-colors"
+                    >
+                      <span aria-hidden className="absolute inset-0" style={blueprintGrid} />
+                      <span className="relative font-medium text-[10px] uppercase tracking-[0.18em] text-stone-400">
+                        {t.mapTitle}
+                      </span>
+                      <span className="relative text-sm font-medium text-stone-900 border border-stone-900 px-5 py-2">
+                        {t.mapLoad}
+                      </span>
+                      <span className="relative text-xs leading-relaxed text-stone-500 max-w-xs">{t.mapNote}</span>
+                    </button>
+                  )}
+                </div>
+                <div className="flex justify-end px-1 pt-2 pb-0.5">
+                  <a
+                    href={MAPS_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[13px] font-medium text-amber-700 hover:text-amber-800 transition-colors"
+                  >
+                    {t.directions} &rarr;
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Form — ana sayfadakiyle aynı bileşen */}
+        <section className="relative overflow-hidden bg-stone-950 py-14 md:py-20 px-6">
+          <div className="relative max-w-6xl mx-auto grid lg:grid-cols-12 gap-10 lg:gap-14 items-start">
+            <div className="lg:col-span-5">
+              <h2 className="text-3xl md:text-4xl font-semibold tracking-tight text-white">{t.formTitle}</h2>
+              <p className="mt-4 text-stone-400 leading-relaxed">{t.formLead}</p>
+            </div>
+            <div className="lg:col-span-7">
+              <QuoteForm lang={lang} />
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <SiteFooter lang={lang} />
+    </div>
+  );
+}

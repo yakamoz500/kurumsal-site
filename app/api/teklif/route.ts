@@ -40,6 +40,7 @@ type Payload = {
   message?: unknown;
   website?: unknown; // honeypot
   lang?: unknown;
+  consent?: unknown;
 };
 
 const str = (v: unknown, max: number): string =>
@@ -80,8 +81,11 @@ export async function POST(request: NextRequest) {
   const service = clean(str(body.service, 80));
   const message = str(body.message, 4000);
   const lang = body.lang === "EN" ? "EN" : "TR";
+  const consent = body.consent === true;
 
-  if (!name || !email || !phone || !service || !looksLikeEmail(email)) {
+  // KVKK: açık rıza olmadan kişisel veriyi işlemiyoruz. İstemci kutuyu
+  // zaten zorunlu tutuyor; burası doğrudan POST edilen isteklere karşı.
+  if (!name || !email || !phone || !service || !looksLikeEmail(email) || !consent) {
     return NextResponse.json({ ok: false, error: "validation" }, { status: 422 });
   }
 
@@ -103,8 +107,8 @@ export async function POST(request: NextRequest) {
 
   const L =
     lang === "EN"
-      ? { subject: "New quote request", name: "Name", company: "Company", email: "Email", phone: "Phone", service: "Service", message: "Message", none: "—" }
-      : { subject: "Yeni teklif talebi", name: "Ad Soyad", company: "Firma", email: "E-posta", phone: "Telefon", service: "Hizmet", message: "Mesaj", none: "—" };
+      ? { subject: "New quote request", name: "Name", company: "Company", email: "Email", phone: "Phone", service: "Service", message: "Message", consent: "Consent", none: "—" }
+      : { subject: "Yeni teklif talebi", name: "Ad Soyad", company: "Firma", email: "E-posta", phone: "Telefon", service: "Hizmet", message: "Mesaj", consent: "KVKK onayı", none: "—" };
 
   const rows: [string, string][] = [
     [L.name, name],
@@ -113,6 +117,8 @@ export async function POST(request: NextRequest) {
     [L.phone, phone],
     [L.service, service],
     [L.message, message || L.none],
+    // Rızanın kaydı: hangi talepte onay alındığı mailde görünsün.
+    [L.consent, lang === "EN" ? "Yes" : "Evet"],
   ];
 
   const esc = (s: string) =>

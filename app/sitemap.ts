@@ -7,10 +7,16 @@ const baseUrl = "https://ozhanmetal.com";
 // yanlış sinyal veriyordu. Sürekli yalan söyleyen lastmod, zamanla dikkate
 // alınmaz hale gelir.
 const lastContentUpdate = new Date("2026-07-17");
+// İletişim ve aydınlatma metni sayfaları bugün eklendi.
+const contactUpdate = new Date("2026-10-20");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     { url: baseUrl, lastModified: lastContentUpdate, changeFrequency: "monthly", priority: 1 },
     { url: `${baseUrl}/en`, lastModified: lastContentUpdate, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${baseUrl}/iletisim`, lastModified: contactUpdate, changeFrequency: "yearly", priority: 0.7 },
+    { url: `${baseUrl}/en/contact`, lastModified: contactUpdate, changeFrequency: "yearly", priority: 0.7 },
+    { url: `${baseUrl}/kvkk`, lastModified: contactUpdate, changeFrequency: "yearly", priority: 0.2 },
+    { url: `${baseUrl}/en/privacy`, lastModified: contactUpdate, changeFrequency: "yearly", priority: 0.2 },
   ];
 }

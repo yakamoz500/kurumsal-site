@@ -161,10 +161,12 @@ const T = {
       saturday: "",
       servicesTitle: "Hizmetlerimiz",
       rights: "Tüm hakları saklıdır.",
+      privacy: "Aydınlatma Metni",
       navItems: [
         { label: "Hakkımızda", href: "#hakkimizda" },
         { label: "Ürünlerimiz", href: "#urunlerimiz" },
         { label: "Sektörler", href: "#hizmetler" },
+        { label: "İletişim", href: "/iletisim" },
       ],
       serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Mobilya", "Savunma Sanayi"],
     },
@@ -183,6 +185,9 @@ const T = {
       service: "Hizmet Seçin",
       serviceDefault: "-- Hizmet seçin --",
       message: "Mesajınız (opsiyonel)",
+      consent: "Teklif talebimin değerlendirilmesi için ad, e-posta ve telefon bilgilerimin işlenmesine izin veriyorum.",
+      consentLink: "Aydınlatma Metni",
+      consentRequired: "Devam etmek için onay kutusunu işaretleyin.",
       submit: "Teklif Talebi Gönder",
       sending: "Gönderiliyor...",
       success: "Teklif talebiniz bize ulaştı. En kısa sürede size dönüş yapacağız.",
@@ -346,10 +351,12 @@ const T = {
       saturday: "",
       servicesTitle: "Our Services",
       rights: "All rights reserved.",
+      privacy: "Privacy Notice",
       navItems: [
         { label: "About Us", href: "#hakkimizda" },
         { label: "Products", href: "#urunlerimiz" },
         { label: "Sectors", href: "#hizmetler" },
+        { label: "Contact", href: "/en/contact" },
       ],
       serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Furniture", "Defense Industry"],
     },
@@ -368,6 +375,9 @@ const T = {
       service: "Select Service",
       serviceDefault: "-- Select a service --",
       message: "Your Message (optional)",
+      consent: "I consent to my name, e-mail and phone number being processed so that my request can be handled.",
+      consentLink: "Privacy Notice",
+      consentRequired: "Please tick the box to continue.",
       submit: "Send Quote Request",
       sending: "Sending...",
       success: "Your quote request has reached us. We will get back to you shortly.",
@@ -382,6 +392,10 @@ const T = {
 } as const;
 
 // ─── Image paths ──────────────────────────────────────────────────────────────
+// İletişim ve KVKK artık ayrı sayfa; menü ve footer buradan okur.
+export const CONTACT_PATH: Record<Lang, string> = { TR: "/iletisim", EN: "/en/contact" };
+export const KVKK_PATH: Record<Lang, string> = { TR: "/kvkk", EN: "/en/privacy" };
+
 const WHATSAPP_NUMBER = "905456462356";
 const PHONE_HREF = "tel:+905456462356";
 // Yurt dışındaki alıcı "0545" ile arayamaz — EN tarafında uluslararası format.
@@ -1137,7 +1151,7 @@ const capabilityIcons = [
 // ─── Shared bits ──────────────────────────────────────────────────────────────
 
 // Teknik çizim hissi veren ince blueprint gridi
-const blueprintGrid: React.CSSProperties = {
+export const blueprintGrid: React.CSSProperties = {
   backgroundImage:
     "linear-gradient(to right, rgba(28,25,23,0.05) 1px, transparent 1px)," +
     "linear-gradient(to bottom, rgba(28,25,23,0.05) 1px, transparent 1px)",
@@ -1145,7 +1159,7 @@ const blueprintGrid: React.CSSProperties = {
 };
 
 // Çerçevenin dört köşesindeki gönye işaretleri
-function CornerTicks({ className = "border-stone-300" }: { className?: string }) {
+export function CornerTicks({ className = "border-stone-300" }: { className?: string }) {
   return (
     <>
       <span aria-hidden className={`absolute -top-px -left-px w-3 h-3 border-t-2 border-l-2 ${className}`} />
@@ -1191,20 +1205,25 @@ function SectionHead({
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 const SECTION_IDS = ["urunlerimiz", "yeteneklerimiz", "hizmetler", "hakkimizda", "iletisim"];
 
-function Navbar({ lang }: { lang: Lang }) {
+/** `standalone`: ana sayfa dışındaki sayfalarda (ör. /iletisim) bölüm
+ *  bağlantıları ana sayfaya mutlak gitmeli, yoksa tıklayınca hiçbir şey olmaz. */
+export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: boolean }) {
   const router = useRouter();
   const t = T[lang].nav;
   const [scrolled, setScrolled] = useState(false);
   const [active, setActive] = useState("#");
   const [menuOpen, setMenuOpen] = useState(false);
 
+  const home = lang === "EN" ? "/en" : "/";
+  const at = (hash: string) => (standalone ? `${home}${hash}` : hash);
+
   const navLinks = [
-    { label: t.home, href: "#" },
-    { label: t.products, href: "#urunlerimiz" },
-    { label: t.capabilities, href: "#yeteneklerimiz" },
-    { label: t.services, href: "#hizmetler" },
-    { label: t.about, href: "#hakkimizda" },
-    { label: t.contact, href: "#iletisim" },
+    { label: t.home, href: standalone ? home : "#" },
+    { label: t.products, href: at("#urunlerimiz") },
+    { label: t.capabilities, href: at("#yeteneklerimiz") },
+    { label: t.services, href: at("#hizmetler") },
+    { label: t.about, href: at("#hakkimizda") },
+    { label: t.contact, href: CONTACT_PATH[lang] },
   ];
 
   useEffect(() => {
@@ -1652,11 +1671,13 @@ function SectorGrid({ lang }: { lang: Lang }) {
 }
 
 // ─── Quote Form ───────────────────────────────────────────────────────────────
-function QuoteForm({ lang }: { lang: Lang }) {
+export function QuoteForm({ lang }: { lang: Lang }) {
   const t = T[lang].quote;
   const [form, setForm] = useState({ name: "", company: "", email: "", phone: "", service: "", message: "" });
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [errorMsg, setErrorMsg] = useState<string>(t.error);
+  // KVKK açık rıza — kutu işaretlenmeden form gönderilmez.
+  const [consent, setConsent] = useState(false);
   // Honeypot — gerçek kullanıcı görmez, bot doldurur.
   const [website, setWebsite] = useState("");
 
@@ -1698,7 +1719,7 @@ function QuoteForm({ lang }: { lang: Lang }) {
       const res = await fetch("/api/teklif", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...form, website, lang }),
+        body: JSON.stringify({ ...form, website, lang, consent }),
       });
 
       if (!res.ok) {
@@ -1709,6 +1730,7 @@ function QuoteForm({ lang }: { lang: Lang }) {
 
       setStatus("success");
       setForm({ name: "", company: "", email: "", phone: "", service: "", message: "" });
+      setConsent(false);
     } catch {
       // Ağ hatası / offline
       setErrorMsg(t.error);
@@ -1787,6 +1809,32 @@ function QuoteForm({ lang }: { lang: Lang }) {
         />
       </div>
 
+      {/* KVKK açık rıza — tarayıcının kendi required kontrolü yeterli,
+          onay vermeden gönderim olmaz. */}
+      <label className="flex items-start gap-2.5 pt-1 cursor-pointer">
+        <input
+          type="checkbox"
+          name="consent"
+          required
+          checked={consent}
+          onChange={(e) => setConsent(e.target.checked)}
+          className="mt-0.5 shrink-0 w-4 h-4 accent-amber-500 cursor-pointer"
+          onInvalid={(e) => (e.target as HTMLInputElement).setCustomValidity(t.consentRequired)}
+          onInput={(e) => (e.target as HTMLInputElement).setCustomValidity("")}
+        />
+        <span className="text-[11px] leading-relaxed text-stone-400">
+          {t.consent}{" "}
+          <a
+            href={KVKK_PATH[lang]}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-amber-400 hover:text-amber-300 underline underline-offset-2"
+          >
+            {t.consentLink}
+          </a>
+        </span>
+      </label>
+
       {/* Hata: sesli patla ve kullanıcıyı WhatsApp'a düşür — lead kaybolmasın. */}
       {status === "error" && (
         <div role="alert" className="border border-red-500/50 bg-red-500/10 px-4 py-3 flex flex-col gap-3">
@@ -1824,6 +1872,141 @@ function QuoteForm({ lang }: { lang: Lang }) {
 }
 
 // ─── Main Export ──────────────────────────────────────────────────────────────
+// ─── Footer ──────────────────────────────────────────────────────────────────
+// SitePage'in içinden çıkarıldı: /iletisim ve /kvkk sayfaları da kullanıyor.
+export function SiteFooter({ lang }: { lang: Lang }) {
+  const t = T[lang];
+  return (
+        <footer id="iletisim" className="scroll-mt-24 bg-stone-950 border-t border-stone-800">
+          <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
+
+            {/* Kolon 1 — Logo + Sosyal Medya */}
+            <div className="flex flex-col gap-6">
+              <a href={lang === "EN" ? "/en" : "/"} className="flex items-center gap-1">
+                <Image
+                  src="/logo2.png"
+                  alt="Özhan Metal Logo"
+                  width={42}
+                  height={42}
+                  className="object-contain invert"
+                />
+                <span className="text-white font-black text-xl tracking-widest">ÖZHAN</span>
+                <span className="text-amber-400 font-black text-xl tracking-widest">METAL</span>
+              </a>
+              <div>
+                <p className="text-stone-400 text-sm font-semibold mb-4">{t.footer.followUs}</p>
+                <div className="flex gap-3">
+                  <a href="https://www.facebook.com/ozhanmetal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
+                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
+                    <IconFacebook />
+                  </a>
+                  <a href="https://www.linkedin.com/company/ozhan-metal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
+                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
+                    <IconLinkedIn />
+                  </a>
+                  <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
+                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
+                    <IconWhatsApp />
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            {/* Kolon 2 — Bize Ulaşın */}
+            <div>
+              <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.reachUs}</h4>
+              <ul className="space-y-5">
+                <li className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shrink-0 text-amber-400">
+                    <IconPhone />
+                  </div>
+                  <div>
+                    <p className="text-stone-500 text-xs mb-0.5">{t.footer.phoneLabel}</p>
+                    <a href={PHONE_HREF} className="text-white text-sm font-medium hover:text-amber-400 transition-colors">
+                      {PHONE_DISPLAY[lang]}
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shrink-0 text-amber-400">
+                    <IconMail />
+                  </div>
+                  <div>
+                    <p className="text-stone-500 text-xs mb-0.5">{t.footer.emailLabel}</p>
+                    <a href="mailto:info@ozhanmetal.com" className="text-white text-sm font-medium hover:text-amber-400 transition-colors">
+                      info@ozhanmetal.com
+                    </a>
+                  </div>
+                </li>
+                <li className="flex items-start gap-4">
+                  <div className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shrink-0 text-amber-400">
+                    <IconLocation />
+                  </div>
+                  <div>
+                    <p className="text-stone-500 text-xs mb-0.5">{t.footer.addressLabel}</p>
+                    <a
+                      href="https://www.google.com/maps/place/%C3%96zhan+Metal+Kal%C4%B1p+Sanayi+Ltd/@41.050258,28.9071769,17z/data=!3m1!4b1!4m6!3m5!1s0x14cab081d1abf565:0x12ef9edb4764cd34!8m2!3d41.050254!4d28.9097572!16s%2Fg%2F11c7v_r6pr?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
+                      target="_blank" rel="noopener noreferrer"
+                      className="text-white text-sm font-medium hover:text-amber-400 transition-colors leading-snug"
+                    >
+                      Muratpaşa Mah. Uluyol İşkent Sanayi Sitesi, D Blok No:64, İstanbul
+                    </a>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            {/* Kolon 3 — Kurumsal + Çalışma Saatleri */}
+            <div>
+              <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.corporate}</h4>
+              <ul className="space-y-3 mb-8">
+                {t.footer.navItems.map((l) => (
+                  <li key={l.href}>
+                    {/* Footer /iletisim ve /kvkk sayfalarında da görünüyor;
+                        çapa bağlantıları oradan ana sayfaya gitmeli. */}
+                    <a
+                      href={l.href.startsWith("#") ? `${lang === "EN" ? "/en" : "/"}${l.href}` : l.href}
+                      className="text-stone-400 hover:text-white text-sm transition-colors"
+                    >
+                      {l.label}
+                    </a>
+                  </li>
+                ))}
+              </ul>
+              <h4 className="text-amber-400 font-bold text-base mb-4">{t.footer.workingHours}</h4>
+              <p className="text-stone-400 text-sm">{t.footer.weekdays}</p>
+            </div>
+
+            {/* Kolon 4 — Hizmetlerimiz */}
+            <div>
+              <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.servicesTitle}</h4>
+              <ul className="space-y-3">
+                {t.footer.serviceItems.map((s) => (
+                  <li key={s}>
+                    <a href={`${lang === "EN" ? "/en" : "/"}#hizmetler`} className="text-stone-400 hover:text-white text-sm transition-colors">{s}</a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+          </div>
+
+          {/* Alt bar */}
+          <div className="border-t border-stone-800">
+            <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
+              <p className="text-stone-500 text-xs" suppressHydrationWarning>
+                © {new Date().getFullYear()} <span className="text-amber-400">Özhan Metal</span>. {t.footer.rights}
+              </p>
+              <span aria-hidden className="hidden sm:block text-stone-700 text-xs">·</span>
+              <a href={KVKK_PATH[lang]} className="text-stone-500 hover:text-stone-300 text-xs transition-colors">
+                {t.footer.privacy}
+              </a>
+            </div>
+          </div>
+        </footer>
+  );
+}
+
 export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
   const t = T[defaultLang];
 
@@ -2044,122 +2227,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── FOOTER ── */}
-      <footer id="iletisim" className="scroll-mt-24 bg-stone-950 border-t border-stone-800">
-        <div className="max-w-6xl mx-auto px-6 py-16 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-12">
-
-          {/* Kolon 1 — Logo + Sosyal Medya */}
-          <div className="flex flex-col gap-6">
-            <a href={defaultLang === "EN" ? "/en" : "/"} className="flex items-center gap-1">
-              <Image
-                src="/logo2.png"
-                alt="Özhan Metal Logo"
-                width={42}
-                height={42}
-                className="object-contain invert"
-              />
-              <span className="text-white font-black text-xl tracking-widest">ÖZHAN</span>
-              <span className="text-amber-400 font-black text-xl tracking-widest">METAL</span>
-            </a>
-            <div>
-              <p className="text-stone-400 text-sm font-semibold mb-4">{t.footer.followUs}</p>
-              <div className="flex gap-3">
-                <a href="https://www.facebook.com/ozhanmetal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                  className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
-                  <IconFacebook />
-                </a>
-                <a href="https://www.linkedin.com/company/ozhan-metal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                  className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
-                  <IconLinkedIn />
-                </a>
-                <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
-                  className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
-                  <IconWhatsApp />
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Kolon 2 — Bize Ulaşın */}
-          <div>
-            <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.reachUs}</h4>
-            <ul className="space-y-5">
-              <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shrink-0 text-amber-400">
-                  <IconPhone />
-                </div>
-                <div>
-                  <p className="text-stone-500 text-xs mb-0.5">{t.footer.phoneLabel}</p>
-                  <a href={PHONE_HREF} className="text-white text-sm font-medium hover:text-amber-400 transition-colors">
-                    {PHONE_DISPLAY[defaultLang]}
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shrink-0 text-amber-400">
-                  <IconMail />
-                </div>
-                <div>
-                  <p className="text-stone-500 text-xs mb-0.5">{t.footer.emailLabel}</p>
-                  <a href="mailto:info@ozhanmetal.com" className="text-white text-sm font-medium hover:text-amber-400 transition-colors">
-                    info@ozhanmetal.com
-                  </a>
-                </div>
-              </li>
-              <li className="flex items-start gap-4">
-                <div className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center shrink-0 text-amber-400">
-                  <IconLocation />
-                </div>
-                <div>
-                  <p className="text-stone-500 text-xs mb-0.5">{t.footer.addressLabel}</p>
-                  <a
-                    href="https://www.google.com/maps/place/%C3%96zhan+Metal+Kal%C4%B1p+Sanayi+Ltd/@41.050258,28.9071769,17z/data=!3m1!4b1!4m6!3m5!1s0x14cab081d1abf565:0x12ef9edb4764cd34!8m2!3d41.050254!4d28.9097572!16s%2Fg%2F11c7v_r6pr?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D"
-                    target="_blank" rel="noopener noreferrer"
-                    className="text-white text-sm font-medium hover:text-amber-400 transition-colors leading-snug"
-                  >
-                    Muratpaşa Mah. Uluyol İşkent Sanayi Sitesi, D Blok No:64, İstanbul
-                  </a>
-                </div>
-              </li>
-            </ul>
-          </div>
-
-          {/* Kolon 3 — Kurumsal + Çalışma Saatleri */}
-          <div>
-            <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.corporate}</h4>
-            <ul className="space-y-3 mb-8">
-              {t.footer.navItems.map((l) => (
-                <li key={l.href}>
-                  <a href={l.href} className="text-stone-400 hover:text-white text-sm transition-colors">{l.label}</a>
-                </li>
-              ))}
-            </ul>
-            <h4 className="text-amber-400 font-bold text-base mb-4">{t.footer.workingHours}</h4>
-            <p className="text-stone-400 text-sm">{t.footer.weekdays}</p>
-          </div>
-
-          {/* Kolon 4 — Hizmetlerimiz */}
-          <div>
-            <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.servicesTitle}</h4>
-            <ul className="space-y-3">
-              {t.footer.serviceItems.map((s) => (
-                <li key={s}>
-                  <a href="#hizmetler" className="text-stone-400 hover:text-white text-sm transition-colors">{s}</a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
-        </div>
-
-        {/* Alt bar */}
-        <div className="border-t border-stone-800">
-          <div className="max-w-6xl mx-auto px-6 py-5 text-center">
-            <p className="text-stone-500 text-xs" suppressHydrationWarning>
-              © {new Date().getFullYear()} <span className="text-amber-400">Özhan Metal</span>. {t.footer.rights}
-            </p>
-          </div>
-        </div>
-      </footer>
+      <SiteFooter lang={defaultLang} />
 
     </div>
   );
