@@ -2195,19 +2195,11 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
           Form /iletisim sayfasında. Başlık bloğu ve doğrudan hat buradan
           kaldırıldı (telefon + WhatsApp navbar ve footer'da duruyor);
           bant tek bir işe indirgendi: forma göndermek. */}
-      <section id="teklif" className="scroll-mt-24 relative overflow-hidden bg-stone-950 py-14 md:py-16 px-6">
-        <div
-          aria-hidden
-          className="absolute inset-0 opacity-60"
-          style={{
-            backgroundImage:
-              "linear-gradient(to right, rgba(255,255,255,0.04) 1px, transparent 1px)," +
-              "linear-gradient(to bottom, rgba(255,255,255,0.04) 1px, transparent 1px)",
-            backgroundSize: "48px 48px",
-          }}
-        />
+      <section id="teklif" className="scroll-mt-24 relative overflow-hidden bg-white py-14 md:py-16 px-6">
+        {/* Zemin beyaz; ızgara da sitenin açık bölümlerindekiyle aynı. */}
+        <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
         <div className="relative max-w-6xl mx-auto">
-          <div className="relative border border-stone-800 bg-stone-900/40 px-7 py-8 md:px-10 md:py-10 flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
+          <div className="relative border border-stone-800 bg-stone-950 px-7 py-8 md:px-10 md:py-10 flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
             <CornerTicks className="border-stone-700" />
             <div className="flex-1">
               <p className="font-medium text-[10px] uppercase tracking-[0.2em] text-amber-400">
