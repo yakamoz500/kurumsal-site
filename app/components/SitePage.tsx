@@ -2191,7 +2191,11 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
       </section>
 
       {/* ── TEKLİF AL — koyu kapanış bandı, footer'a geçiş ── */}
-      <section id="teklif" className="scroll-mt-24 relative overflow-hidden bg-stone-950 py-14 md:py-20 px-6">
+      {/* ── TEKLİF BANDI — footer'a geçiş ──
+          Form /iletisim sayfasında. Başlık bloğu ve doğrudan hat buradan
+          kaldırıldı (telefon + WhatsApp navbar ve footer'da duruyor);
+          bant tek bir işe indirgendi: forma göndermek. */}
+      <section id="teklif" className="scroll-mt-24 relative overflow-hidden bg-stone-950 py-14 md:py-16 px-6">
         <div
           aria-hidden
           className="absolute inset-0 opacity-60"
@@ -2202,54 +2206,24 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             backgroundSize: "48px 48px",
           }}
         />
-        <div className="relative max-w-6xl mx-auto grid lg:grid-cols-12 gap-12 lg:gap-16">
-          {/* Sol — davet + doğrudan hat */}
-          <div className="lg:col-span-5">
-            <SectionHead
-              index={t.quote.index}
-              subtitle={t.quote.subtitle}
-              title={t.quote.title}
-              lead={t.quote.lead}
-              dark
-            />
-            <div className="mt-10 pt-8 border-t border-stone-800">
-              <p className="font-medium text-[10px] uppercase tracking-[0.2em] text-stone-500">{t.quote.directTitle}</p>
-              <a href={PHONE_HREF} className="mt-3 block font-mono text-2xl md:text-3xl text-white hover:text-amber-400 transition-colors">
-                {PHONE_DISPLAY[defaultLang]}
-              </a>
-              <p className="mt-3 text-sm text-stone-500 leading-relaxed max-w-sm">{t.quote.directDesc}</p>
-              <a
-                href={`https://wa.me/${WHATSAPP_NUMBER}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-5 inline-flex items-center gap-2 border border-stone-700 hover:border-amber-500 hover:text-amber-400 text-stone-300 px-4 py-2 text-[13px] font-medium transition-colors"
-              >
-                <IconWhatsApp />
-                {t.quote.whatsapp}
-              </a>
-            </div>
-          </div>
-
-          {/* Sağ — iletişim sayfasına yönlendirme.
-              Form buradan kaldırıldı, /iletisim sayfasına taşındı; ama
-              dönüşüm yolu kapanmasın diye yerine büyük bir giriş kondu. */}
-          <div className="lg:col-span-7 flex">
-            <div className="relative w-full border border-stone-800 bg-stone-900/40 p-7 md:p-10 flex flex-col justify-center">
-              <CornerTicks className="border-stone-700" />
+        <div className="relative max-w-6xl mx-auto">
+          <div className="relative border border-stone-800 bg-stone-900/40 px-7 py-8 md:px-10 md:py-10 flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
+            <CornerTicks className="border-stone-700" />
+            <div className="flex-1">
               <p className="font-medium text-[10px] uppercase tracking-[0.2em] text-amber-400">
                 {t.quote.formCardLabel}
               </p>
-              <p className="mt-4 text-xl md:text-2xl leading-snug text-white max-w-md">
+              <p className="mt-3.5 text-xl md:text-2xl leading-snug text-white max-w-xl">
                 {t.quote.formCardText}
               </p>
-              <a
-                href={CONTACT_PATH[defaultLang]}
-                className="mt-7 self-start inline-flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-black font-semibold px-6 py-3 text-sm transition-colors"
-              >
-                {t.quote.formCardCta}
-                <span aria-hidden>&rarr;</span>
-              </a>
             </div>
+            <a
+              href={CONTACT_PATH[defaultLang]}
+              className="shrink-0 self-start md:self-auto inline-flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-black font-semibold px-7 py-3.5 text-sm transition-colors"
+            >
+              {t.quote.formCardCta}
+              <span aria-hidden>&rarr;</span>
+            </a>
           </div>
         </div>
       </section>
