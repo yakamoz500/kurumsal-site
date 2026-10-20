@@ -2140,12 +2140,17 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
             </p>
             <ol className="mt-4 grid sm:grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-8">
               {t.product.chain.map((s, i) => (
-                <li key={s.k} className="relative border-t border-stone-900 pt-4">
-                  <span className="font-medium text-[10px] text-amber-600">
+                <li key={s.k} className="relative overflow-hidden border-t border-stone-900 pt-4">
+                  {/* Adım numarası metnin arkasında, soluk ve büyük: sırayı
+                      10px'lik bir etiketten daha okunur anlatıyor. */}
+                  <span
+                    aria-hidden
+                    className="pointer-events-none select-none absolute -top-1 right-0 text-6xl font-semibold tracking-tighter leading-none text-stone-900/[0.07]"
+                  >
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <h3 className="mt-1 text-base font-semibold tracking-tight text-stone-900">{s.k}</h3>
-                  <p className="mt-1.5 text-sm leading-relaxed text-stone-500">{s.v}</p>
+                  <h3 className="relative text-base font-semibold tracking-tight text-stone-900">{s.k}</h3>
+                  <p className="relative mt-1.5 text-sm leading-relaxed text-stone-500">{s.v}</p>
                 </li>
               ))}
             </ol>
