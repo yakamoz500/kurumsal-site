@@ -1,6 +1,6 @@
 "use client";
 
-import { Navbar, SiteFooter, blueprintGrid, type Lang } from "./SitePage";
+import { Navbar, SiteFooter, WhatsAppFab, blueprintGrid, type Lang } from "./SitePage";
 
 /** KVKK aydınlatma metni / privacy notice.
  *  Taslaktır — yayına almadan önce hukukçuya okutulmalı. Metin burada
@@ -128,6 +128,7 @@ export default function LegalPage({ lang }: { lang: Lang }) {
       </main>
 
       <SiteFooter lang={lang} />
+      <WhatsAppFab lang={lang} />
     </div>
   );
 }

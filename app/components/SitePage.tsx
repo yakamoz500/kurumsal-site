@@ -1214,6 +1214,29 @@ function SectionHead({
 }
 
 // ─── Product Image (next/image + hata yönetimi) ───────────────────────────────
+
+// ─── Sabit WhatsApp butonu ───────────────────────────────────────────────────
+// Talebin çoğu formdan değil WhatsApp'tan geliyor (yurt içi + yurt dışı), ama
+// ana sayfada WhatsApp yalnızca footer'da 40px'lik bir ikondu. Arap dünyası
+// tarafında WhatsApp zaten iş iletişiminin varsayılan yolu.
+// Yeşil bilinçli: tanınırlık palet saflığından önce geliyor. Köşeler keskin,
+// sitenin dilinde kalsın diye.
+export function WhatsAppFab({ lang }: { lang: Lang }) {
+  const etiket = lang === "EN" ? "Message on WhatsApp" : "WhatsApp'tan yazın";
+  return (
+    <a
+      href={`https://wa.me/${WHATSAPP_NUMBER}`}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={etiket}
+      className="fixed bottom-5 right-5 z-40 flex items-center gap-2.5 bg-[#25D366] hover:bg-[#1ebe5d] text-black shadow-lg px-3.5 py-3 sm:px-5 transition-colors"
+    >
+      <IconWhatsApp />
+      <span className="hidden sm:inline text-sm font-semibold whitespace-nowrap">{etiket}</span>
+    </a>
+  );
+}
+
 // ─── Navbar ───────────────────────────────────────────────────────────────────
 const SECTION_IDS = ["urunlerimiz", "yeteneklerimiz", "hizmetler", "hakkimizda", "iletisim"];
 
@@ -2280,12 +2303,23 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
                 {t.quote.formCardCta}
                 <span aria-hidden>&rarr;</span>
               </a>
-              <a
-                href={`${CONTACT_PATH[defaultLang]}#sss`}
-                className="text-[13px] text-stone-400 hover:text-amber-400 underline underline-offset-4 transition-colors"
-              >
-                {t.quote.faqLink}
-              </a>
+              <div className="flex items-center gap-4">
+                <a
+                  href={`https://wa.me/${WHATSAPP_NUMBER}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[13px] text-stone-400 hover:text-amber-400 underline underline-offset-4 transition-colors"
+                >
+                  {t.quote.whatsapp}
+                </a>
+                <span aria-hidden className="text-stone-700 text-xs">·</span>
+                <a
+                  href={`${CONTACT_PATH[defaultLang]}#sss`}
+                  className="text-[13px] text-stone-400 hover:text-amber-400 underline underline-offset-4 transition-colors"
+                >
+                  {t.quote.faqLink}
+                </a>
+              </div>
             </div>
           </div>
         </div>
@@ -2293,6 +2327,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
 
       {/* ── FOOTER ── */}
       <SiteFooter lang={defaultLang} />
+      <WhatsAppFab lang={defaultLang} />
 
     </div>
   );

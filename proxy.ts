@@ -1,10 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 
+/** Türkçe sayfa → İngilizce karşılığı. Yalnızca gerçekten iki dilli olan
+ *  sayfalar burada; eşleşmeyen yol yönlendirilmez. */
+const EN_KARSILIK: Record<string, string> = {
+  "/": "/en",
+  "/iletisim": "/en/contact",
+  "/kvkk": "/en/privacy",
+};
+
 export function proxy(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  // Sadece kök sayfada çalış
-  if (pathname !== "/") return NextResponse.next();
+  const hedef = EN_KARSILIK[pathname];
+  if (!hedef) return NextResponse.next();
 
   // Kullanıcı manuel dil seçtiyse dokunma
   const langCookie = request.cookies.get("lang")?.value;
@@ -14,15 +22,17 @@ export function proxy(request: NextRequest) {
   const acceptLang = request.headers.get("accept-language") ?? "";
   const preferred = acceptLang.split(",")[0].trim().toLowerCase();
 
-  // TR değilse /en'e yönlendir
+  // TR değilse İngilizce karşılığına yönlendir. Eskiden yalnızca kök sayfa
+  // yönlendiriliyordu; Facebook'tan paylaşılan bir alt sayfa linki Arapça
+  // konuşan ziyaretçiyi Türkçe sayfaya düşürüyordu.
   const isTurkish = preferred.startsWith("tr");
   if (!isTurkish) {
-    return NextResponse.redirect(new URL("/en", request.url));
+    return NextResponse.redirect(new URL(hedef, request.url));
   }
 
   return NextResponse.next();
 }
 
 export const config = {
-  matcher: ["/"],
+  matcher: ["/", "/iletisim", "/kvkk"],
 };

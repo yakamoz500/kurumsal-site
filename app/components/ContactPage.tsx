@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { Navbar, SiteFooter, QuoteForm, CornerTicks, blueprintGrid, type Lang } from "./SitePage";
+import { Navbar, SiteFooter, QuoteForm, CornerTicks, WhatsAppFab, blueprintGrid, type Lang } from "./SitePage";
 import { FAQ } from "./faqData";
 
 const C = {
@@ -265,6 +265,7 @@ export default function ContactPage({ lang }: { lang: Lang }) {
       </main>
 
       <SiteFooter lang={lang} />
+      <WhatsAppFab lang={lang} />
     </div>
   );
 }
