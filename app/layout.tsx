@@ -56,7 +56,7 @@ const jsonLd = {
       "name": "Özhan Metal Kalıp Sanayi Ltd.",
       "alternateName": "Özhan Metal",
       "url": "https://ozhanmetal.com",
-      "logo": "https://ozhanmetal.com/icon.svg",
+      "logo": "https://ozhanmetal.com/logo-kare.png",
       "image": "https://ozhanmetal.com/header_1.jpeg",
       "description": "1991 yılından bu yana metal kesme kalıbı üretiminde yüksek hassasiyet ve düşük toleransla üretim yapan güvenilir çözüm ortağı.",
       "foundingDate": "1991",

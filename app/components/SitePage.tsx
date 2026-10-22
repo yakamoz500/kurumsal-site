@@ -1127,7 +1127,7 @@ function DrawWelding() {
 }
 
 // Aile sırasıyla düz dizi — mevcut 6 önde, yeni fabrikasyon yetenekleri arkada
-const capabilityDrawings = [
+export const capabilityDrawings = [
   <DrawMilling key={0} />,
   <DrawTurning key={1} />,
   <DrawHoleEDM key={2} />,
@@ -1221,8 +1221,8 @@ function SectionHead({
 // tarafında WhatsApp zaten iş iletişiminin varsayılan yolu.
 // Yeşil bilinçli: tanınırlık palet saflığından önce geliyor. Köşeler keskin,
 // sitenin dilinde kalsın diye.
-export function WhatsAppFab({ lang }: { lang: Lang }) {
-  const etiket = lang === "EN" ? "Message on WhatsApp" : "WhatsApp'tan yazın";
+export function WhatsAppFab({ lang, label }: { lang: Lang; label?: string }) {
+  const etiket = label ?? (lang === "EN" ? "Message on WhatsApp" : "WhatsApp'tan yazın");
   return (
     <a
       href={`https://wa.me/${WHATSAPP_NUMBER}`}
@@ -1350,10 +1350,19 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
         }`}
       >
         {/* Logo — sol */}
-        <a href={lang === "EN" ? "/en" : "/"} className="flex items-center gap-1.5 shrink-0">
-          <Image src="/logo2.png" alt="Özhan Metal Logo" width={42} height={42} className="object-contain" />
-          <span className="text-stone-900 font-bold text-lg tracking-[0.15em]">ÖZHAN</span>
-          <span className="text-amber-600 font-bold text-lg tracking-[0.15em]">METAL</span>
+        {/* Gerçek logo. Eskiden jenerik bir dişli ikonu + elle dizilmiş yazı
+            vardı; marka işareti sitede hiç kullanılmamıştı. Açık zemin
+            varyantı: tagline grafit, yoksa beyaz zeminde kayboluyor. */}
+        <a href={lang === "EN" ? "/en" : "/"} className="shrink-0" aria-label="Özhan Metal">
+          <Image
+            src="/logo-light.svg"
+            alt="Özhan Metal Kalıp Sanayi"
+            width={639}
+            height={155}
+            priority
+            unoptimized
+            className="w-[186px] md:w-[210px] h-auto"
+          />
         </a>
 
         {/* Desktop Nav — orta */}
@@ -1975,16 +1984,15 @@ export function SiteFooter({ lang }: { lang: Lang }) {
 
             {/* Kolon 1 — Logo + Sosyal Medya */}
             <div className="flex flex-col gap-6">
-              <a href={lang === "EN" ? "/en" : "/"} className="flex items-center gap-1">
+              <a href={lang === "EN" ? "/en" : "/"} aria-label="Özhan Metal">
                 <Image
-                  src="/logo2.png"
-                  alt="Özhan Metal Logo"
-                  width={42}
-                  height={42}
-                  className="object-contain invert"
+                  src="/logo.svg"
+                  alt="Özhan Metal Kalıp Sanayi"
+                  width={639}
+                  height={155}
+                  unoptimized
+                  className="w-[220px] h-auto"
                 />
-                <span className="text-white font-black text-xl tracking-widest">ÖZHAN</span>
-                <span className="text-amber-400 font-black text-xl tracking-widest">METAL</span>
               </a>
               <div>
                 <p className="text-stone-400 text-sm font-semibold mb-4">{t.footer.followUs}</p>
