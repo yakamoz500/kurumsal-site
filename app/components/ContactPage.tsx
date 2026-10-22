@@ -126,7 +126,7 @@ export default function ContactPage({ lang }: { lang: Lang }) {
       <Navbar lang={lang} standalone />
 
       <main className="flex-1">
-        <section className="relative overflow-hidden bg-stone-50 pt-28 pb-14 md:pt-32 md:pb-16 px-6">
+        <section className="relative overflow-hidden bg-stone-50 pt-28 pb-14 md:pt-32 lg:pt-40 md:pb-16 px-6">
           <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
           <div className="relative max-w-6xl mx-auto">
             <div className="flex items-center gap-3">

@@ -1307,13 +1307,13 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
   // Dolgu yok — header'daki tek dolu öğe "Teklif Al" kalsın, hiyerarşi orada.
   const langBtn = (target: Lang) =>
     `text-xs transition-colors ${
-      lang === target ? "text-stone-900 font-semibold" : "text-stone-400 hover:text-stone-600"
+      lang === target ? "text-white font-semibold" : "text-stone-500 hover:text-stone-300"
     }`;
 
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
-        scrolled ? "bg-white/90 backdrop-blur-md border-stone-200" : "bg-white border-transparent"
+        scrolled ? "bg-stone-950/95 backdrop-blur-md border-stone-800" : "bg-stone-950 border-transparent"
       }`}
     >
       {/* Servis şeridi — telefon ve e-posta her sayfada görünür. Sayfa başında
@@ -1322,23 +1322,23 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
           hesaplara bakmıyor, footer doğru yer. */}
       <div
         className={`hidden lg:block overflow-hidden transition-all duration-300 ${
-          scrolled ? "max-h-0 opacity-0" : "max-h-10 opacity-100 border-b border-stone-200"
+          scrolled ? "max-h-0 opacity-0" : "max-h-10 opacity-100 border-b border-stone-800"
         }`}
       >
         <div className="max-w-6xl mx-auto px-6 h-9 flex items-center justify-between">
           <div className="flex items-center gap-6">
-            <a href={PHONE_HREF} className="group flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors">
-              <IconPhone className="w-3.5 h-3.5 text-stone-400 group-hover:text-amber-600 transition-colors" />
+            <a href={PHONE_HREF} className="group flex items-center gap-2 text-stone-400 hover:text-white transition-colors">
+              <IconPhone className="w-3.5 h-3.5 text-stone-500 group-hover:text-amber-400 transition-colors" />
               <span className="font-mono text-[13px] tabular-nums">{PHONE_DISPLAY[lang]}</span>
             </a>
-            <a href="mailto:info@ozhanmetal.com" className="group flex items-center gap-2 text-stone-600 hover:text-stone-900 transition-colors">
-              <span className="text-stone-400 group-hover:text-amber-600 transition-colors"><IconMail /></span>
+            <a href="mailto:info@ozhanmetal.com" className="group flex items-center gap-2 text-stone-400 hover:text-white transition-colors">
+              <span className="text-stone-500 group-hover:text-amber-400 transition-colors"><IconMail /></span>
               <span className="text-[13px]">info@ozhanmetal.com</span>
             </a>
           </div>
           <div className="flex items-center gap-1.5">
             <button onClick={() => switchLang("TR")} className={langBtn("TR")}>TR</button>
-            <span aria-hidden className="text-stone-300 text-xs">/</span>
+            <span aria-hidden className="text-stone-700 text-xs">/</span>
             <button onClick={() => switchLang("EN")} className={langBtn("EN")}>EN</button>
           </div>
         </div>
@@ -1355,7 +1355,7 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
             varyantı: tagline grafit, yoksa beyaz zeminde kayboluyor. */}
         <a href={lang === "EN" ? "/en" : "/"} className="shrink-0" aria-label="Özhan Metal">
           <Image
-            src="/logo-light.svg"
+            src="/logo.svg"
             alt="Özhan Metal Kalıp Sanayi"
             width={639}
             height={155}
@@ -1373,7 +1373,7 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
               href={link.href}
               onClick={() => setActive(link.href)}
               className={`relative whitespace-nowrap px-2.5 py-2 text-[15px] font-medium transition-colors group ${
-                active === link.href ? "text-stone-900" : "text-stone-600 hover:text-stone-900"
+                active === link.href ? "text-white" : "text-stone-400 hover:text-white"
               }`}
             >
               {link.label}
@@ -1396,7 +1396,7 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
         <div className="hidden lg:flex items-center gap-4 shrink-0">
           <a
             href={CONTACT_PATH[lang]}
-            className="whitespace-nowrap bg-stone-900 hover:bg-amber-600 text-white font-medium px-4 py-2 text-sm transition-colors"
+            className="whitespace-nowrap bg-white hover:bg-amber-400 text-stone-950 font-semibold px-4 py-2 text-sm transition-colors"
           >
             {t.quote}
           </a>
@@ -1407,7 +1407,7 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
           <a
             href={PHONE_HREF}
             aria-label={PHONE_DISPLAY[lang]}
-            className="p-2 text-stone-600 hover:text-amber-600 transition-colors"
+            className="p-2 text-stone-300 hover:text-amber-400 transition-colors"
           >
             <IconPhone className="w-5 h-5" />
           </a>
@@ -1417,17 +1417,17 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
             aria-label="Menü"
             aria-expanded={menuOpen}
           >
-            <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
-            <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
-            <span className={`block w-6 h-0.5 bg-stone-900 transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "opacity-0" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-white transition-all duration-300 ${menuOpen ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       <div
-        className={`lg:hidden overflow-hidden transition-all duration-300 bg-white ${
-          menuOpen ? "max-h-96 border-t border-stone-200" : "max-h-0"
+        className={`lg:hidden overflow-hidden transition-all duration-300 bg-stone-950 ${
+          menuOpen ? "max-h-96 border-t border-stone-800" : "max-h-0"
         }`}
       >
         {navLinks.map((link) => (
@@ -1435,8 +1435,8 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
             key={link.href}
             href={link.href}
             onClick={() => { setActive(link.href); setMenuOpen(false); }}
-            className={`block px-6 py-3.5 text-sm font-medium border-b border-stone-100 transition-colors ${
-              active === link.href ? "text-amber-700 bg-stone-50" : "text-stone-600 hover:text-stone-900"
+            className={`block px-6 py-3.5 text-sm font-medium border-b border-stone-800 transition-colors ${
+              active === link.href ? "text-amber-400 bg-white/5" : "text-stone-400 hover:text-white"
             }`}
           >
             {link.label}
@@ -1446,13 +1446,13 @@ export function Navbar({ lang, standalone = false }: { lang: Lang; standalone?: 
           <a
             href={CONTACT_PATH[lang]}
             onClick={() => setMenuOpen(false)}
-            className="bg-stone-900 text-white font-medium px-4 py-2 text-[13px]"
+            className="bg-amber-500 text-stone-950 font-semibold px-4 py-2 text-[13px]"
           >
             {t.quote}
           </a>
           <div className="flex items-center gap-2">
             <button onClick={() => switchLang("TR")} className={`${langBtn("TR")} px-1`}>TR</button>
-            <span aria-hidden className="text-stone-300 text-xs">/</span>
+            <span aria-hidden className="text-stone-700 text-xs">/</span>
             <button onClick={() => switchLang("EN")} className={`${langBtn("EN")} px-1`}>EN</button>
           </div>
         </div>
