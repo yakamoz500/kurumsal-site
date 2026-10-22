@@ -161,7 +161,11 @@ const T = {
       workingHours: "Çalışma Saatlerimiz",
       weekdays: "Pzt – Cum: 08:00 – 19:00",
       saturday: "",
-      servicesTitle: "Hizmetlerimiz",
+      servicesTitle: "Yeteneklerimiz",
+      servicesAll: "Tüm yetenekler",
+      legalName: "Özhan Metal Kalıp Sanayi Ltd. Şti.",
+      legalLine: "1991'den beri · Bayrampaşa, İstanbul, Türkiye",
+      directions: "Yol tarifi",
       rights: "Tüm hakları saklıdır.",
       privacy: "Aydınlatma Metni",
       navItems: [
@@ -170,7 +174,10 @@ const T = {
         { label: "Sektörler", href: "#hizmetler" },
         { label: "İletişim", href: "/iletisim" },
       ],
-      serviceItems: ["Makina Yedek Parça", "Otomotiv Sanayi", "Hırdavat", "İnşaat", "Elektrik-Elektronik Parça", "Mobilya", "Mutfak ve Sofra Gereçleri", "Beyaz Eşya Yan Sanayi", "Savunma ve Güvenlik"],
+      // Sektör değil yetenek: footer, alıcının "ne yapabiliyorlar" sorusuna
+      // baktığı son yer. Sektörler zaten Kurumsal sütununda bağlantılı.
+      // Ana sayfadaki Yetenekler bölümüyle aynı altı aile.
+      serviceItems: ["Talaşlı İmalat", "Erozyon", "Taşlama", "Kesme", "Şekillendirme", "Birleştirme"],
     },
     quote: {
       index: "06",
@@ -357,7 +364,11 @@ const T = {
       workingHours: "Working Hours",
       weekdays: "Mon – Fri: 08:00 – 19:00",
       saturday: "",
-      servicesTitle: "Our Services",
+      servicesTitle: "Capabilities",
+      servicesAll: "All capabilities",
+      legalName: "Özhan Metal Kalıp Sanayi Ltd. Şti.",
+      legalLine: "Since 1991 · Bayrampasa, Istanbul, Türkiye",
+      directions: "Get directions",
       rights: "All rights reserved.",
       privacy: "Privacy Notice",
       navItems: [
@@ -366,7 +377,7 @@ const T = {
         { label: "Sectors", href: "#hizmetler" },
         { label: "Contact", href: "/en/contact" },
       ],
-      serviceItems: ["Machine Spare Parts", "Automotive Industry", "Hardware", "Construction", "Electrical-Electronic Parts", "Furniture", "Kitchen and Tableware", "White Goods Suppliers", "Defense and Security"],
+      serviceItems: ["Machining", "EDM", "Grinding", "Cutting", "Forming", "Joining"],
     },
     quote: {
       index: "06",
@@ -2051,6 +2062,9 @@ export function SiteFooter({ lang }: { lang: Lang }) {
                       className="text-white text-sm font-medium hover:text-amber-400 transition-colors leading-snug"
                     >
                       Muratpaşa Mah. Uluyol İşkent Sanayi Sitesi, D Blok No:64, İstanbul
+                      {/* Adres zaten haritaya bağlıydı ama düz yazı gibi
+                          duruyordu, kimse tıklamayı denemiyordu. */}
+                      <span className="block mt-1 text-amber-400 text-xs">{t.footer.directions} &rarr;</span>
                     </a>
                   </div>
                 </li>
@@ -2081,27 +2095,43 @@ export function SiteFooter({ lang }: { lang: Lang }) {
             {/* Kolon 4 — Hizmetlerimiz */}
             <div>
               <h4 className="text-amber-400 font-bold text-base mb-6">{t.footer.servicesTitle}</h4>
+              {/* Düz liste: eskiden dokuz madde de aynı çapaya bağlıydı, dokuz
+                  özdeş bağlantının kimseye faydası yok. Bölüme tek yol veriyoruz. */}
               <ul className="space-y-3">
                 {t.footer.serviceItems.map((s) => (
-                  <li key={s}>
-                    <a href={`${lang === "EN" ? "/en" : "/"}#hizmetler`} className="text-stone-400 hover:text-white text-sm transition-colors">{s}</a>
-                  </li>
+                  <li key={s} className="text-stone-400 text-sm">{s}</li>
                 ))}
               </ul>
+              <a
+                href={`${lang === "EN" ? "/en" : "/"}#yeteneklerimiz`}
+                className="mt-5 inline-flex items-center gap-1.5 text-amber-400 hover:text-amber-300 text-sm transition-colors"
+              >
+                {t.footer.servicesAll}
+                <span aria-hidden>&rarr;</span>
+              </a>
             </div>
 
           </div>
 
           {/* Alt bar */}
           <div className="border-t border-stone-800">
-            <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-4 text-center">
-              <p className="text-stone-500 text-xs" suppressHydrationWarning>
-                © {new Date().getFullYear()} <span className="text-amber-400">Özhan Metal</span>. {t.footer.rights}
+            {/* Yurtdışı alıcı bir firmayı ciddiye alıp almayacağına çoğu zaman
+                buraya bakarak karar veriyor: tam unvan, kuruluş yılı, ülke. */}
+            <div className="max-w-6xl mx-auto px-6 py-5 flex flex-col items-center gap-2 text-center">
+              <p className="text-stone-400 text-xs">
+                {t.footer.legalName}
+                <span aria-hidden className="mx-2 text-stone-700">·</span>
+                <span className="text-stone-500">{t.footer.legalLine}</span>
               </p>
-              <span aria-hidden className="hidden sm:block text-stone-700 text-xs">·</span>
-              <a href={KVKK_PATH[lang]} className="text-stone-500 hover:text-stone-300 text-xs transition-colors">
-                {t.footer.privacy}
-              </a>
+              <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                <p className="text-stone-500 text-xs" suppressHydrationWarning>
+                  © {new Date().getFullYear()} <span className="text-amber-400">Özhan Metal</span>. {t.footer.rights}
+                </p>
+                <span aria-hidden className="hidden sm:block text-stone-700 text-xs">·</span>
+                <a href={KVKK_PATH[lang]} className="text-stone-500 hover:text-stone-300 text-xs transition-colors">
+                  {t.footer.privacy}
+                </a>
+              </div>
             </div>
           </div>
         </footer>
