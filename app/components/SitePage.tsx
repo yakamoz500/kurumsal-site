@@ -2034,10 +2034,6 @@ export function SiteFooter({ lang }: { lang: Lang }) {
                     className="w-10 h-10 rounded-full bg-stone-800 border border-stone-600 flex items-center justify-center text-stone-300 hover:text-amber-400 hover:border-amber-400 transition-colors">
                     <IconLinkedIn />
                   </a>
-                  <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
-                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-600 flex items-center justify-center text-stone-300 hover:text-amber-400 hover:border-amber-400 transition-colors">
-                    <IconWhatsApp />
-                  </a>
                 </div>
               </div>
             </div>
