@@ -153,7 +153,7 @@ const T = {
       staff: "Uzman Personel",
     },
     footer: {
-      followUs: "Bizi Takip Edin!",
+      followUs: "Bizi Takip Edin",
       reachUs: "Bize Ulaşın",
       phoneLabel: "Bizi Arayın",
       emailLabel: "E-posta Gönderin",
@@ -357,7 +357,7 @@ const T = {
       staff: "Expert Staff",
     },
     footer: {
-      followUs: "Follow Us!",
+      followUs: "Follow Us",
       reachUs: "Contact Us",
       phoneLabel: "Call Us",
       emailLabel: "Send Email",
@@ -2027,15 +2027,15 @@ export function SiteFooter({ lang }: { lang: Lang }) {
                 <p className="text-stone-400 text-sm font-semibold mb-4">{t.footer.followUs}</p>
                 <div className="flex gap-3">
                   <a href="https://www.facebook.com/ozhanmetal" target="_blank" rel="noopener noreferrer" aria-label="Facebook"
-                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
+                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-600 flex items-center justify-center text-stone-300 hover:text-amber-400 hover:border-amber-400 transition-colors">
                     <IconFacebook />
                   </a>
                   <a href="https://www.linkedin.com/company/ozhan-metal" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"
-                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
+                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-600 flex items-center justify-center text-stone-300 hover:text-amber-400 hover:border-amber-400 transition-colors">
                     <IconLinkedIn />
                   </a>
                   <a href={`https://wa.me/${WHATSAPP_NUMBER}`} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp"
-                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-700 flex items-center justify-center text-stone-400 hover:text-amber-400 hover:border-amber-400 transition-colors">
+                    className="w-10 h-10 rounded-full bg-stone-800 border border-stone-600 flex items-center justify-center text-stone-300 hover:text-amber-400 hover:border-amber-400 transition-colors">
                     <IconWhatsApp />
                   </a>
                 </div>
