@@ -20,6 +20,25 @@ const T = {
       quote: "Teklif Al",
       follow: "Takip Et",
     },
+    // Jeelix'ten alınan iki unsur: hero altındaki ince süreç şeridi ve teklif
+    // bandındaki "elinizde varsa" listesi. İkisi de alıcıyı yönlendiriyor —
+    // ne göndereceğini ve nasıl ilerleyeceğini yazmadan önce öğreniyor.
+    steps: {
+      items: [
+        "Teknik resminizi veya numunenizi paylaşın",
+        "Kalıp tipini ve termini birlikte netleştirelim",
+        "Numune onayı, sonra seri üretim",
+      ],
+    },
+    helpful: {
+      title: "Elinizde varsa işimizi kolaylaştırır",
+      items: [
+        "Teknik resim veya numune",
+        "Malzeme ve sac kalınlığı",
+        "Adet veya yıllık tahmini miktar",
+        "Teslim yeri (ülke)",
+      ],
+    },
     hero: {
       eyebrow: "Düşük Tolerans · Yüksek Hassasiyet",
       h1: "Metal kesme kalıpları",
@@ -223,6 +242,22 @@ const T = {
       contact: "Contact",
       quote: "Get Quote",
       follow: "Follow Us",
+    },
+    steps: {
+      items: [
+        "Share your drawing or sample",
+        "We agree the tool type and schedule with you",
+        "Sample approval, then series production",
+      ],
+    },
+    helpful: {
+      title: "Useful if you have them",
+      items: [
+        "Technical drawing or sample",
+        "Material and sheet thickness",
+        "Quantity or annual estimate",
+        "Delivery destination (country)",
+      ],
     },
     hero: {
       eyebrow: "Tight Tolerance · High Precision",
@@ -2220,6 +2255,25 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
         </div>
       </section>
 
+      {/* ── SÜREÇ ŞERİDİ ──
+          Hero ile ürünler arasında tek satırlık ince bant. Bölüm değil, şerit:
+          yurtdışı alıcı "bunlarla nasıl çalışılıyor" sorusunun cevabını ilk
+          ekranda görsün diye. Teklif bandındaki soyut cümlenin somut hali. */}
+      <section aria-label={T[defaultLang].quote.formCardLabel} className="border-y border-stone-200 bg-white px-6">
+        <ol className="max-w-6xl mx-auto grid gap-4 py-5 sm:grid-cols-3 sm:gap-8">
+          {T[defaultLang].steps.items.map((adim, i) => (
+            <li key={adim} className="flex items-baseline gap-3">
+              {/* Rakamlar gri: hemen altındaki bölüm başlığı da amber "01" ile
+                  başlıyor, ikisi amber olunca aynı seriymiş gibi okunuyordu. */}
+              <span className="font-medium text-[11px] tabular-nums text-stone-400 shrink-0">
+                {String(i + 1).padStart(2, "0")}
+              </span>
+              <span className="text-[13px] leading-snug text-stone-600">{adim}</span>
+            </li>
+          ))}
+        </ol>
+      </section>
+
       {/* ── ÜRÜNLERİMİZ ── */}
       <section id="urunlerimiz" className="scroll-mt-24 py-14 md:py-20 px-6 bg-white">
         <div className="max-w-6xl mx-auto">
@@ -2335,7 +2389,7 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
         {/* Zemin beyaz; ızgara da sitenin açık bölümlerindekiyle aynı. */}
         <div aria-hidden className="absolute inset-0" style={blueprintGrid} />
         <div className="relative max-w-6xl mx-auto">
-          <div className="relative border border-stone-800 bg-stone-950 px-7 py-8 md:px-10 md:py-10 flex flex-col md:flex-row md:items-center gap-7 md:gap-10">
+          <div className="relative border border-stone-800 bg-stone-950 px-7 py-8 md:px-10 md:py-10 flex flex-col lg:flex-row lg:items-center gap-7 lg:gap-8">
             <CornerTicks className="border-stone-700" />
             <div className="flex-1">
               <p className="font-medium text-[10px] uppercase tracking-[0.2em] text-amber-400">
@@ -2345,9 +2399,23 @@ export default function SitePage({ defaultLang }: { defaultLang: Lang }) {
                 {t.quote.formCardText}
               </p>
             </div>
+            {/* Alıcı daha yazmadan ne göndereceğini öğrensin: form alanı
+                eklemeden talebi nitelikli hale getiriyor. Son madde (ülke)
+                ihracat tarafında erken eleme sağlıyor. */}
+            <div className="shrink-0 lg:w-56 lg:border-l lg:border-stone-800 lg:pl-8">
+              <p className="font-medium text-[10px] uppercase tracking-[0.18em] text-stone-500">
+                {t.helpful.title}
+              </p>
+              <ul className="mt-3 space-y-1.5">
+                {t.helpful.items.map((madde) => (
+                  <li key={madde} className="text-[13px] leading-snug text-stone-300">{madde}</li>
+                ))}
+              </ul>
+            </div>
+
             {/* SSS'ye ikincil yol: tereddüdü olan ziyaretçi, teklif isteme
                 niyetine gelmeden önce cevapları bulabilsin. */}
-            <div className="shrink-0 flex flex-col items-start md:items-end gap-3">
+            <div className="shrink-0 flex flex-col items-start lg:items-end gap-3">
               <a
                 href={CONTACT_PATH[defaultLang]}
                 className="inline-flex items-center gap-2.5 bg-amber-500 hover:bg-amber-400 text-black font-semibold px-7 py-3.5 text-sm transition-colors"

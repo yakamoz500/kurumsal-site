@@ -23,6 +23,13 @@ const C = {
     faqTitle: "Teklif istemeden önce",
     formTitle: "Teklif isteyin",
     formLead: "Kalıp tipi, adet ve tolerans ihtiyacınızı yazın; size dönelim.",
+    helpfulTitle: "Elinizde varsa işimizi kolaylaştırır",
+    helpfulItems: [
+      "Teknik resim veya numune",
+      "Malzeme ve sac kalınlığı",
+      "Adet veya yıllık tahmini miktar",
+      "Teslim yeri (ülke)",
+    ],
     whatsapp: "WhatsApp'tan yazın",
     callNow: "Hemen arayın",
   },
@@ -44,6 +51,13 @@ const C = {
     faqTitle: "Before you ask for a quote",
     formTitle: "Request a quote",
     formLead: "Tell us the tool type, volume and tolerance you need and we will come back to you.",
+    helpfulTitle: "Useful if you have them",
+    helpfulItems: [
+      "Technical drawing or sample",
+      "Material and sheet thickness",
+      "Quantity or annual estimate",
+      "Delivery destination (country)",
+    ],
     whatsapp: "Message on WhatsApp",
     callNow: "Call now",
   },
@@ -196,6 +210,24 @@ export default function ContactPage({ lang }: { lang: Lang }) {
               <div className="relative h-full border border-stone-200 bg-white p-7 md:p-8 flex flex-col">
                 <h2 className="text-2xl font-semibold tracking-tight text-stone-900">{t.formTitle}</h2>
                 <p className="mt-2.5 text-sm leading-relaxed text-stone-500">{t.formLead}</p>
+
+                {/* Alıcı formu doldurmadan ne göndereceğini görsün. Form alanı
+                    eklemiyoruz — alan sayısı arttıkça gönderim düşüyor; bu
+                    liste aynı işi görüp sürtünme yaratmıyor. */}
+                <div className="mt-6 border-t border-stone-900 pt-4">
+                  <p className="font-medium text-[10px] uppercase tracking-[0.18em] text-stone-400">
+                    {t.helpfulTitle}
+                  </p>
+                  <ul className="mt-3 grid gap-x-6 gap-y-1.5 sm:grid-cols-2">
+                    {t.helpfulItems.map((madde) => (
+                      <li key={madde} className="flex items-baseline gap-2 text-[13px] leading-snug text-stone-600">
+                        <span aria-hidden className="h-px w-2.5 bg-amber-500 shrink-0 translate-y-[-3px]" />
+                        {madde}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
                 <div className="mt-6 flex-1">
                   <QuoteForm lang={lang} theme="light" />
                 </div>
