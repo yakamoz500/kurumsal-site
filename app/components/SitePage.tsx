@@ -38,6 +38,7 @@ const T = {
       subtitle: "Ürün ve Hizmetlerimiz",
       title: "Ürünlerimiz",
       lead: "Kalıbınızı sıfırdan tasarlayıp imal ediyoruz. Sadece parça istiyorsanız kalıbı biz yapar, seri baskısını da kendi presimizde alırız.",
+      groupLabel: "Ürün grubu",
       items: [
         { title: "Progresif Kalıpları", desc: "Birden fazla işlemi (kesme, delme, bükme vb.) aynı kalıp içerisinde adım adım gerçekleştiren kalıplardır. Seri üretim için idealdir, zamandan ve maliyetten tasarruf sağlar." },
         { title: "Kesme Kalıpları", desc: "Sacın istenilen şekil ve ölçülerde kesilmesini sağlar. Ürün geometrisine göre özel olarak tasarlanır." },
@@ -241,6 +242,7 @@ const T = {
       subtitle: "Products & Services",
       title: "What We Make",
       lead: "Send us a drawing. We can build the tool, or build the tool and deliver the finished parts in series — contract manufacturing from a single supplier.",
+      groupLabel: "Product group",
       items: [
         { title: "Progressive Dies", desc: "Dies that perform multiple operations (cutting, punching, bending, etc.) step by step within the same mold. Ideal for mass production, saving time and cost." },
         { title: "Cutting Dies", desc: "Enables sheet metal to be cut in desired shapes and dimensions. Custom designed according to product geometry." },
@@ -1564,14 +1566,15 @@ function ProductShowcase({ lang }: { lang: Lang }) {
   return (
     <div className="grid md:grid-cols-12 border border-stone-200">
       {/* Sol — numaralı liste */}
-      <div className="md:col-span-4 flex flex-col self-start border-b md:border-b-0 md:border-r border-stone-200" role="tablist" aria-orientation="vertical">
+      <div className="md:col-span-4 flex flex-col border-b md:border-b-0 md:border-r border-stone-200">
+        <div className="flex flex-col" role="tablist" aria-orientation="vertical">
         {t.items.map((p, i) => (
           <button
             key={i}
             role="tab"
             aria-selected={selected === i}
             onClick={() => setSelected(i)}
-            className={`w-full flex items-center gap-4 px-5 py-5 text-left border-b border-stone-100 last:border-b-0 transition-colors ${
+            className={`w-full flex items-center gap-4 px-5 py-5 md:py-7 text-left border-b border-stone-100 last:border-b-0 transition-colors ${
               selected === i ? "bg-stone-900" : "bg-white hover:bg-stone-50"
             }`}
           >
@@ -1583,6 +1586,21 @@ function ProductShowcase({ lang }: { lang: Lang }) {
             </span>
           </button>
         ))}
+        </div>
+
+        {/* Listenin altında kalan boşluk: dört satır sağdaki panelin boyunu
+            doldurmuyordu. Sitenin başka yerinde de kullanılan hayalet rakam
+            devreye giriyor — yeni iddia üretmeden alanı sahipleniyor. */}
+        <div aria-hidden className="hidden md:flex flex-1 items-end justify-start px-5 pb-6 pt-10 select-none">
+          <div className="leading-none">
+            <span className="block text-[64px] font-semibold tracking-tighter text-stone-200">
+              {String(t.items.length).padStart(2, "0")}
+            </span>
+            <span className="mt-1 block font-medium text-[10px] uppercase tracking-[0.18em] text-stone-400">
+              {t.groupLabel}
+            </span>
+          </div>
+        </div>
       </div>
 
       {/* Sağ — seçili ürün */}
