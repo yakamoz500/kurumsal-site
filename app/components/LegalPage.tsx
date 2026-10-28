@@ -15,7 +15,7 @@ const L = {
     sections: [
       {
         h: "Veri sorumlusu",
-        p: ["Özhan Metal Kalıp Sanayi Ltd. Şti. — Muratpaşa Mah. Uluyol İşkent Sanayi Sitesi, D Blok No:64, Bayrampaşa / İstanbul. E-posta: info@ozhanmetal.com, telefon: 0545 646 23 56."],
+        p: ["Özhan Metal Döküm ve Kalıp Sanayii Ltd. Şti. — Muratpaşa Mah. Uluyol İşkent Sanayi Sitesi, D Blok No:64, Bayrampaşa / İstanbul. E-posta: info@ozhanmetal.com, telefon: 0545 646 23 56."],
       },
       {
         h: "Hangi veriler işleniyor",
@@ -49,7 +49,7 @@ const L = {
     sections: [
       {
         h: "Data controller",
-        p: ["Özhan Metal Kalıp Sanayi Ltd. Şti. — Muratpasa Mah. Uluyol Iskent Sanayi Sitesi, D Blok No:64, Bayrampasa / Istanbul, Türkiye. E-mail: info@ozhanmetal.com, phone: +90 545 646 23 56."],
+        p: ["Özhan Metal Döküm ve Kalıp Sanayii Ltd. Şti. — Muratpasa Mah. Uluyol Iskent Sanayi Sitesi, D Blok No:64, Bayrampasa / Istanbul, Türkiye. E-mail: info@ozhanmetal.com, phone: +90 545 646 23 56."],
       },
       {
         h: "What we process",
