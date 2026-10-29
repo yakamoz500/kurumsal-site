@@ -53,7 +53,7 @@ const jsonLd = {
     {
       "@type": "ManufacturingBusiness",
       "@id": "https://ozhanmetal.com/#business",
-      "name": "Özhan Metal Döküm ve Kalıp Sanayii Ltd. Şti.",
+      "name": "Özhan Metal Döküm ve Kalıp Sanayi Ltd. Şti.",
       "alternateName": "Özhan Metal",
       "url": "https://ozhanmetal.com",
       "logo": "https://ozhanmetal.com/logo-kare.png",
